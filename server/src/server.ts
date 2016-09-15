@@ -8,7 +8,7 @@ const config: QneOptions = new QneOptions(":memory:", true);
 /**
  * setup Koa
  */
-const app: Koa = new Koa();
+export const app: Koa = new Koa();
 
 // debugging setup
 

@@ -11,13 +11,17 @@
   "scripts": {
     "clean": "cd ./core && npm run clean && cd ../respondent && npm run clean && cd ../server && npm run clean && cd .. && npm-workspace clean",
     "build:core-watch": "cd ./core && npm run build:watch",
+    "test:core": "cd ./core && npm run test",
     "test:core-watch": "cd ./core && npm run test:watch",
     "build:server-watch": "cd ./server && npm run build:watch",
+    "test:server": "cd ./server && npm run test",
     "test:server-watch": "cd ./server && npm run test:watch",
     "start:server-watch": "cd ./server && npm run start:watch",
+    "test:respondent": "cd ./respondent && npm run test",
     "build:watch": "concurrently \"npm run build:core-watch\" \"npm run build:server-watch\" \" ",
     "start": "npm install && npm-workspace install && cd ./core && npm run postinstall-build && cd ../respondent && npm run postinstall-build && cd ../server && npm run postinstall-build &&  npm run start",
-    "dev": "concurrently \"npm run build:core-watch\" \"npm run test:core-watch\" \"npm run build:server-watch\" \"npm run start:server-watch\" \"npm run test:server-watch\" "
+    "dev": "concurrently \"npm run build:core-watch\" \"npm run test:core-watch\" \"npm run build:server-watch\" \"npm run start:server-watch\" \"npm run test:server-watch\" ",
+    "test": "concurrently \"npm run test:core\" \"npm run test:respondent\" \"npm run test:server\" "
   },
   "repository": {
     "type": "git",
