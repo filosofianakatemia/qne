@@ -1,8 +1,11 @@
-var action = sequelize.define('action', {
-    action_uuid: {type: sequelize.UUID, primaryKey:true},
-    action_type: sequelize.STRING,
-    title: sequelize.STRING,
-    questionnaire_uuid: {type: sequelize.UUID, foreignKey:true}
+var sequelize = require('sequelize');
+
+module.exports=function(sequelize, DataTypes) {
+return action = sequelize.define('action', {
+    action_uuid: {type: DataTypes.UUID, primaryKey:true},
+    action_type: DataTypes.STRING,
+    title: DataTypes.STRING,
+    questionnaire_uuid: {type: DataTypes.UUID, foreignKey:true}
     
 }, {
     freezetableName: true,
@@ -10,3 +13,4 @@ var action = sequelize.define('action', {
     createdAt: 'created'
 
 });
+};

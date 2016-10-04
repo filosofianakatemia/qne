@@ -1,11 +1,13 @@
-var option = sequelize.define('option', {
+var sequelize = require('sequelize');
 
-    option_uuid: {type:Sequelize.UUID, PrimaryKey: true},
-    option_value: Sequelize.STRING,
-    title: Sequelize.STRING
-
+module.exports=function(sequelize, DataTypes) {
+return option = sequelize.define('option', {
+    option_uuid: {type:DataTypes.UUID, PrimaryKey: true},
+    option_value: DataTypes.STRING,
+    title: DataTypes.STRING
 }, {
-    tableName: option,
+    freezeTableName: true,
     updatedAt: 'modified',
     createdAt: 'created'
 });
+};

@@ -1,14 +1,18 @@
-var questionnaire = sequelize.define('questionnaire', {
+var sequelize = require('sequelize');
 
-    questionnaire_uuid: {type:sequelize.UUID, primaryKey:true},
-    defaultLang: sequelize.String,
-    title: sequelize.String,
-    description: sequelize.String,
-    submitted: sequelize.UUID,
-    questionnaire_path: sequelize.STRING,
-    organization_uuid: {type: sequelize.UUID, foreignKey:true}
+module.exports=function(sequelize, DataTypes) {
+return questionnaire = sequelize.define('questionnaire', {
+
+    questionnaire_uuid: {type:DataTypes.UUID, primaryKey:true},
+    defaultLang: DataTypes.STRING,
+    title: DataTypes.STRING,
+    description: DataTypes.STRING,
+    submitted: DataTypes.UUID,
+    questionnaire_path: DataTypes.STRING,
+    organization_uuid: {type: DataTypes.UUID, foreignKey:true}
 }, {
     freezetableName: true,
     createdAt:'created',
     updatedAt:'modified'
 });
+};

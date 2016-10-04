@@ -1,8 +1,11 @@
-var Role = sequelize.define('role', {
-  role_uuid: {type: Sequelize.UUID, primaryKey: true},
-  role_type: Sequelize.STRING,
-  organization_uuid: Sequelize.UUID,
-  user_uuid: Sequelize.UUID
+var sequelize = require('sequelize');
+
+module.exports=function(sequelize, DataTypes) {
+return Role = sequelize.define('role', {
+  role_uuid: {type: DataTypes.UUID, primaryKey: true},
+  role_type: DataTypes.STRING,
+  organization_uuid: DataTypes.UUID,
+  user_uuid: DataTypes.UUID
 }, {
     freezeTableName: true,
     updatedAt: "modified",
@@ -15,3 +18,4 @@ var Role = sequelize.define('role', {
       }
     }
   }*/);
+};
