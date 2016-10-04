@@ -10,6 +10,7 @@ import { compose } from '@ngrx/core/compose';
 import { Observable } from 'rxjs/Observable';
 import { State, initialState, QuestionnaireState } from './shared.state';
 import { Actions, ActionTypes } from './shared.actions';
+import '@ngrx/core/add/operator/select';
 
 export const getAppLoaded = compose(getQuestionnaireLoaded, getQuestionnaireState);
 
