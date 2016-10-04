@@ -1,8 +1,7 @@
 'use strict';
 
 var chakram = require('chakram'),
-  expect = chakram.expect,
-  server = require('../dist/server/index.js').app;
+    expect = chakram.expect;
 
 describe('qne server API', () => {
 

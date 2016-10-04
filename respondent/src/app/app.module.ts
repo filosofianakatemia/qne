@@ -19,8 +19,7 @@ import { QuestionnaireService } from './questionnaire/questionnaire.service';
       QuestionnaireService
   ],
   bootstrap: [
-    AppComponent,
-    QuestionnaireComponent
+    AppComponent
   ]
 })
 

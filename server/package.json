@@ -41,7 +41,7 @@
     "postinstall-build": "npm run postinstall && npm run build",
     "start": "node dist/server/index.js",
     "start:watch": "nodemon -w dist -w test -w ../core/build/src -e js dist/server/index.js",
-    "test": "mocha test/**.js",
+    "test": "./testrunner.sh",
     "test:watch": "nodemon -w build -e js --exec \"node ./node_modules/mocha/bin/_mocha ./test/**.js\" ",
     "start-test:watch": "concurrently \"npm run start:watch\" \"npm run test:watch\" "
   },
