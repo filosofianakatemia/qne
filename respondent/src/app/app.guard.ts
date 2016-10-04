@@ -12,36 +12,38 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
 import { QuestionnaireService } from './questionnaire/questionnaire.service';
+import { State } from './shared/shared.state';
+import { getAppLoaded } from './shared/shared.reducers';
+import * as actions from './shared/shared.actions';
 
 /**
  * Guards are hooks into the route resolution process, providing an opportunity
  * to inform the router's navigation process whether the route should continue
  * to activate this route. Guards must return an observable of true or false.
  */
-/*@Injectable()
-export class QuestionnaireExistsGuard implements CanActivate {
+@Injectable()
+export class AppGuard implements CanActivate {
   constructor(
-    private store: Store<fromRoot.State>,
+    private store: Store<State>,
     private questionnaireService: QuestionnaireService,
     private router: Router
   ) { }
 
   /**
-   * This method loads a book with the given ID from the API and caches
-   * it in the store, returning `true` or `false` if it was found.
+   * This method loads a quesionnaire with the given ID from the API, returning
+   * `true` or `false` if it was found.
    */
-  /*
-  getQuestionnaireFromAPI(id: questionnaireId): Observable<boolean> {
-    return this.googleBooks.retrieveBook(id)
-      .map(bookEntity => new book.LoadAction(bookEntity))
+  getQuestionnaireFromAPI(id: string): Observable<boolean> {
+    return this.questionnaireService.getQuestions()
+      .map(questionnaireEntity => new actions.LoadAction(questionnaireEntity))
       .do(action => this.store.dispatch(action))
-      .map(book => !!book)
+      .map(questionnaire => !!questionnaire)
       .catch(() => {
         this.router.navigate(['/404']);
         return of(false);
       });
   }
-*/
+
   /**
    * This is the actual method the router will call when our guard is run.
    *
@@ -55,10 +57,8 @@ export class QuestionnaireExistsGuard implements CanActivate {
    * on to the next candidate route. In this case, it will move on
    * to the 404 page.
    */
-/*
+
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
-    return this.waitForCollectionToLoad()
-      .switchMap(() => this.hasBook(route.params['id']));
+    return this.getQuestionnaireFromAPI(route.params['questionnaire_id']);
   }
 }
-*/

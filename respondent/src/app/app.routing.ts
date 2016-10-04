@@ -1,18 +1,21 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
+import { QuestionnaireWrapperComponent } from './questionnaire/questionnaire-wrapper.component'
+import { AppGuard } from './app.guard'
 
 /*
 App routing.
 Still W.I.P.
 */
 
-
 //Routing to questionnaire by id
 const appRoutes: Routes = [
   {
-    path: ':questionnaire_id',
-    component: QuestionnaireComponent
+    // TODO: USE THIS PATH WHEN DOING 4REALS
+    //path: ':questionnaire_id',
+    path: '',
+    canActivate: [ AppGuard ],
+    component: QuestionnaireWrapperComponent
   }
 ];
 

@@ -26,9 +26,9 @@ export class QuestionnaireService {
     return Observable.throw(errMsg);
   }
 
-  getQuestions(): Observable<Questionnaire[]> {
+  getQuestions(): Observable<Questionnaire> {
     return this._http.get(this._apiUrl)
-      .map(response => <Questionnaire[]>response.json())
+      .map(response => <Questionnaire>response.json())
       .catch(QuestionnaireService.handleError);
   }
 }

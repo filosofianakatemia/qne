@@ -1,37 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-
-import { QuestionnaireService } from './questionnaire.service';
+import { Component, Input } from '@angular/core';
 import { Questionnaire } from './questionnaire.model';
+import { Store } from '@ngrx/store';
+import { State } from '../shared/shared.state';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'questionnaire',
-  providers: [QuestionnaireService],
   template: `
-    <div *ngFor="let questionLocalized of questions.i18n">
+    <div *ngFor="let questionLocalized of questionnaire.i18n">
       <h1>{{questionLocalized.title}}</h1>
       <p>{{questionLocalized.description}}</p>
     </div>
   `
 })
 
-export class QuestionnaireComponent implements OnInit {
-  componentName: 'QuestionnaireComponent';
-  questions: Questionnaire[] = [];
-  mode = 'Observable';
-  errorMessage: string;
-
-  constructor(private _questionnaireService: QuestionnaireService){
-
-  }
-
-  ngOnInit(): void {
-    this._getQuestions();
-  }
-
-  private _getQuestions(): void {
-    this._questionnaireService.getQuestions()
-      .subscribe(
-        questions => this.questions = questions,
-        error =>  this.errorMessage = <any>error);
-  }
+export class QuestionnaireComponent {
+  @Input() questionnaire: Questionnaire;
 }
