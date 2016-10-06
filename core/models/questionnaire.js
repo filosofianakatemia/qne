@@ -8,10 +8,9 @@ return questionnaire = sequelize.define('questionnaire', {
     title: DataTypes.STRING,
     description: DataTypes.STRING,
     submitted: DataTypes.UUID,
-    questionnaire_path: DataTypes.STRING,
-    organization_uuid: {type: DataTypes.UUID, foreignKey:true}
+    questionnaire_path: DataTypes.STRING
 }, {
-    freezetableName: true,
+    tableName: 'questionnaire',
     createdAt:'created',
     updatedAt:'modified'
 });

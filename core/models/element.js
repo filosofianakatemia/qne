@@ -6,12 +6,9 @@ return element = sequelize.define('element', {
     element_type: DataTypes.STRING,
     title: DataTypes.STRING,
     description: DataTypes.STRING,
-    required: DataTypes.BOOLEAN,
-    instruction_uuid: {type: DataTypes.UUID, foreignKey:true}
-
-
+    required: DataTypes.BOOLEAN
 }, {
-    freezeTableName: true,
+    tableName: 'element',
     updatedAt: 'modified',
     createdAt: 'created',
 

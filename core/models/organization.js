@@ -5,7 +5,7 @@ return Organization = sequelize.define('organization', {
   organization_uuid: {type: DataTypes.UUID, primaryKey: true},
   creator_user_uuid: DataTypes.UUID
 }, {
-    freezeTableName: true,
+    tableName: 'organization',
     updatedAt: "modified",
     createdAt: "created"
 });

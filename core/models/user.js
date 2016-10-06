@@ -7,7 +7,7 @@ return User = sequelize.define('user', {
   user_name: DataTypes.STRING,
   user_password: DataTypes.STRING
 }, {
-    freezeTableName: true,
+    tableName: 'user',
     updatedAt: "modified",
     createdAt: "created"
 });

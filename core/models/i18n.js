@@ -6,13 +6,9 @@ return I18n = sequelize.define('i18n', {
   lang: DataTypes.STRING,
   title: DataTypes.STRING,
   description: DataTypes.STRING,
-  questionnaire_path: DataTypes.STRING,
-  element_uuid: DataTypes.UUID,
-  option_uuid: DataTypes.UUID,
-  action_uuid: DataTypes.UUID,
-  questionnaire_uuid: DataTypes.UUID
+  questionnaire_path: DataTypes.STRING
 }, {
-    freezeTableName: true,
+    tableName: 'i18n',
     updatedAt: "modified",
     createdAt: "created"
 });

@@ -1,6 +1,8 @@
 
 //var Sequelize = require(__dirname + "/models/index", 'sequelize')
 var Sequelize = require('sequelize');
+/*const sequelize_fixtures = require('sequelize_fixtures');
+const models = require('./models'); */
  // , config    = require(__dirname + "/config/config");
 /*function Kanta(database, username, password, config) {
     this.database = config.database;
@@ -28,49 +30,41 @@ var Action   = sequelize.import(__dirname + "/models/action")
   , Token     = sequelize.import(__dirname + "/models/token")
   , User     = sequelize.import(__dirname + "/models/user");
 
-Answer_Element.belongsTo(Answer)
-Answer.hasMany(Answer_Element)
-User.hasMany(Token)
-User.hasMany(Role)
-Token.belongsTo(User)
-Role.belongsTo(User)
-Organization.hasMany(Role)
-Organization.belongsTo(Organization)
-Role.belongsTo(Organization)
-Action.belongsTo(Questionnaire)
-Action.hasMany(I18n)
-Option.hasMany(Instruction)
-Option.hasMany(I18n)
-Instruction.belongsTo(I18n)
-Instruction.belongsTo(Questionnaire)
-Element.hasMany(I18n)
-I18n.belongsTo(Option)
-I18n.belongsTo(Element)
-I18n.belongsTo(Action)
-I18n.belongsTo(Questionnaire)
-Element.belongsToMany(Group, {through: 'Groups_Elements'})
-Group.belongsToMany(Element, {through: 'Groups_Elements'})
-Group.belongsTo(Questionnaire)
-Questionnaire.hasMany(Group)
-Questionnaire.hasMany(Answer)
-Questionnaire.hasMany(I18n)
-Questionnaire.hasMany(Action)
-Questionnaire.hasMany(Instruction)
-Questionnaire.hasMany(Organization)
+Answer_Element.belongsTo(Answer, { foreignKey: 'answer_uuid'})
+Answer.hasMany(Answer_Element, { foreignKey: 'answer_uuid'})
+Answer.belongsTo(Questionnaire, { foreignKey: 'questionnaire_uuid'})
+User.hasMany(Token, { foreignKey: 'user_uuid'})
+User.hasMany(Role, { foreignKey: 'user_uuid'})
+Token.belongsTo(User, { foreignKey: 'user_uuid'})
+Role.belongsTo(User, { foreignKey: 'user_uuid'})
+Organization.hasMany(Role, { foreignKey: 'organization_uuid'})
+Organization.belongsTo(Questionnaire, { foreignKey: 'questionnaire_uuid'})
+Role.belongsTo(Organization, { foreignKey: 'organization_uuid'})
+Action.belongsTo(Questionnaire, {foreignKey: 'questionnaire_uuid'})
+Action.hasMany(I18n, { foreignKey: 'action_uuid'})
+Option.hasMany(Instruction, { foreignKey: 'instruction_uuid'})
+Option.hasMany(I18n, { foreignKey: 'option_uuid'})
+Instruction.belongsTo(Option, { foreignKey: 'option_uuid'})
+Instruction.belongsTo(Questionnaire, { foreignKey: 'questionnaire_uuid'})
+Element.hasMany(I18n, { foreignKey: 'element_uuid'})
+I18n.belongsTo(Option, { foreignKey: 'option_uuid'})
+I18n.belongsTo(Element, { foreignKey: 'element_uuid'})
+I18n.belongsTo(Action, { foreignKey: 'action_uuid'})
+I18n.belongsTo(Questionnaire, { foreignKey: 'questionnaire_uuid'})
+Element.belongsToMany(Group, {through: 'groups_elements', foreignKey: 'element_uuid'})
+Group.belongsToMany(Element, {through: 'groups_elements', foreignKey: 'group_uuid'})
+Group.belongsTo(Questionnaire, { foreignKey: 'questionnaire_uuid'})
+Questionnaire.hasMany(Group, { foreignKey: 'questionnaire_uuid'})
+Questionnaire.hasMany(Answer, { foreignKey: 'questionnaire_uuid'})
+Questionnaire.hasMany(I18n, { foreignKey: 'questionnaire_uuid'})
+Questionnaire.hasMany(Action, { foreignKey: 'questionnaire_uuid'})
+Questionnaire.hasMany(Instruction, { foreignKey: 'questionnaire_uuid'})
+Questionnaire.hasMany(Organization, { foreignKey: 'questionnaire_uuid'})
 
-sequelize.sync({force: true});
- /* Project
-    .create({ name: 'Sequelize', description: 'A nice MySQL ORM for NodeJS' })
-    .on('success', function(project) {
-      Task.create({ name: 'Choose a nice MySQL connector', deadline: new Date(), importance: 10 })
-        .on('success', function(task1) {
-          Task.create({ name: 'Build the rest', deadline: new Date(), importance: 90 })
-            .on('success', function(task2) {
-              project.setTasks([task1, task2]).on('success', function(tasks) {
-                console.log(project)
-                console.log(tasks)
-              })
-            })
-        })
-    }) */
+sequelize.sync({force: true}).then(function() {
+  console.log("Database created.")
+});
+
+/*sequelize_fixtures.loadFile('../respondent/mock.api.json', models).then(function(){
+}); */
 //})
