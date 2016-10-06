@@ -4,7 +4,7 @@ export class QuestionGroup {
   type: String;
   action: String;
 
-  constructor(private elements: Array<QuestionElement>){
+  constructor(public elements: Array<QuestionElement>){
     this.elements = elements;
   }
 }

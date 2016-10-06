@@ -11,6 +11,9 @@ import { QuestionnaireWrapperComponent } from './questionnaire/questionnaire-wra
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { QuestionnaireService } from './questionnaire/questionnaire.service';
 
+import { GroupComponent } from './group/group.component';
+import { ElementComponent } from './element/element.component';
+
 import { routing } from './app.routing';
 import { reducer } from './shared/shared.reducers';
 
@@ -36,7 +39,10 @@ import { reducer } from './shared/shared.reducers';
   declarations: [
     AppComponent,
     QuestionnaireWrapperComponent,
-    QuestionnaireComponent
+    QuestionnaireComponent,
+    GroupComponent,
+    ElementComponent
+
   ],
   providers: [
     AppGuard,

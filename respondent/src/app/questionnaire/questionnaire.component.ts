@@ -1,16 +1,16 @@
 import { Component, Input } from '@angular/core';
 import { Questionnaire } from './questionnaire.model';
-import { Store } from '@ngrx/store';
-import { State } from '../shared/shared.state';
-import { Observable } from 'rxjs/Observable';
+
+import { GroupComponent } from '../group/group.component';
+
 
 @Component({
   selector: 'questionnaire',
   template: `
-    <div *ngFor="let questionLocalized of questionnaire.i18n">
-      <h1>{{questionLocalized.title}}</h1>
-      <p>{{questionLocalized.description}}</p>
-    </div>
+      <h1>{{questionnaire.title}}</h1>
+      <p>{{questionnaire.description}}</p>
+
+      <groups [groups]="questionnaire.groups"></groups>
   `
 })
 
