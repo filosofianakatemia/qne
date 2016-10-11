@@ -2,7 +2,7 @@
   {
     "model": "action",
     "data": {
-      "action_uuid": "3b99828b-852b-478a-a976-84b51a3214b8",
+      "action_uuid": "1",
       "action_type": "button",
       "title": "Begin"
     }
@@ -10,7 +10,7 @@
   {
     "model": "questionnaire",
     "data": {
-      "questionnaire_uuid": "246680f6-ece4-4426-b003-92853e95ec85",
+      "questionnaire_uuid": "2",
       "defaultLang": "en",
       "title": "Test Questionnaire",
       "description": "This is a questionnaire suitable for testing",
@@ -21,14 +21,14 @@
   {
     "model": "answer",
     "data": {
-      "answer_uuid": "246650f6-ece4-4426-b003-92853e95ec85",
+      "answer_uuid": "3",
       "answer_time": ""
     }
   },
   {
     "model": "answer_element",
     "data": {
-      "element_uuid": "116680f6-ece4-4426-b003-92853e95ec85",
+      "element_uuid": "4",
       "int_value": "",
       "string_value": "",
       "boolean_value": ""
@@ -37,7 +37,7 @@
   {
     "model": "element",
     "data": {
-      "element_uuid": "246655f6-ece4-4426-b003-92853e95ec85",
+      "element_uuid": "5",
       "element_type": "",
       "title": "",
       "description": "",
@@ -47,7 +47,7 @@
   {
     "model": "group",
     "data": {
-      "group_uuid": "246990f6-ece4-4426-b003-92853e95ec85",
+      "group_uuid": "6",
       "group_type": "",
       "group_action": ""
     }
@@ -55,14 +55,14 @@
   {
     "model": "groups_elements",
     "data": {
-      "group_uuid": "555680f6-ece4-4426-b003-92853e95ec85",
+      "group_uuid": "7",
       "element_uuid": ""
     }
   },
   {
     "model": "i18n",
     "data": {
-      "i18n_uuid": "246680f6-ece4-4426-b003-912353e95ec85",
+      "i18n_uuid": "8",
       "lang": "",
       "title": "",
       "description": "",
@@ -72,7 +72,7 @@
   {
     "model": "instruction",
     "data": {
-      "instruction_uuid": "246680f6-ece4-4444-b003-92853e95ec85",
+      "instruction_uuid": "9",
       "instruction_type": "",
       "title": "",
       "description": ""
@@ -81,7 +81,7 @@
   {
     "model": "option",
     "data": {
-      "option_uuid": "999990f6-ece4-4426-b003-92853e95ec85",
+      "option_uuid": "10",
       "option_value": "",
       "title": ""
     }
@@ -89,28 +89,28 @@
   {
     "model": "organization",
     "data": {
-      "organization_uuid": "246680f6-ece4-4426-b003-92853e95ec11",
+      "organization_uuid": "11",
       "creator_user_uuid": ""
     }
   },
   {
     "model": "role",
     "data": {
-      "role_uuid": "2463212f6-ece4-4426-b003-92853e95ec85",
+      "role_uuid": "12",
       "role_type": ""
     }
   },
   {
     "model": "token",
     "data": {
-      "token_uuid": "2464440f6-ece4-4426-b003-92853e95ec85",
+      "token_uuid": "13",
       "expires": ""
     }
   },
   {
     "model": "user",
     "data": {
-      "user_uuid": "248760f6-ece4-4426-b003-92853e95ec85",
+      "user_uuid": "14",
       "email": "",
       "user_name": "",
       "user_password": ""
