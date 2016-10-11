@@ -1,8 +1,8 @@
 
 //var Sequelize = require(__dirname + "/models/index", 'sequelize')
 var Sequelize = require('sequelize');
-/*const sequelize_fixtures = require('sequelize_fixtures');
-const models = require('./models'); */
+var sequelize_fixtures = require("sequelize-fixtures")
+//const models = require('./models'); */
  // , config    = require(__dirname + "/config/config");
 /*function Kanta(database, username, password, config) {
     this.database = config.database;
@@ -29,6 +29,11 @@ var Action   = sequelize.import(__dirname + "/models/action")
   , Role    = sequelize.import(__dirname + "/models/role")
   , Token     = sequelize.import(__dirname + "/models/token")
   , User     = sequelize.import(__dirname + "/models/user");
+
+const models = require('./models');
+
+/*var models = [Action, Answer, Answer_Element, Element, Group, I18n, Instruction,
+Option, Organization, Questionnaire, Role, Token, User];*/
 
 Answer_Element.belongsTo(Answer, { foreignKey: 'answer_uuid'})
 Answer.hasMany(Answer_Element, { foreignKey: 'answer_uuid'})
@@ -62,8 +67,11 @@ Questionnaire.hasMany(Instruction, { foreignKey: 'questionnaire_uuid'})
 Questionnaire.hasMany(Organization, { foreignKey: 'questionnaire_uuid'})
 
 sequelize.sync({force: true}).then(function() {
-  console.log("Database created.")
+  //console.log("Database created.").then(function () {
+      sequelize_fixtures.loadFile("models/fixtures.json", models);
+  //});
 });
+
 
 /*sequelize_fixtures.loadFile('../respondent/mock.api.json', models).then(function(){
 }); */
