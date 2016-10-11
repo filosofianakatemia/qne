@@ -13,6 +13,12 @@ import { QuestionnaireService } from './questionnaire/questionnaire.service';
 
 import { GroupComponent } from './group/group.component';
 import { ElementComponent } from './element/element.component';
+import { LikertComponent } from './element/element.likert.component';
+import { TextComponent } from './element/element.text.component';
+import { TextareaComponent } from './element/element.textarea.component';
+import { CheckboxComponent } from './element/element.checkbox.component';
+
+
 
 import { routing } from './app.routing';
 import { reducer } from './shared/shared.reducers';
@@ -41,7 +47,11 @@ import { reducer } from './shared/shared.reducers';
     QuestionnaireWrapperComponent,
     QuestionnaireComponent,
     GroupComponent,
-    ElementComponent
+    ElementComponent,
+    LikertComponent,
+    TextComponent,
+    TextareaComponent,
+    CheckboxComponent
 
   ],
   providers: [
