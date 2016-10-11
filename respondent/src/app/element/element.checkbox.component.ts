@@ -5,7 +5,6 @@ import { QuestionElement } from './element.model';
     selector: 'checkbox',
     template: `
         <input type= "checkbox">
-        
     `
 
 })

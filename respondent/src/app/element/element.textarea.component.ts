@@ -5,7 +5,6 @@ import { QuestionElement } from './element.model';
     selector: 'textarea',
     template: `
         <input type= "textarea">
-        
     `
 
 })

@@ -10,33 +10,31 @@ import { TextareaComponent } from './element.textarea.component';
   selector: 'elements',
   template: `
     <div *ngFor="let element of elements">
-        <div ng-show= "element.type === 'likert'">
+
+        <p>uuid: {{element.uuid}}</p>
+        <p>type {{element.type}}</p>
+        <p>title: {{element.title}}</p>
+        <p>description: {{element.description}}</p>
+        <p>required: {{element.required}}</p>
+        <p>instruction: {{element.instruction}}</p>
+
+        <p>component:</p>
+        <div *ngIf= "(element.type == 'likert')">
           <likert [element]="element"></likert>
         </div>
 
-        <p>---</p>
-
-        <div ng-show= "element.type === 'text'">
+        <div *ngIf= "(element.type == 'text')">
           <text [element]="element"></text>
         </div>
 
-        <p>---</p>
-
-        <div ng-show= "element.type === 'textarea'">
+        <div *ngIf= "(element.type == 'textarea')">
           <textarea [element]="element"></textarea>
         </div>
 
-        <p>---</p>
-
-        <div ng-show= "element.type === 'checkbox'">
+        <div *ngIf= "(element.type == 'checkbox')">
           <checkbox [element]="element"></checkbox>
         </div>
-
-        <p>{{element.uuid}}</p>
-        <p>{{element.type}}</p>
-        <p>{{element.title}}</p>
-        <p>{{element.required}}</p>
-        <p>{{element.instruction}}</p>
+    <hr/>
     </div>
   `
 })
