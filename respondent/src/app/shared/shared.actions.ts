@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Questionnaire } from '../questionnaire/questionnaire.model';
+import { AnswerValue } from '../action/answer-value.model';
 import { type } from './shared.utils';
 
 /**
@@ -11,7 +12,8 @@ import { type } from './shared.utils';
  * action types in the application are unique.
  */
 export const ActionTypes = {
-  LOAD:             type('[Questionnaire] Load')
+  LOAD:             type('[Questionnaire] Load'),
+  ANSWER:           type('[Answer] Answer')
 };
 
 /**
@@ -27,9 +29,16 @@ export class LoadAction implements Action {
   constructor(public payload: Questionnaire) { }
 }
 
+export class AnswerAction implements Action {
+  type = ActionTypes.ANSWER;
+
+  constructor(public payload: AnswerValue) {}
+}
+
 /**
  * Exxport a type alias of all actions in this action group
  * so that reducers can easily compose action types
  */
 export type Actions
-  = LoadAction;
+  = LoadAction
+  | AnswerAction;
