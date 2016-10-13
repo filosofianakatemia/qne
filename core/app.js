@@ -43,13 +43,14 @@ User.hasMany(Role, { foreignKey: 'user_uuid'})
 Token.belongsTo(User, { foreignKey: 'user_uuid'})
 Role.belongsTo(User, { foreignKey: 'user_uuid'})
 Organization.hasMany(Role, { foreignKey: 'organization_uuid'})
-Organization.belongsTo(Questionnaire, { foreignKey: 'questionnaire_uuid'})
+Organization.hasMany(Questionnaire, { foreignKey: 'organization_uuid'})
 Role.belongsTo(Organization, { foreignKey: 'organization_uuid'})
 Action.belongsTo(Questionnaire, {foreignKey: 'questionnaire_uuid'})
+Action.hasMany(Group, {foreignKey: 'action_uuid'})
 Action.hasMany(I18n, { foreignKey: 'action_uuid'})
-Option.hasMany(Instruction, { foreignKey: 'instruction_uuid'})
+Option.belongsTo(Instruction, { foreignKey: 'instruction_uuid'})
 Option.hasMany(I18n, { foreignKey: 'option_uuid'})
-Instruction.belongsTo(Option, { foreignKey: 'option_uuid'})
+Instruction.hasMany(Option, { foreignKey: 'instruction_uuid'})
 Instruction.belongsTo(Questionnaire, { foreignKey: 'questionnaire_uuid'})
 Element.hasMany(I18n, { foreignKey: 'element_uuid'})
 I18n.belongsTo(Option, { foreignKey: 'option_uuid'})
@@ -58,20 +59,20 @@ I18n.belongsTo(Action, { foreignKey: 'action_uuid'})
 I18n.belongsTo(Questionnaire, { foreignKey: 'questionnaire_uuid'})
 Element.belongsToMany(Group, {through: 'groups_elements', foreignKey: 'element_uuid'})
 Group.belongsToMany(Element, {through: 'groups_elements', foreignKey: 'group_uuid'})
+Group.belongsTo(Action, {foreignKey: 'action_uuid'})
 Group.belongsTo(Questionnaire, { foreignKey: 'questionnaire_uuid'})
 Questionnaire.hasMany(Group, { foreignKey: 'questionnaire_uuid'})
 Questionnaire.hasMany(Answer, { foreignKey: 'questionnaire_uuid'})
 Questionnaire.hasMany(I18n, { foreignKey: 'questionnaire_uuid'})
 Questionnaire.hasMany(Action, { foreignKey: 'questionnaire_uuid'})
 Questionnaire.hasMany(Instruction, { foreignKey: 'questionnaire_uuid'})
-Questionnaire.hasMany(Organization, { foreignKey: 'questionnaire_uuid'})
+Questionnaire.belongsTo(Organization, { foreignKey: 'organization_uuid'})
 
 sequelize.sync({force: true}).then(function() {
   //console.log("Database created.").then(function () {
-      sequelize_fixtures.loadFile("models/fixtures.json", models);
-  //});
+     sequelize_fixtures.loadFile("models/fixtures.yaml", models);      
 });
-
+  //});
 
 /*sequelize_fixtures.loadFile('../respondent/mock.api.json', models).then(function(){
 }); */
