@@ -4,7 +4,11 @@ import { QuestionElement } from './element.model';
 @Component({
     selector: 'likert',
     template: `
-        <p>1-2-3-4-5</p>
+        <button type="submit" class="button 1">1</button>
+        <button type="submit" class="button 2">2</button>
+        <button type="submit" class="button 3">3</button>
+        <button type="submit" class="button 4">4</button>
+        <button type="submit" class="button 5">5</button>
     `
 
 })
