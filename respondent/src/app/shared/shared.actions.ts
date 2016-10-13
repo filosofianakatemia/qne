@@ -13,7 +13,15 @@ import { type } from './shared.utils';
  */
 export const ActionTypes = {
   LOAD:             type('[Questionnaire] Load'),
-  ANSWER:           type('[Answer] Answer')
+  ANSWER:           type('[Answer] Answer'),
+  
+/*  
+  SUBMIT:           type('[SUBMIT] Submit'),
+  NEXT:             type('[NEXT] Next'),
+  PREVIOUS:         type('[PREVIOUS] Previous'),
+
+  */
+
 };
 
 /**
@@ -34,6 +42,26 @@ export class AnswerAction implements Action {
 
   constructor(public payload: AnswerValue) {}
 }
+/*
+export class SubmitAction implements Action {
+  type = ActionTypes.SUBMIT;
+
+  constructor(public payload: Submit) {}
+}
+
+export class NextAction implements Action {
+  type = ActionTypes.NEXT;
+
+  constructor(public payload: Next) {}
+}
+
+export class PreviousAction implements Action {
+  type = ActionTypes.PREVIOUS;
+
+  constructor(public payload: Previous) {}
+}
+*/
+
 
 /**
  * Exxport a type alias of all actions in this action group
@@ -42,3 +70,10 @@ export class AnswerAction implements Action {
 export type Actions
   = LoadAction
   | AnswerAction;
+
+
+/*
+  | SubmitAction
+  | NextAction
+  | PreviousAction;
+*/
