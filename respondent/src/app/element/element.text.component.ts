@@ -4,7 +4,7 @@ import { QuestionElement } from './element.model';
 @Component({
     selector: 'text',
     template: `
-        <input type= "text">
+        <div class="input-group"><input type= "text"><button>Submit</button></div>
     `
 
 })
