@@ -12,8 +12,8 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
 import { QuestionnaireService } from './questionnaire/questionnaire.service';
-import { State } from './shared/shared.state';
-import { getAppLoaded } from './shared/shared.reducers';
+import * as fromRoot from './shared/main.reducer';
+//import { getAppLoaded } from './shared/shared.reducers';
 import * as actions from './shared/shared.actions';
 
 /**
@@ -24,7 +24,7 @@ import * as actions from './shared/shared.actions';
 @Injectable()
 export class AppGuard implements CanActivate {
   constructor(
-    private store: Store<State>,
+    private store: Store<fromRoot.State>,
     private questionnaireService: QuestionnaireService,
     private router: Router
   ) { }

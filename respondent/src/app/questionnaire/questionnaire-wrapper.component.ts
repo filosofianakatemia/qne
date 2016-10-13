@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Questionnaire } from './questionnaire.model';
 import { Store } from '@ngrx/store';
-import { State } from '../shared/shared.state';
+import * as fromRoot from '../shared/main.reducer';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -14,9 +14,7 @@ import { Observable } from 'rxjs/Observable';
 export class QuestionnaireWrapperComponent {
   public questionnaire$: Observable<Questionnaire>;
 
-  constructor(
-     private _store: Store<State>
-    ){
+  constructor(private store: Store<fromRoot.State>){
       /*
         Observable of questionnaire, utilzing the async pipe
         in our templates this will be subscribed to, with
@@ -24,6 +22,6 @@ export class QuestionnaireWrapperComponent {
         Unsubscribe wil be called automatically when component
         is disposed.
       */
-      this.questionnaire$ = _store.select(s => s.questionnaire.questionnaire);
+      this.questionnaire$ = this.store.let(fromRoot.getQuestionnaire);
     }
 }

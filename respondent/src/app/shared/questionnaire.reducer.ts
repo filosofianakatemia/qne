@@ -8,32 +8,27 @@
  */
 import { compose } from '@ngrx/core/compose';
 import { Observable } from 'rxjs/Observable';
-import { State, initialState, QuestionnaireState } from './shared.state';
-import { Actions, ActionTypes } from './shared.actions';
+import { Actions, ActionTypes } from '../shared/shared.actions';
+import { Questionnaire } from '../questionnaire/questionnaire.model';
 import '@ngrx/core/add/operator/select';
 
-export const getAppLoaded = compose(getQuestionnaireLoaded, getQuestionnaireState);
 
-export function getQuestionnaireState(state$: Observable<State>) {
-  return state$.select(s => s.questionnaire);
-}
+export interface State {
+  questionnaire: Questionnaire;
+  loaded: boolean;
+};
+export const initialState: State = {
+  questionnaire: undefined,
+  loaded: false
+};
 
-function getQuestionnaireLoaded(questionnaireState$: Observable<QuestionnaireState>) {
-  return questionnaireState$.select(s => s.loaded);
-}
-
-export function getQuestionnaire(state$: Observable<State>) {
-  return state$.select(state => state.questionnaire.questionnaire);
-}
 
 export function reducer(state = initialState, action: Actions): State {
   switch (action.type) {
     case ActionTypes.LOAD: {
       return {
-        questionnaire: {
           questionnaire: action.payload,
           loaded: true
-        }
       };
     }
     default: {
@@ -41,5 +36,15 @@ export function reducer(state = initialState, action: Actions): State {
     }
   }
 }
+
+export function getQuestionnaireLoaded(state$: Observable<State>) {
+  return state$.select(s => s.loaded);
+}
+export function getQuestionnaire(state$: Observable<State>) {
+  return state$.select(s => s.questionnaire);
+}
+
+
+
 
 

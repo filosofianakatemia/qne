@@ -6,7 +6,9 @@ import { StoreModule } from '@ngrx/store';
 import { RouterStoreModule } from '@ngrx/router-store';
 
 import { AppGuard } from './app.guard';
+
 import { AppComponent } from './app.component';
+
 import { QuestionnaireWrapperComponent } from './questionnaire/questionnaire-wrapper.component';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { QuestionnaireService } from './questionnaire/questionnaire.service';
@@ -19,9 +21,8 @@ import { TextareaComponent } from './element/element.textarea.component';
 import { CheckboxComponent } from './element/element.checkbox.component';
 
 
-
 import { routing } from './app.routing';
-import { reducer } from './shared/shared.reducers';
+import { reducer } from './shared/main.reducer';
 
 @NgModule({
   imports: [

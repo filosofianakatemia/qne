@@ -3,8 +3,8 @@ import { Store } from '@ngrx/store';
 import '../../public/css/styles.css';
 import { Observable } from 'rxjs/Observable';
 import { Questionnaire } from './questionnaire/questionnaire.model';
-import { getQuestionnaire } from './shared/shared.reducers';
-import { State } from './shared/shared.state';
+
+import * as fromRoot from './shared/main.reducer';
 
 @Component({
   selector: 'my-app',
@@ -14,7 +14,7 @@ import { State } from './shared/shared.state';
 export class AppComponent {
   questionnaire$: Observable<Questionnaire>;
 
-  constructor(store: Store<State>) {
-    this.questionnaire$ = store.let(getQuestionnaire);
+  constructor(store: Store<fromRoot.State>) {
+    this.questionnaire$ = store.let(fromRoot.getQuestionnaire);
   }
 }

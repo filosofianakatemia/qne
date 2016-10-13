@@ -18,7 +18,7 @@ import { TextareaComponent } from './element.textarea.component';
         <p>required: {{element.required}}</p>
         <p>instruction: {{element.instruction}}</p>
 
-        <p>component:</p>
+        <p>subcomponent:</p>
         <div *ngIf= "(element.type == 'likert')">
           <likert [element]="element"></likert>
         </div>
