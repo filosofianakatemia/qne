@@ -5,6 +5,7 @@ import { QuestionElement } from './element.model';
     selector: 'textarea',
     template: `
         <input type= "textarea">
+         <button type="submit" class="success button">Submit</button>
     `
 
 })
