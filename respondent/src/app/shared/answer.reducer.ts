@@ -27,6 +27,16 @@ export function reducer(state = initialState, action: Actions): State {
   switch (action.type) {
     case ActionTypes.ANSWER: {
 
+      const answer = action.payload;
+      const newState:State =
+      Object.assign({}, state, {
+        values: answer,
+        completed: false
+      });
+
+      console.log(newState);
+      return newState;
+
     }
     default: {
       return state;

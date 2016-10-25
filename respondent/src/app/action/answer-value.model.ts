@@ -1,8 +1,8 @@
 export class AnswerValue{
-  element: String;
+  element: string;
   value: {
-    type: String,
-    valueAsInteger?: Number,
-    valueAsString?: String
+    type: string,
+    valueAsInteger?: number,
+    valueAsString?: string
   };
 };

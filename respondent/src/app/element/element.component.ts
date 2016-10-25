@@ -3,8 +3,11 @@ import { QuestionElement } from './element.model';
 import { LikertComponent } from './element.likert.component';
 import { TextComponent } from './element.text.component';
 import { TextareaComponent } from './element.textarea.component';
+import { AnswerValue } from '../action/answer-value.model';
+import { AnswerAction } from '../shared/shared.actions';
 
-
+import * as fromRoot from '../shared/main.reducer';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'elements',
@@ -20,19 +23,19 @@ import { TextareaComponent } from './element.textarea.component';
 
         <p>subcomponent:</p>
         <div *ngIf= "(element.type == 'likert')">
-          <likert [element]="element"></likert>
+          <likert [element]="element" (answer)="addToAnswers($event)"></likert>
         </div>
 
         <div *ngIf= "(element.type == 'text')">
-          <text [element]="element"></text>
+          <text [element]="element" (answer)="addToAnswers($event)"></text>
         </div>
 
         <div *ngIf= "(element.type == 'textarea')">
-          <textarea [element]="element"></textarea>
+          <textarea [element]="element" (answer)="addToAnswers($event)"></textarea>
         </div>
 
         <div *ngIf= "(element.type == 'checkbox')">
-          <checkbox [element]="element"></checkbox>
+          <checkbox [element]="element" (answer)="addToAnswers($event)"></checkbox>
         </div>
     <hr/>
     </div>
@@ -41,5 +44,27 @@ import { TextareaComponent } from './element.textarea.component';
 
 export class ElementComponent{
   @Input() elements: QuestionElement[];
-  constructor(){};
+  constructor(private store: Store<fromRoot.State>){};
+
+  addToAnswers($event: any){
+    let ans: AnswerValue = this.createAnswer($event.element, $event.value);
+    console.log("createAnswer", ans)
+
+    this.store.dispatch(new AnswerAction(ans));
+  }
+
+  createAnswer(element: string, answervalue: number | string): AnswerValue{
+    let valuetype: string = typeof answervalue;
+    let parsedInt: number = Number(answervalue);
+    let parsedString: string = String(answervalue);
+
+    return {
+      element: element,
+      value: {
+        type: valuetype,
+        valueAsInteger: parsedInt,
+        valueAsString: parsedString
+      }
+    };
+  }
 }

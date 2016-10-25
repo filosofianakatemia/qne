@@ -1,4 +1,4 @@
-export class QuestionElement {
+export interface QuestionElement {
     uuid: String;
     type: String;
     title: String;
