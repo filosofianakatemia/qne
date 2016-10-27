@@ -13,7 +13,7 @@ export default function(sequelize, DataTypes) {
     }
   }, {
     freezeTableName: true,
-    updateAt: 'modified',
+    updatedAt: 'modified',
     createdAt: 'created'
   });
   return Token;

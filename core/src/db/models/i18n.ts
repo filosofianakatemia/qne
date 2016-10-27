@@ -22,7 +22,7 @@ export default function(sequelize, DataTypes) {
             foreignKey: true}
   }, {
     freezeTableName: true,
-    updateAt: 'modified',
+    updatedAt: 'modified',
     createdAt: 'created'
   });
   return I18n;

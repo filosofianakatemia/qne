@@ -13,7 +13,7 @@ export default function(sequelize, DataTypes) {
         allowNull: false}
   }, {
     freezeTableName: true,
-    updateAt: 'modified',
+    updatedAt: 'modified',
     createdAt: 'created'
   });
   return Instruction;

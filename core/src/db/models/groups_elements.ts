@@ -1,19 +1,19 @@
 export default function(sequelize, DataTypes) {
-  var Action = sequelize.define('action', {
-        action_uuid: {
+  var Groups_Elements = sequelize.define('groups_elements', {
+        element_uuid: {
             type: DataTypes.UUID,
-            primaryKey:true,
-            allowNull: false},
-        action_type: DataTypes.STRING,
-        title: DataTypes.STRING,
-        questionnaire_uuid: {
-            type: DataTypes.UUID,
+            primaryKey: true,
             foreignKey: true,
-            allowNull: false}
+            allowNull: false},
+        group_uuid: {
+            type: DataTypes.UUID,
+            primaryKey: true,
+            foreignKey: true,
+            allowNull: false},
   }, {
     freezeTableName: true,
     updatedAt: 'modified',
     createdAt: 'created'
   });
-  return Action;
+  return Groups_Elements;
 }

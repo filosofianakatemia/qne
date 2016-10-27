@@ -8,7 +8,7 @@ export default function(sequelize, DataTypes) {
     creator_user_uuid: DataTypes.UUID
   }, {
     freezeTableName: true,
-    updateAt: 'modified',
+    updatedAt: 'modified',
     createdAt: 'created'
   });
   return Organization;

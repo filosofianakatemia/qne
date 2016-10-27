@@ -17,7 +17,7 @@ export default function(sequelize, DataTypes) {
     user_password: DataTypes.STRING
   }, {
     freezeTableName: true,
-    updateAt: 'modified',
+    updatedAt: 'modified',
     createdAt: 'created',
     instanceMethods: {
         generateHash: function(password) {

@@ -1,40 +1,44 @@
-
-//var Sequelize = require(__dirname + "/models/index", 'sequelize')
 var Sequelize = require('sequelize');
 var sequelize_fixtures = require("sequelize-fixtures")
-//const models = require('./models'); */
  // , config    = require(__dirname + "/config/config");
-/*function Kanta(database, username, password, config) {
-    this.database = config.database;
-    this.username = config.username;
-    this.password = config.password;
-    this.config = config;
-}; */
 
 var sequelize = new Sequelize('database_development', 'root', null, {
     dialect: 'sqlite',
     storage: './db.development.sqlite'
 });
 
-var Action   = sequelize.import(__dirname + "/src/db/models/action")
-  , Answer     = sequelize.import(__dirname + "/src/db/models/answer")
-  , Answer_Element   = sequelize.import(__dirname + "/src/db/models/answer_element")
-  , Element     = sequelize.import(__dirname + "/src/db/models/element")
-  , Group   = sequelize.import(__dirname + "/src/db/models/group")
-  //, Groups_Elements     = sequelize.import(__dirname + "/groups_elements")
-  , I18n   = sequelize.import(__dirname + "/src/db/models/i18n")
-  , Instruction     = sequelize.import(__dirname + "/src/db/models/instruction")
-  , Option   = sequelize.import(__dirname + "/src/db/models/Option")
-  , Organization     = sequelize.import(__dirname + "/src/db/models/organization")
-  , Questionnaire     = sequelize.import(__dirname + "/src/db/models/questionnaire")
-  , Role    = sequelize.import(__dirname + "/src/db/models/role")
-  , Token     = sequelize.import(__dirname + "/src/db/models/token")
-  , User     = sequelize.import(__dirname + "/src/db/models/user");
+var Action   = sequelize.import(__dirname + "/build/src/db/models/action")
+  , Answer     = sequelize.import(__dirname + "/build/src/db/models/answer")
+  , Answer_Element   = sequelize.import(__dirname + "/build/src/db/models/answer_element")
+  , Element     = sequelize.import(__dirname + "/build/src/db/models/element")
+  , Group   = sequelize.import(__dirname + "/build/src/db/models/group")
+  , Groups_Elements     = sequelize.import(__dirname + "/build/src/db/models/groups_elements")
+  , I18n   = sequelize.import(__dirname + "/build/src/db/models/i18n")
+  , Instruction     = sequelize.import(__dirname + "/build/src/db/models/instruction")
+  , Option   = sequelize.import(__dirname + "/build/src/db/models/Option")
+  , Organization     = sequelize.import(__dirname + "/build/src/db/models/organization")
+  , Questionnaire     = sequelize.import(__dirname + "/build/src/db/models/questionnaire")
+  , Role    = sequelize.import(__dirname + "/build/src/db/models/role")
+  , Token     = sequelize.import(__dirname + "/build/src/db/models/token")
+  , User     = sequelize.import(__dirname + "/build/src/db/models/user");
 
-const models = require('./src/db/models');
-
-/*var models = [Action, Answer, Answer_Element, Element, Group, I18n, Instruction,
-Option, Organization, Questionnaire, Role, Token, User];*/
+var models = {
+  user: User,
+  organization: Organization,
+  action: Action,
+  answer: Answer,
+  answer_element: Answer_Element,
+  element: Element,
+  group: Group,
+  groups_elements: Groups_Elements,
+  i18n: I18n,
+  instruction: Instruction,
+  option: Option,
+  organization: Organization,
+  questionnaire: Questionnaire,
+  role: Role,
+  token: Token
+};
 
 Answer_Element.belongsTo(Answer, { foreignKey: 'answer_uuid'})
 Answer.hasMany(Answer_Element, { foreignKey: 'answer_uuid'})
@@ -74,7 +78,3 @@ sequelize.sync({force: true}).then(function() {
      sequelize_fixtures.loadFile("./test/testData.yaml", models);      
 });
   //});
-
-/*sequelize_fixtures.loadFile('../respondent/mock.api.json', models).then(function(){
-}); */
-//})
