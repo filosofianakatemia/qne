@@ -1,0 +1,304 @@
+fixtures:
+     # User
+    - model: user
+      data:
+            user_uuid: c06318cf-3825-4086-aed6-76ee24f9c88f
+            email: johndoe@testmail.com
+            user_name: John Doe
+            user_password: testpassword
+    # Organization
+    - model: organization
+      data:
+            organization_uuid: fd3802f6-f4dd-41f7-bae6-f5a4ebfb8f36
+            creator_user_uuid: 5478824a-aa62-4955-addc-aebfab6bd323
+    # Questionnaire
+    - model: questionnaire
+      data:
+            questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167
+            defaultLang: en
+            title: Test Questionnaire
+            description: This is a questionnaire suitable for testing
+            questionnaire_path : test-questionnaire
+            submitted: efabf3d2-2f69-4419-9a9c-05f69261c876
+            organization_uuid: fd3802f6-f4dd-41f7-bae6-f5a4ebfb8f36
+    - model: i18n
+      data:
+            i18n_uuid: fa1d406b-3c1d-4a99-8dc8-6568d8f7ffc8
+            lang: fi
+            title: Testikysely
+            description: Tämä on kysely, joka soveltuu testaukseen
+            questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167
+    # Token
+    - model: token
+      data:
+            token_uuid: 1a90d70e-4df2-448d-9cba-551c2ea6dda6
+            expires: 2016-12-11 10:40:17.372 +00:00
+            user_uuid: c06318cf-3825-4086-aed6-76ee24f9c88f
+    # Action - title: Begin
+    - model: action
+      data:
+            action_uuid: 3b99828b-852b-478a-a976-84b51a3214b8
+            type: button
+            title: Begin
+            questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167
+    - model: i18n
+      data:
+            i18n_uuid: e8128de2-c699-4458-9f5b-1ca071838418
+            lang: fi
+            title: Aloita
+            action_uuid: 3b99828b-852b-478a-a976-84b51a3214b8
+    # Action - title: Submit
+    - model: action
+      data:
+            action_uuid: efabf3d2-2f69-4419-9a9c-05f69261c876
+            type: button
+            title: Submit
+            questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167
+    - model: i18n
+      data:
+            i18n_uuid: 9e1acced-d4c2-44dd-86aa-7b142e55d39f
+            lang: fi
+            title: Tallenna
+            action_uuid: efabf3d2-2f69-4419-9a9c-05f69261c876
+    # Instruction
+    - model: instruction
+      data:
+            instruction_uuid: e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15
+            type: likert
+            title: Choose the value that matches reality
+            description: Don't overthink, the first answer is probably the right one
+            questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167
+    # Option - value: 1
+    - model: option
+      data:
+            option_uuid: 3e351fe9-2a06-43e9-b5fe-402c5d05d505
+            option_value: 1
+            title: Strongly disagree
+            instruction_uuid: e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15
+    - model: i18n
+      data:
+            i18n_uuid: c9a6ad85-9cf7-48e9-8fd8-fca48ff8c0e4
+            lang: fi
+            title: Vahvasti eri mieltä
+            option_uuid: 3e351fe9-2a06-43e9-b5fe-402c5d05d505
+    # Option - value: 2
+    - model: option
+      data:
+            option_uuid: c4bd61e2-56c2-4eed-a06f-6e730ce91786
+            option_value: 2
+            title: Disagree
+            instruction_uuid: e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15
+    - model: i18n
+      data:
+            i18n_uuid: 2c52f9e4-791f-4e2e-8ecf-d9df3fa411d1
+            lang: fi
+            title: Eri mieltä
+            option_uuid: c4bd61e2-56c2-4eed-a06f-6e730ce91786
+    # Option - value: 3
+    - model: option
+      data:
+            option_uuid: fa5d3c99-faa3-486e-92fe-d087d49a0eb9
+            option_value: 3
+            title: Neither agree nor disagree
+            instruction_uuid: e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15
+    - model: i18n
+      data:
+            i18n_uuid: 03c62a48-4be5-4054-a69f-25b4f2a53c88
+            lang: fi
+            title: En samaa enkä eri mieltä
+            option_uuid: fa5d3c99-faa3-486e-92fe-d087d49a0eb9
+    # Option - value: 4
+    - model: option
+      data:
+            option_uuid: 4f01c36a-2ea9-46e2-834e-a22d8f3ea650
+            option_value: 4
+            title: Agree
+            instruction_uuid: e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15
+    - model: i18n
+      data:
+            i18n_uuid: 4726a279-03be-4861-a1c9-9dec90fc6433
+            lang: fi
+            title: Samaa mieltä
+            option_uuid: 4f01c36a-2ea9-46e2-834e-a22d8f3ea650
+    # Option - value: 5
+    - model: option
+      data:
+            option_uuid: 878892c2-837c-4400-b98c-5614bd9d18ab
+            option_value: 5
+            title: Strongly agree
+            instruction_uuid: e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15
+    - model: i18n
+      data:
+            i18n_uuid: f646b434-1030-4c4a-b88b-c5493d4f79ca
+            lang: fi
+            title: Vahvasti samaa mieltä
+            option_uuid: 878892c2-837c-4400-b98c-5614bd9d18ab
+    # Group - type: action
+    - model: group
+      data:
+            group_uuid: 0f9e6cf5-1590-4be0-991b-f4ff51f39ff4
+            group_type: action
+            questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167
+            action_uuid: 3b99828b-852b-478a-a976-84b51a3214b8
+    # Element - for group_type: normal
+    - model: element
+      data:
+            element_uuid: 713e32f8-027d-4a49-ae7b-c6bfe59c8695
+            element_type: text
+            title: This is the first view of the questionnaire
+            description: As this is inside a group of type 'action', the user needs to push a button after reading this.
+            required: true
+    - model: i18n
+      data:
+            i18n_uuid: 3904a44f-a48d-4f1c-a809-37c71d7a1cb2
+            lang: fi
+            title: Tämä on kyselyn ensimmäinen näkymä
+            description: Koska tämä on ryhmässä tyyppiä 'action', käyttäjän pitää painaa nappulaa pohjalla, että pääsee jatkamaan.
+            element_uuid: 713e32f8-027d-4a49-ae7b-c6bfe59c8695
+    # Group - type: normal
+    - model: group
+      data:
+            group_uuid: dbe8a9e1-65bb-4f32-b553-ec95ea26a847
+            group_type: normal
+            questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167
+    # Element - for group_type: normal
+    - model: element
+      data:
+            element_uuid: 8dee78e2-2f01-410e-beca-53d4b6766a08
+            element_type: likert
+            title: This looks like the best possible questionnaire
+            required: true
+            instruction_uuid: e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15
+    - model: i18n
+      data:
+            i18n_uuid: 5b71a6d4-9a59-4fc4-a40d-98a1eccd6507
+            lang: fi
+            title: Tämä näyttää parhaalta mahdolliselta kyselyltä
+            element_uuid: 8dee78e2-2f01-410e-beca-53d4b6766a08
+    # Element - for group_type: normal
+    - model: element
+      data:
+            element_uuid: 878ee544-6b3b-4588-b6af-e5046501ff8b
+            element_type: likert
+            title: I love filling out this questionnaire
+            description: (Because this is the middle question of a normal group, I should kinda see the previous and next question)
+            required: true
+            instruction_uuid: e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15
+    - model: i18n
+      data:
+            i18n_uuid: 6410e814-018a-409e-b933-05aba107ce51
+            lang: fi
+            title: Rakastan tähän kyselyyn vastaamista
+            description: (Koska tämä on keskimmäinen kysymys ryhmässä tyyppiä 'normal', edellinen ja seuraava kysymys pitäisi näkyä jollain tavoin)
+            element_uuid: 878ee544-6b3b-4588-b6af-e5046501ff8b
+    # Element - for group_type: normal
+    - model: element
+      data:
+            element_uuid: 3c159b26-e072-4012-868b-d26d1ec9a964
+            element_type: textarea
+            title: Comments?
+            required: false
+            instruction_uuid: e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15
+    - model: i18n
+      data:
+            i18n_uuid: e813e3bd-7f87-4ba0-9172-ce62f41dcd69
+            lang: fi
+            title: Kommentteja?
+            element_uuid: 3c159b26-e072-4012-868b-d26d1ec9a964
+    # Group - type: expanded
+    - model: group
+      data:
+            group_uuid: fa2b8df6-8441-41ae-abe3-f8ba0eff145d
+            group_type: expanded
+            questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167
+    # Element - for group_type: expanded
+    - model: element
+      data:
+            element_uuid: 267ad9e0-fbac-456f-b739-40cb44ab73ee
+            element_type: likert
+            title: This was the best possible questionnaire.
+            required: true
+            instruction_uuid: e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15
+    - model: i18n
+      data:
+            i18n_uuid: 5529b598-f4d2-49df-ab0f-6492bbae93a8
+            lang: fi
+            title: Tämä oli paras mahdollinen kysely
+            element_uuid: 267ad9e0-fbac-456f-b739-40cb44ab73ee
+    # Element - for group_type: expanded
+    - model: element
+      data:
+            element_uuid: 749f6333-7b65-497d-804d-fc9294a1d2a5
+            element_type: checkbox
+            title: I agree
+            description: (Because this is in a 'expanded' group, this question should be visible at the same time as the above, if possible.)
+            required: false
+    - model: i18n
+      data:
+            i18n_uuid: 8bea8d10-08c3-45d3-ba92-5066eb153f9b
+            lang: fi
+            title: Olen samaa mieltä
+            description: (Koska tämä on kysymys ryhmässä tyyppiä 'expanded', tämä pitäisi näkyä aina kun mahdollista samaan aikaan kuin ylempi.)
+            element_uuid: 749f6333-7b65-497d-804d-fc9294a1d2a5
+    # Groups_Elements
+    - model: groups_elements
+      data:
+            element_uuid: 713e32f8-027d-4a49-ae7b-c6bfe59c8695
+            group_uuid: 0f9e6cf5-1590-4be0-991b-f4ff51f39ff4
+    - model: groups_elements
+      data:
+            element_uuid: 8dee78e2-2f01-410e-beca-53d4b6766a08
+            group_uuid: dbe8a9e1-65bb-4f32-b553-ec95ea26a847
+    - model: groups_elements
+      data:
+            element_uuid: 878ee544-6b3b-4588-b6af-e5046501ff8b
+            group_uuid: dbe8a9e1-65bb-4f32-b553-ec95ea26a847
+    - model: groups_elements
+      data:
+            element_uuid: 3c159b26-e072-4012-868b-d26d1ec9a964
+            group_uuid: dbe8a9e1-65bb-4f32-b553-ec95ea26a847
+    - model: groups_elements
+      data:
+            element_uuid: 267ad9e0-fbac-456f-b739-40cb44ab73ee
+            group_uuid: fa2b8df6-8441-41ae-abe3-f8ba0eff145d
+    - model: groups_elements
+      data:
+            element_uuid: 749f6333-7b65-497d-804d-fc9294a1d2a5
+            group_uuid: fa2b8df6-8441-41ae-abe3-f8ba0eff145d
+    # Role
+    - model: role
+      data:
+            role_uuid: 3bc5084b-4cf2-4ed9-83d4-45ea482a6dbe
+            role_type: Admin
+            organization_uuid: fd3802f6-f4dd-41f7-bae6-f5a4ebfb8f36
+            user_uuid: c06318cf-3825-4086-aed6-76ee24f9c88f
+    # Answer
+    - model: answer
+      data:
+            answer_uuid: 645ca099-32fc-4018-b065-a588ad9db35e
+            answer_time: 2016-10-15 17:13:12.147 +00:00
+            questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167
+    # Answer_Element
+    - model: answer_element
+      data:
+            answer_element_uuid: 2cf524ca-0ac7-48af-ae49-a8a207fa2229
+            int_value: 4
+            answer_uuid: 645ca099-32fc-4018-b065-a588ad9db35e
+    - model: answer_element
+      data:
+            answer_element_uuid: 1d04242e-aa8e-42e6-8354-2afb7cac39b7
+            int_value: 5
+            answer_uuid: 645ca099-32fc-4018-b065-a588ad9db35e
+    - model: answer_element
+      data:
+            answer_element_uuid: f8ff339d-5a1c-416d-a341-c2f45a87ba6f
+            int_value: 5
+            answer_uuid: 645ca099-32fc-4018-b065-a588ad9db35e
+    - model: answer_element
+      data:
+            answer_element_uuid: f1826543-dddd-481e-a955-28a85f4dbcbf
+            string_value: I really loved filling out this questionnaire! 5/5, would fill out again.
+            answer_uuid: 645ca099-32fc-4018-b065-a588ad9db35e
+    
+
+    

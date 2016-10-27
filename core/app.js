@@ -15,22 +15,23 @@ var sequelize = new Sequelize('database_development', 'root', null, {
     dialect: 'sqlite',
     storage: './db.development.sqlite'
 });
-var Action   = sequelize.import(__dirname + "/models/action")
-  , Answer     = sequelize.import(__dirname + "/models/answer")
-  , Answer_Element   = sequelize.import(__dirname + "/models/answer_element")
-  , Element     = sequelize.import(__dirname + "/models/element")
-  , Group   = sequelize.import(__dirname + "/models/group")
-  //, Groups_Elements     = sequelize.import(__dirname + "/groups_elements")
-  , I18n   = sequelize.import(__dirname + "/models/i18n")
-  , Instruction     = sequelize.import(__dirname + "/models/instruction")
-  , Option   = sequelize.import(__dirname + "/models/Option")
-  , Organization     = sequelize.import(__dirname + "/models/organization")
-  , Questionnaire     = sequelize.import(__dirname + "/models/questionnaire")
-  , Role    = sequelize.import(__dirname + "/models/role")
-  , Token     = sequelize.import(__dirname + "/models/token")
-  , User     = sequelize.import(__dirname + "/models/user");
 
-const models = require('./models');
+var Action   = sequelize.import(__dirname + "/src/db/models/action")
+  , Answer     = sequelize.import(__dirname + "/src/db/models/answer")
+  , Answer_Element   = sequelize.import(__dirname + "/src/db/models/answer_element")
+  , Element     = sequelize.import(__dirname + "/src/db/models/element")
+  , Group   = sequelize.import(__dirname + "/src/db/models/group")
+  //, Groups_Elements     = sequelize.import(__dirname + "/groups_elements")
+  , I18n   = sequelize.import(__dirname + "/src/db/models/i18n")
+  , Instruction     = sequelize.import(__dirname + "/src/db/models/instruction")
+  , Option   = sequelize.import(__dirname + "/src/db/models/Option")
+  , Organization     = sequelize.import(__dirname + "/src/db/models/organization")
+  , Questionnaire     = sequelize.import(__dirname + "/src/db/models/questionnaire")
+  , Role    = sequelize.import(__dirname + "/src/db/models/role")
+  , Token     = sequelize.import(__dirname + "/src/db/models/token")
+  , User     = sequelize.import(__dirname + "/src/db/models/user");
+
+const models = require('./src/db/models');
 
 /*var models = [Action, Answer, Answer_Element, Element, Group, I18n, Instruction,
 Option, Organization, Questionnaire, Role, Token, User];*/
@@ -70,7 +71,7 @@ Questionnaire.belongsTo(Organization, { foreignKey: 'organization_uuid'})
 
 sequelize.sync({force: true}).then(function() {
   //console.log("Database created.").then(function () {
-     sequelize_fixtures.loadFile("models/fixtures.yaml", models);      
+     sequelize_fixtures.loadFile("./test/testData.yaml", models);      
 });
   //});
 
