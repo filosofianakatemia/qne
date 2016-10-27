@@ -31,7 +31,7 @@ import { Store } from '@ngrx/store';
         </div>
 
         <div *ngIf= "(element.type == 'textarea')">
-          <textarea [element]="element" (answer)="addToAnswers($event)"></textarea>
+          <textareaSelector [element]="element" (answer)="addToAnswers($event)"></textareaSelector>
         </div>
 
         <div *ngIf= "(element.type == 'checkbox')">
@@ -48,8 +48,6 @@ export class ElementComponent{
 
   addToAnswers($event: any){
     let ans: AnswerValue = this.createAnswer($event.element, $event.value);
-    console.log("createAnswer", ans)
-
     this.store.dispatch(new AnswerAction(ans));
   }
 

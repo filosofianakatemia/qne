@@ -13,6 +13,5 @@ import { AnswerValue } from '../action/answer-value.model';
 export class LikertComponent{
   @Input() element: QuestionElement;
   @Output() answer = new EventEmitter<{element: string, value: number | string}>();
-
 }
 

@@ -1,16 +1,17 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { QuestionElement } from './element.model';
 
 @Component({
-    selector: 'textarea',
+    selector: 'textareaSelector',
     template: `
-        <input type= "textarea">
-         <button type="submit" class="success button">Submit</button>
+        <textarea #box (keyup)="0"></textarea>
+        <button type="button" class="success button" (click)="answer.emit({element: element.uuid, value: box.value})">Submit</button>
     `
+
 
 })
 
 export class TextareaComponent{
   @Input() element: QuestionElement;
-  constructor(){};
+  @Output() answer = new EventEmitter<{element: string, value: number | string}>();
 }

@@ -14,11 +14,11 @@ import { AnswerValue } from '../action/answer-value.model';
 
 
 export interface State{
-  values: Observable<AnswerValue>[];
+  values: AnswerValue[];
   completed: boolean;
 };
 export const initialState: State = {
-  values: undefined,
+  values: [],
   completed: false
 };
 
@@ -28,15 +28,21 @@ export function reducer(state = initialState, action: Actions): State {
     case ActionTypes.ANSWER: {
 
       const answer = action.payload;
-      const newState:State =
-      Object.assign({}, state, {
-        values: answer,
-        completed: false
+
+      //Filter out duplicate values
+      let uniqueValues: AnswerValue[] = state.values.filter(x =>{
+           return x.element !== answer.element
+        });
+
+      //Add answer to value array
+      const newState: State =
+        Object.assign({}, state, {
+          values: [...uniqueValues, answer],
+          completed: false //TODO
       });
 
-      console.log(newState);
+      console.table(newState.values);
       return newState;
-
     }
     default: {
       return state;
