@@ -1,6 +1,6 @@
 export default class Action {
    constructor(public uuid: string,
-       public Lang: string,
+       public lang: string,
        public title: string,
        public description: string,
        public questionnaire_path: string,
