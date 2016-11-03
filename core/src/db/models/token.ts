@@ -5,7 +5,7 @@ export default function(sequelize, DataTypes) {
         primaryKey: true, 
         allowNull: false
     },
-    expires: DataTypes.UUID,
+    expires: DataTypes.STRING,
     user_uuid: {
         type: DataTypes.UUID,
          foreignKey: true,

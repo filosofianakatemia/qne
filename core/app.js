@@ -1,5 +1,6 @@
-var Sequelize = require('sequelize');
-var sequelize_fixtures = require("sequelize-fixtures")
+var Sequelize           = require('sequelize'),
+    sequelize_fixtures  = require("sequelize-fixtures");
+    userFunc            = require(__dirname + "/build/src/db/user.db")
  // , config    = require(__dirname + "/config/config");
 
 var sequelize = new Sequelize('database_development', 'root', null, {
@@ -73,8 +74,25 @@ Questionnaire.hasMany(Action, { foreignKey: 'questionnaire_uuid'})
 Questionnaire.hasMany(Instruction, { foreignKey: 'questionnaire_uuid'})
 Questionnaire.belongsTo(Organization, { foreignKey: 'organization_uuid'})
 
-sequelize.sync({force: true}).then(function() {
+/*sequelize.sync({force: true}).then(function() {
   //console.log("Database created.").then(function () {
      sequelize_fixtures.loadFile("./test/testData.yaml", models);      
+});*/
+
+/*Questionnaire.find({where:{questionnaire_uuid: "223e469e-1118-4155-bdc8-af43a505b167"}}).then(function(err, questionnaire){
+  console.log(questionnaire);
+}); */
+/*Action.findAll().then(function(actions){
+  console.log(actions);
+});*/
+
+User.findAll().then(function(result){
+  //const user = result[0].dataValues.user_uuid;
+  const user = userFunc.toUser(result[0].dataValues);
+  console.log(user.uuid);
+  /*result.forEach(function(item){
+    console.log(item.dataValues.action_uuid);
+  })*/
+//  console.log(user);
 });
   //});

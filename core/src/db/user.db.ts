@@ -1,40 +1,11 @@
-import * as bcrypt from "bcryptjs";
+import {User} from "../domain/user"
 
-export default function(sequelize, DataTypes) {
-  var User = sequelize.define('user', {
-    annotation_id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-    },
-    firstName: {
-        type: DataTypes.STRING,
-        field: 'email'
-    },
-    lastName: {
-        type: DataTypes.DATE,
-        field: 'last_name'
-    },
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-
-  }, {
-    freezeTableName: true,
-    instanceMethods: {
-        generateHash: function(password) {
-            return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
-        },
-        validPassword: function(password) {
-            return bcrypt.compareSync(password, this.password);
-        },
+export function toUser(dbUser: any): User  {
+    return {
+    uuid: dbUser.user_uuid,
+    email: dbUser.email,
+    name: dbUser.user_name,
+    created: dbUser.created,
+    modified: dbUser.modified
     }
-  });
-  return User;
 }
-
-export async function authenticate(email, password){
-  return new Promise<void>(resolve => {
-    resolve();
-  });
-}
-
