@@ -1,3 +1,7 @@
+import { Pipe, PipeTransform } from '@angular/core';
+import { QuestionGroup } from '../group/group.model';
+import { UIGroup } from '../action/ui-group.model';
+
 /**
  * This function coerces a string into a string literal type.
  * Using tagged union types in TypeScript 2.0, this enables
@@ -17,4 +21,19 @@ export function type<T>(label: T | ''): T {
   typeCache[<string>label] = true;
 
   return <T>label;
+}
+
+@Pipe({name: 'groupFilter'})
+export class GroupFilterPipe implements PipeTransform {
+  transform(groups: QuestionGroup[], currentGroup: UIGroup){
+    const groupsWithEqualType = groups.filter(g =>{
+      return g.type === currentGroup.type
+    });
+    const currentElement = groupsWithEqualType.filter(
+      function(group, idx, groups){
+        return group.elements[idx].uuid === currentGroup.currentElement.uuid;
+      }
+    );
+    return currentElement;
+  };
 }

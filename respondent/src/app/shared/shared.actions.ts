@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 import { Questionnaire } from '../questionnaire/questionnaire.model';
 import { AnswerValue } from '../action/answer-value.model';
+import { UIGroup } from '../action/ui-group.model';
 import { type } from './shared.utils';
 
 /**
@@ -12,16 +13,11 @@ import { type } from './shared.utils';
  * action types in the application are unique.
  */
 export const ActionTypes = {
-  LOAD:             type('[Questionnaire] Load'),
-  ANSWER:           type('[Answer] Answer'),
-  
-/*  
-  SUBMIT:           type('[SUBMIT] Submit'),
-  NEXT:             type('[NEXT] Next'),
-  PREVIOUS:         type('[PREVIOUS] Previous'),
-
-  */
-
+  LOAD:                type('[Questionnaire] Load'),
+  ANSWER:              type('[Answer] Answer'),
+  TO_NEXT_ELEMENT:     type('[UIGroup] Next'),
+  TO_PREVIOUS_ELEMENT: type('[UIGroup] Previous'),
+// SUBMIT:           type('[SUBMIT] Submit')
 };
 
 /**
@@ -42,26 +38,23 @@ export class AnswerAction implements Action {
 
   constructor(public payload: AnswerValue) {}
 }
+export class NextElementAction implements Action {
+  type = ActionTypes.TO_NEXT_ELEMENT;
+
+  constructor(public payload: UIGroup) {}
+}
+export class PreviousElementAction implements Action {
+  type = ActionTypes.TO_PREVIOUS_ELEMENT;
+
+  constructor(public payload: UIGroup) {}
+}
 /*
 export class SubmitAction implements Action {
   type = ActionTypes.SUBMIT;
 
   constructor(public payload: Submit) {}
 }
-
-export class NextAction implements Action {
-  type = ActionTypes.NEXT;
-
-  constructor(public payload: Next) {}
-}
-
-export class PreviousAction implements Action {
-  type = ActionTypes.PREVIOUS;
-
-  constructor(public payload: Previous) {}
-}
 */
-
 
 /**
  * Exxport a type alias of all actions in this action group
@@ -69,11 +62,11 @@ export class PreviousAction implements Action {
  */
 export type Actions
   = LoadAction
-  | AnswerAction;
+  | AnswerAction
+  | NextElementAction
+  | PreviousElementAction;
 
 
 /*
-  | SubmitAction
-  | NextAction
-  | PreviousAction;
+  | SubmitAction;
 */

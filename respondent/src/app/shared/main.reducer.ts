@@ -35,15 +35,18 @@ import { combineReducers } from '@ngrx/store';
 
 import * as fromQuestionnaire from './questionnaire.reducer';
 import * as fromAnswer from './answer.reducer';
+import * as fromUI from './ui.reducer';
 
 export interface State{
   questionnaire: fromQuestionnaire.State,
-  answers: fromAnswer.State
+  answers: fromAnswer.State,
+  ui: fromUI.State
 };
 
 const reducers = {
   questionnaire: fromQuestionnaire.reducer,
-  answers: fromAnswer.reducer
+  answers: fromAnswer.reducer,
+  ui: fromUI.reducer
 };
 
 export function reducer(state: any, action: any){
@@ -64,3 +67,10 @@ export const getAnswerState = (state$: Observable<State>) =>
 
 export const getAnswersCompleted = compose(fromAnswer.getCompleted, getAnswerState);
 export const getAnswerValues = compose(fromAnswer.getAnswerValues, getAnswerState);
+
+//UI
+export const getUIState = (state$: Observable<State>) =>
+  state$.select(s => s.ui);
+
+export const getCurrentUIGroup = compose(fromUI.getCurrentGroup, getUIState);
+export const getUIErrors = compose(fromUI.getErrors, getUIState);

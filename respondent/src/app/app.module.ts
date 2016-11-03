@@ -5,9 +5,6 @@ import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { RouterStoreModule } from '@ngrx/router-store';
 
-import { AppGuard } from './app.guard';
-
-import { AppComponent } from './app.component';
 
 import { QuestionnaireWrapperComponent } from './questionnaire/questionnaire-wrapper.component';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
@@ -22,7 +19,12 @@ import { CheckboxComponent } from './element/element.checkbox.component';
 import { ProgressbarComponent } from './shared/progressbar.component';
 
 import { routing } from './app.routing';
+import { AppGuard } from './app.guard';
+import { AppComponent } from './app.component';
+
 import { reducer } from './shared/main.reducer';
+import { GroupFilterPipe } from './shared/shared.utils';
+
 
 @NgModule({
   imports: [
@@ -53,8 +55,8 @@ import { reducer } from './shared/main.reducer';
     TextComponent,
     TextareaComponent,
     CheckboxComponent,
-    ProgressbarComponent
-
+    ProgressbarComponent,
+    GroupFilterPipe
   ],
   providers: [
     AppGuard,

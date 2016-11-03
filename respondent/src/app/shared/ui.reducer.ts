@@ -9,19 +9,65 @@
 import { compose } from '@ngrx/core/compose';
 import { Observable } from 'rxjs/Observable';
 import { Actions, ActionTypes } from '../shared/shared.actions';
+import { Questionnaire } from '../questionnaire/questionnaire.model';
+import { UIGroup } from '../action/ui-group.model';
 import '@ngrx/core/add/operator/select';
 
 
 export interface State {
+  currentGroup: UIGroup,
+  errors: string[]
 };
+
 export const initialState: State = {
+  currentGroup: undefined,
+  errors: undefined
 };
 
 
 export function reducer(state = initialState, action: Actions): State {
   switch (action.type) {
+    case ActionTypes.LOAD: {
+      const firstGroup = action.payload.groups[0];
+      const firstElement = firstGroup.elements[0];
+
+      const newState: State = {
+        currentGroup: {
+          type: firstGroup.type,
+          currentElement: {
+            uuid: firstElement.uuid,
+            required: firstElement.required
+          }
+        },
+        errors: []
+      }
+      console.log("uistate:", newState);
+      return newState;
+    }
+    case ActionTypes.TO_PREVIOUS_ELEMENT:
+    case ActionTypes.TO_NEXT_ELEMENT: {
+      const group = action.payload;
+      const newState: State = {
+        currentGroup: {
+          type: group.type,
+          currentElement: {
+            uuid: group.currentElement.uuid,
+            required: group.currentElement.required
+          }
+        },
+        errors: [] //TODO
+      }
+      return newState;
+    }
     default: {
       return state;
     }
   }
+}
+
+export function getCurrentGroup(state$: Observable<State>){
+  return state$.select(s => s.currentGroup);
+}
+export function getErrors(state$: Observable<State>){
+  return state$.select(s => s.errors);
 }
