@@ -4,10 +4,13 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from '../shared/main.reducer';
 import { Observable } from 'rxjs/Observable';
 
+import { ProgressbarComponent } from '../shared/progressbar.component';
+
 @Component({
   selector: 'questionnaire-wrapper',
   template: `
     <questionnaire [questionnaire]="questionnaire$ | async"></questionnaire>
+    <progressbar></progressbar>
   `
 })
 

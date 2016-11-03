@@ -19,7 +19,7 @@ import { LikertComponent } from './element/element.likert.component';
 import { TextComponent } from './element/element.text.component';
 import { TextareaComponent } from './element/element.textarea.component';
 import { CheckboxComponent } from './element/element.checkbox.component';
-
+import { ProgressbarComponent } from './shared/progressbar.component';
 
 import { routing } from './app.routing';
 import { reducer } from './shared/main.reducer';
@@ -52,7 +52,8 @@ import { reducer } from './shared/main.reducer';
     LikertComponent,
     TextComponent,
     TextareaComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    ProgressbarComponent
 
   ],
   providers: [
