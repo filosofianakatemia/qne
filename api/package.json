@@ -1,0 +1,19 @@
+{
+  "name": "qne-api",
+  "version": "0.0.1",
+  "description": "Questionnaire Service – API Specification and typescript models",
+  "main": "src/models.ts",
+  "typings": "src/models.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/filosofianakatemia/qne.git"
+  },
+  "contributors": [
+    "Timo Tiuraniemi <timo.tiuraniemi@iki.fi>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/filosofianakatemia/qne/issues"
+  },
+  "homepage": "http://qne.io"
+}

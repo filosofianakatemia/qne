@@ -1,7 +1,7 @@
 import * as Koa from 'koa'
 import * as logger from 'koa-logger'
 import api from './api'
-import {QneOptions} from 'qne-core';
+import { QneOptions } from 'qne-core';
 
 const config: QneOptions = new QneOptions(":memory:", true);
 

@@ -1,0 +1,120 @@
+swagger: '2.0'
+
+info:
+  version: "1.0.0"
+  title: qne.io
+  description: Fully documents the qne.io REST server API v1
+
+basePath: /v1
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /:
+    get:
+      description: Gets basic information about qne
+      operationId: getInfo
+      responses:
+        "200":
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Info'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /questionnaires:
+    get:
+      description: Gets `Questionnaire` objects
+      operationId: getQuestionnaires
+      responses:
+        "200":
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Questionnaire'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /questions/{path}:
+    get:
+      description: Returns questions to questionnaire in path
+      operationId: getQuestions
+      parameters:
+        - name: path
+          in: path
+          description: Path of the questionnaire
+          required: true
+          type: string
+      responses:
+        "200":
+          description:  questionnaire response
+          schema:
+            $ref: '#/definitions/Questionnaire'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  Info:
+    type: object
+    required:
+      - version
+    properties:
+      version:
+        type: string
+  Questionnaire:
+    type: object
+    required:
+      - title
+      - submit
+    properties:
+      uuid:
+        type: string
+        format: uuid
+      title:
+        type: string
+        minLength: 1
+        maxLength: 256
+      submit:
+        type: string
+        format: uuid
+      path:
+        type: string
+        minLength: 1
+        maxLength: 256
+      i18n:
+        type: array
+        items:
+          $ref: "#/definitions/I18n"
+  I18n:
+    type: object
+    required:
+      - lang
+    properties:
+      lang:
+        type: string
+        minLength: 2
+        maxLength: 2
+      title:
+        type: string
+        minLength: 1
+        maxLength: 256
+      description:
+        type: string
+        minLength: 1
+        maxLength: 1024
+  Error:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string

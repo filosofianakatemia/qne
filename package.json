@@ -10,7 +10,7 @@
   },
   "scripts": {
     "clean": "cd ./core && npm run clean && cd ../respondent && npm run clean && cd ../server && npm run clean && cd .. && npm-workspace clean",
-    "build": "npm install && npm-workspace install && cd ./core && npm run postinstall-build && cd ../respondent && npm run postinstall-build && cd ../server && npm run postinstall-build",
+    "build": "npm install && npm-workspace install && cd ./core && npm run prepublish && cd ../respondent && npm run postinstall-build && cd ../server && npm run postinstall-build",
     "build:core-watch": "cd ./core && npm run build:watch",
     "test:core": "cd ./core && npm run test",
     "test:core-watch": "cd ./core && npm run test:watch",

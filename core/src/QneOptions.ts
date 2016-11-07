@@ -1,4 +1,4 @@
-export default class QneOptions{
+export class QneOptions{
   constructor(public dbUrl: string,
               public debug: boolean){}
 }

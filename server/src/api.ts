@@ -13,7 +13,7 @@ export default function init(config: QneOptions, app: Koa) {
   }
 
   async function getQuestionnaires(ctx) {
-    let responseFromCore = await core.getQuestionnaires();
+    let responseFromCore = await core.getQuestions('test-questionnaire');
     ctx.body = responseFromCore;
   }
 

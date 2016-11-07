@@ -1,5 +1,6 @@
 {
   "links": {
+    "qne-api": "api",
     "qne-core": "core",
     "qne": "server",
     "qne-respondent": "respondent"
