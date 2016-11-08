@@ -15,7 +15,7 @@ export function role(sequelize: Sequelize): any {
     user_uuid: {
       type: UUID,
       allowNull: false,
-    }
+    },
   }, {
       freezeTableName: true,
       updatedAt: "modified",

@@ -140,7 +140,7 @@ fixtures:
             group_type: action
             questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167
             action_uuid: 3b99828b-852b-478a-a976-84b51a3214b8
-    # Element - for group_type: normal
+    # Element - for group_type: action
     - model: element
       data:
             element_uuid: 713e32f8-027d-4a49-ae7b-c6bfe59c8695
@@ -241,27 +241,27 @@ fixtures:
             description: (Koska tämä on kysymys ryhmässä tyyppiä 'expanded', tämä pitäisi näkyä aina kun mahdollista samaan aikaan kuin ylempi.)
             element_uuid: 749f6333-7b65-497d-804d-fc9294a1d2a5
     # Groups_Elements
-    - model: groups_elements
+    - model: groupsElements
       data:
             element_uuid: 713e32f8-027d-4a49-ae7b-c6bfe59c8695
             group_uuid: 0f9e6cf5-1590-4be0-991b-f4ff51f39ff4
-    - model: groups_elements
+    - model: groupsElements
       data:
             element_uuid: 8dee78e2-2f01-410e-beca-53d4b6766a08
             group_uuid: dbe8a9e1-65bb-4f32-b553-ec95ea26a847
-    - model: groups_elements
+    - model: groupsElements
       data:
             element_uuid: 878ee544-6b3b-4588-b6af-e5046501ff8b
             group_uuid: dbe8a9e1-65bb-4f32-b553-ec95ea26a847
-    - model: groups_elements
+    - model: groupsElements
       data:
             element_uuid: 3c159b26-e072-4012-868b-d26d1ec9a964
             group_uuid: dbe8a9e1-65bb-4f32-b553-ec95ea26a847
-    - model: groups_elements
+    - model: groupsElements
       data:
             element_uuid: 267ad9e0-fbac-456f-b739-40cb44ab73ee
             group_uuid: fa2b8df6-8441-41ae-abe3-f8ba0eff145d
-    - model: groups_elements
+    - model: groupsElements
       data:
             element_uuid: 749f6333-7b65-497d-804d-fc9294a1d2a5
             group_uuid: fa2b8df6-8441-41ae-abe3-f8ba0eff145d
@@ -279,26 +279,25 @@ fixtures:
             answer_time: 2016-10-15 17:13:12.147 +00:00
             questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167
     # Answer_Element
-    - model: answer_element
+    - model: answerElement
       data:
             answer_element_uuid: 2cf524ca-0ac7-48af-ae49-a8a207fa2229
             int_value: 4
             answer_uuid: 645ca099-32fc-4018-b065-a588ad9db35e
-    - model: answer_element
+    - model: answerElement
       data:
             answer_element_uuid: 1d04242e-aa8e-42e6-8354-2afb7cac39b7
             int_value: 5
             answer_uuid: 645ca099-32fc-4018-b065-a588ad9db35e
-    - model: answer_element
+    - model: answerElement
       data:
             answer_element_uuid: f8ff339d-5a1c-416d-a341-c2f45a87ba6f
             int_value: 5
             answer_uuid: 645ca099-32fc-4018-b065-a588ad9db35e
-    - model: answer_element
+    - model: answerElement
       data:
             answer_element_uuid: f1826543-dddd-481e-a955-28a85f4dbcbf
             string_value: I really loved filling out this questionnaire! 5/5, would fill out again.
             answer_uuid: 645ca099-32fc-4018-b065-a588ad9db35e
-    
 
-    
+

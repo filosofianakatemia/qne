@@ -1,4 +1,4 @@
-import { Sequelize, UUID, STRING } from "sequelize";
+import { Sequelize, UUID, DATE } from "sequelize";
 
 export function token(sequelize: Sequelize): any {
   return sequelize.define("token", {
@@ -7,7 +7,7 @@ export function token(sequelize: Sequelize): any {
       primaryKey: true,
       allowNull: false,
     },
-    expires: STRING,
+    expires: DATE,
     user_uuid: {
       type: UUID,
       allowNull: false,
