@@ -72,6 +72,7 @@
     }],
     "groups": [{
       "type": "action",
+      "uuid": "c3f4aec4-8782-4d4a-8540-d1d78c7ab0e9",
       "elements": [{
         "uuid": "713e32f8-027d-4a49-ae7b-c6bfe59c8695",
         "type": "text",
@@ -87,6 +88,7 @@
     },
     {
       "type": "normal",
+      "uuid": "905b8edd-1ed5-47f0-9b22-f99b54103083",
       "elements": [{
         "uuid": "8dee78e2-2f01-410e-beca-53d4b6766a08",
         "type": "likert",
@@ -124,6 +126,7 @@
     },
     {
       "type": "expanded",
+      "uuid": "a3a2b90b-c954-45d9-b5be-449f4fc7cda7",
       "elements": [{
         "uuid": "267ad9e0-fbac-456f-b739-40cb44ab73ee",
         "type": "likert",

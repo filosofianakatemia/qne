@@ -1,10 +1,10 @@
 import { Option } from './instruction-option.model'
 
 export class Instruction{
-  uuid: String;
-  type: String;
-  title: String;
-  description: String;
+  uuid: string;
+  type: string;
+  title: string;
+  description: string;
 
   constructor(public options: Array<Option>){
     this.options = options;

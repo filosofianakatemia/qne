@@ -9,8 +9,9 @@ import { ElementComponent } from '../element/element.component';
   selector: 'groups',
   template: `
     <div *ngFor="let group of (groups | groupFilter:currentGroup)">
-      <h1>{{group.type}}</h1>
-      <h2>{{group.action}}</h2>
+      <h3>g.uuid: {{group.uuid}}</h3>
+      <h3>g.type: {{group.type}}</h3>
+      <h3>g.action: {{group.action}}</h3>
 
      <elements [elements]="group.elements"></elements>
 

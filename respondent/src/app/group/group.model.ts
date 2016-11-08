@@ -1,6 +1,7 @@
 import { QuestionElement } from '../element/element.model'
 
 export class QuestionGroup {
+  uuid: string;
   type: string;
   action: string;
 

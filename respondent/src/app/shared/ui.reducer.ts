@@ -33,6 +33,7 @@ export function reducer(state = initialState, action: Actions): State {
 
       const newState: State = {
         currentGroup: {
+          uuid: firstGroup.uuid,
           type: firstGroup.type,
           currentElement: {
             uuid: firstElement.uuid,
@@ -49,6 +50,7 @@ export function reducer(state = initialState, action: Actions): State {
       const group = action.payload;
       const newState: State = {
         currentGroup: {
+          uuid: group.uuid,
           type: group.type,
           currentElement: {
             uuid: group.currentElement.uuid,
