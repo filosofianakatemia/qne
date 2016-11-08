@@ -1,8 +1,8 @@
 import { QuestionElement } from '../element/element.model'
 
 export class QuestionGroup {
-  type: String;
-  action: String;
+  type: string;
+  action: string;
 
   constructor(public elements: Array<QuestionElement>){
     this.elements = elements;

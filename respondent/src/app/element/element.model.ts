@@ -1,7 +1,7 @@
 export interface QuestionElement {
-    uuid: String;
-    type: String;
-    title: String;
+    uuid: string;
+    type: string;
+    title: string;
     required: boolean;
-    instruction: String;
+    instruction: string;
 }

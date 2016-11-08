@@ -12,11 +12,20 @@ import { GroupComponent } from '../group/group.component';
       <p>{{questionnaire.description}}</p>
 
       <groups [groups]="questionnaire.groups" [currentGroup]="currentGroup"></groups>
-      <progressbar [currentGroup]="currentGroup"></progressbar>
+      <progressbar [groups]="questionnaire.groups" [currentGroup]="currentGroup" (prev)="prevElement($event)" (next)="nextElement($event)"></progressbar>
   `
 })
 
 export class QuestionnaireComponent {
   @Input() questionnaire: Questionnaire;
   @Input() currentGroup: UIGroup;
+
+  prevElement($event:any){
+    const groups = this.questionnaire.groups;
+    console.log("prev");
+  }
+  nextElement($event:any){
+    const groups = this.questionnaire.groups;
+    console.log("next");
+  }
 }
