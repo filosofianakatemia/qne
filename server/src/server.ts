@@ -1,27 +1,27 @@
 import {ui, router as swaggerRouter, Router, validate} from "swagger2-koa";
 import * as Koa from "koa";
 import * as logger from "koa-logger";
-import api from "./api";
-import { Options } from "qne-core";
+import { Routing } from "./routing";
+import { Core, Options } from "qne-core";
 
 export interface Config {
   port: number;
   debug: boolean;
-  dbOptions: Options;
+  options: Options;
 }
 
 export class Server {
 
   private port: number;
   private debug: boolean;
-  private dbOptions: Options;
+  private options: Options;
   private router: Router;
   private app: Koa;
 
   constructor(config: Config) {
     this.port = config.port;
     this.debug = config.debug;
-    this.dbOptions = config.dbOptions;
+    this.options = config.options;
     this.router = swaggerRouter(__dirname + "../node_modules/qne-api/api.swagger.yml");
     this.app = this.router.app();
   }
@@ -31,9 +31,8 @@ export class Server {
     if (this.debug) {
       this.app.use(logger());
     }
-
-    // Configure routing
-    api(config, app);
+    const core = new Core(this.debug, this.options);
+    const routing = new Routing(this.router, core)
 
     // TODO: Figure out how to host Swagger UI
     //this.app.use(ui(swaggerRouter.document))

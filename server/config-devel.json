@@ -1,0 +1,14 @@
+{
+  "port": 3000,
+  "debug": true,
+  "options": {
+    "dbName": "database_development",
+    "dbUsername": "root",
+    "dbPassword": null,
+    "dbOptions": {
+      "host": "127.0.0.1",
+      "dialect": "sqlite",
+      "storage": "./node_modules/qne-core/dist/test.sqlite.db"
+    }
+  }
+}
