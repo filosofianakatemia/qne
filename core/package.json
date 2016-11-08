@@ -36,12 +36,13 @@
     "url": "git+https://github.com/filosofianakatemia/qne.git"
   },
   "scripts": {
-    "prepublish": "npm run clean && npm run build && npm test",
+    "prepublish": "npm run clean && npm run build && npm test && npm run test:createdb",
     "clean": "rimraf dist",
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "test": "mocha dist/core/test/**.js",
-    "test:watch": "nodemon -w dist -e js --exec \"node ./node_modules/mocha/bin/_mocha ./dist/core/test/**.js\" ",
+    "test": "mocha dist/core/test/**.spec.js",
+    "test:watch": "nodemon -w dist -e js --exec \"node ./node_modules/mocha/bin/_mocha ./dist/core/test/**.spec.js\" ",
+    "test:createdb": "node dist/core/test/createTestDatabase",
     "dev": "concurrently \"npm run build:watch\" \"npm run test:watch\" "
   },
   "contributors": [
