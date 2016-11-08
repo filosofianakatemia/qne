@@ -5,7 +5,6 @@ import * as path from "path";
 
 describe("API", () => {
 
-  // TODO: Change these to match SQLite in-memory
   const testQneOptions: Options = {
     dbName: "database_development",
     dbUsername: "root",
@@ -15,14 +14,13 @@ describe("API", () => {
       dialect: "sqlite",
       storage: ":memory:",
     },
-    debug: true,
   };
 
   const sequelizeFixturesPath = path.join(__dirname, "../../../test/testData.yaml");
   let core: Core;
 
   before(async function(){
-    core = new Core(testQneOptions);
+    core = new Core(true, testQneOptions);
     await core.syncDatabase(true, sequelizeFixturesPath);
   });
 

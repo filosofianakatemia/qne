@@ -12,14 +12,13 @@ export interface Options {
   dbUsername?: string;
   dbPassword?: string;
   dbOptions?: DatabaseOptions;
-  debug: boolean;
 }
 
 export class Core {
   private db: DB;
 
-  constructor(opts: Options) {
-    this.db = new DB(opts.debug, opts.dbName, opts.dbUsername, opts.dbPassword, opts.dbOptions);
+  constructor(debug: boolean, opts: Options) {
+    this.db = new DB(debug, opts.dbName, opts.dbUsername, opts.dbPassword, opts.dbOptions);
   };
 
   // PUBLIC

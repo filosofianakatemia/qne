@@ -10,9 +10,8 @@ const testQneOptions: Options = {
     dialect: "sqlite",
     storage: "./dist/test.sqlite.db",
   },
-  debug: true,
 };
 
 const sequelizeFixturesPath = path.join(__dirname, "../../../test/testData.yaml");
-let core = new Core(testQneOptions);
+let core = new Core(false, testQneOptions);
 core.syncDatabase(true, sequelizeFixturesPath);
