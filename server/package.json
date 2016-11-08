@@ -8,7 +8,11 @@
   },
   "dependencies": {
     "@types/node": "^6.0.46",
+    "@types/koa": "^2.0.33",
+    "@types/koa-logger": "^2.0.1",
+    "@types/koa-router": "^7.0.21",
     "koa-logger": "^2.0.0",
+    "qne-api": "0.0.1",
     "qne-core": "0.0.1",
     "qne-respondent": "0.0.1",
     "swagger2-koa": "0.0.27"
@@ -23,21 +27,18 @@
     "rimraf": "^2.5.4",
     "ts-loader": "^0.8.1",
     "tslint": "^3.15.1",
-    "typescript": "^2.0.6",
-    "typings": "^1.3.2",
-    "webpack": "2.1.0-beta.22",
-    "webpack-merge": "^0.13.0"
+    "typescript": "^2.0.6"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/filosofianakatemia/qne.git"
   },
   "scripts": {
-    "prepublish": "npm run clean && typings install && npm run build",
-    "clean": "rimraf dist && rimraf typings",
-    "build": "webpack",
-    "build:watch": "nodemon -w src -e ts --exec \"node ./node_modules/webpack/bin/webpack\"",
-    "start": "node dist/server/index.js config-devel.json",
+    "prepublish": "npm run clean && npm run build",
+    "clean": "rimraf dist",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "start": "node dist/server/src/index.js ../../../config-devel.json",
     "start:watch": "nodemon -w dist -w test -w ../core/build/src -e js dist/server/index.js",
     "test": "mocha test/**.js",
     "test:watch": "nodemon -w build -e js --exec \"node ./node_modules/mocha/bin/_mocha ./test/**.js\" ",

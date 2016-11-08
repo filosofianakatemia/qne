@@ -1,24 +1,29 @@
-import * as Koa from "koa";
-import {Router} from "swagger2-koa";
-import {Core} from "qne-core";
+import * as Router from "koa-router";
 
-export class Routing {
+export class APIRouting {
 
-  constructor(private router: Router, private core: Core){
+  constructor(private router: Router){
     // SETUP router
     this.router.get("/", this.getRoot);
     this.router.get("/:path", this.getQuestions);
   }
 
-  // API METHODS
+  // PUBLIC
 
-  private async getRoot(ctx) {
-    let responseFromCore = await this.core.getRoot();
-    ctx.body = responseFromCore;
+  public getRoutes(): Router.IMiddleware {
+    return this.router.routes();
   }
 
-  private async getQuestions(ctx) {
-    let responseFromCore = await this.core.getQuestions(ctx.params.path);
+  // API METHODS
+
+  private async getRoot(ctx: Router.IRouterContext, next: () => Promise<any>) {
+    let responseFromCore = await ctx.state.core.getRoot();
+    ctx.body = responseFromCore;
+    return next();
+  }
+
+  private async getQuestions(ctx: Router.IRouterContext, next: () => Promise<any>) {
+    const responseFromCore = await ctx.state.core.getQuestions(ctx.params.path);
     ctx.body = responseFromCore;
   }
 

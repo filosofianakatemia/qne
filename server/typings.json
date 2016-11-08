@@ -1,9 +1,0 @@
-{
-  "globalDependencies": {
-    "koa": "github:filosofianakatemia/typings/koa#891f9b9f962bd9d0f8d89bd5043a91f8e6539949",
-    "koa-bodyparser": "github:filosofianakatemia/typings/koa-bodyparser#af3c8be3e02678fb0111339e82c01b898718af47",
-    "koa-logger": "github:filosofianakatemia/typings/koa-logger#af3c8be3e02678fb0111339e82c01b898718af47",
-    "koa-route": "github:filosofianakatemia/typings/koa-route#4f23b51d22accbb57f097285f7f0480a6fa8c1b8",
-    "node": "registry:dt/node#6.0.0+20160831021119"
-  }
-}
