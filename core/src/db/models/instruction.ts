@@ -1,20 +1,22 @@
-export default function(sequelize, DataTypes) {
-  var Instruction = sequelize.define('instruction', {
+import { Sequelize, UUID, STRING } from "sequelize";
+
+export function instruction(sequelize: Sequelize): any {
+  return sequelize.define("instruction", {
     instruction_uuid: {
-        type:DataTypes.UUID,
-        primaryKey:true,
-        allowNull: false},
-    instruction_type: DataTypes.STRING,
-    title: DataTypes.STRING,
-    description: DataTypes.STRING,
+      type: UUID,
+      primaryKey: true,
+      allowNull: false,
+    },
+    instruction_type: STRING,
+    title: STRING,
+    description: STRING,
     questionnaire_uuid: {
-        type: DataTypes.UUID,
-        foreignKey: true,
-        allowNull: false}
+      type: UUID,
+      allowNull: false,
+    },
   }, {
-    freezeTableName: true,
-    updatedAt: 'modified',
-    createdAt: 'created'
-  });
-  return Instruction;
+      freezeTableName: true,
+      updatedAt: "modified",
+      createdAt: "created",
+    });
 }

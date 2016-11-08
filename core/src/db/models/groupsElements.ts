@@ -1,15 +1,15 @@
-import { Sequelize, UUID, DATE } from "sequelize";
+import { Sequelize, UUID } from "sequelize";
 
-export function answer(sequelize: Sequelize):any {
-  return sequelize.define("answer", {
-    answer_uuid: {
+export function groupsElements(sequelize: Sequelize): any {
+  return sequelize.define("groups_elements", {
+    element_uuid: {
       type: UUID,
       primaryKey: true,
       allowNull: false,
     },
-    answer_time: DATE,
-    questionnaire_uuid: {
+    group_uuid: {
       type: UUID,
+      primaryKey: true,
       allowNull: false,
     },
   }, {

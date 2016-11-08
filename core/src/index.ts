@@ -1,30 +1,39 @@
-import {initializeBl, BL} from './bl';
-import {QneOptions} from './QneOptions';
-import {Questionnaire, Info} from 'qne-api';
-export {QneOptions} from './QneOptions';
-export {Questionnaire} from 'qne-api';
+import {DB} from "./db/db";
+import {Questionnaire, Info} from "qne-api";
+import {Options as DatabaseOptions} from "sequelize";
 
-export interface QneCore{
-  getRoot(): Promise<Info>;
-  getQuestions(path: string): Promise<[Questionnaire]>;
+// PUBLIC
+
+export {Questionnaire} from "qne-api";
+export {Options as DatabaseOptions} from "sequelize";
+
+export interface Options {
+  dbName: string;
+  dbUsername?: string;
+  dbPassword?: string;
+  dbOptions?: DatabaseOptions;
+  debug: boolean;
 }
 
-export function initializeQneCore(opts: QneOptions): QneCore {
-  const bl: BL = initializeBl(opts);
+export class Core {
+  private db: DB;
 
-  async function getRoot() {
-    let info: Info = await bl.getRoot();
+  constructor(opts: Options) {
+    this.db = new DB(opts.debug, opts.dbName, opts.dbUsername, opts.dbPassword, opts.dbOptions);
+  };
+
+  // PUBLIC
+
+  public async syncDatabase(force?: boolean, sequlizeFixturesPath?: string): Promise<any> {
+    return await this.db.syncDatabase(force, sequlizeFixturesPath);
+  };
+
+  public async getRoot(): Promise<Info> {
+    let info: Info = await this.db.getRoot();
     return info;
   }
 
-  async function getQuestions(path: string) {
-    let questionnaire: Questionnaire = await bl.getQuestions(path);
-    return questionnaire;
+  public async getQuestions(path: string): Promise<Questionnaire> {
+    return await this.db.getQuestions(path);
   }
-
-  return {
-    getRoot,
-    getQuestions
-  };
 }
-

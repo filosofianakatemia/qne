@@ -1,32 +1,32 @@
 import * as bcrypt from "bcryptjs";
+import { Sequelize, UUID, STRING } from "sequelize";
 
-export default function(sequelize, DataTypes) {
-  var User = sequelize.define('user', {
+export function user(sequelize: Sequelize): any {
+  return sequelize.define("user", {
     user_uuid: {
-        type: DataTypes.UUID,
-        primaryKey: true,
-        allowNull: false
+      type: UUID,
+      primaryKey: true,
+      allowNull: false,
     },
     email: {
-        type: DataTypes.STRING,
-        field: 'email'
+      type: STRING,
+      field: "email",
     },
     user_name: {
-        type: DataTypes.STRING,
+      type: STRING,
     },
-    user_password: DataTypes.STRING
+    user_password: STRING,
   }, {
-    freezeTableName: true,
-    updatedAt: 'modified',
-    createdAt: 'created',
-    instanceMethods: {
-        generateHash: function(password) {
-            return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
+      freezeTableName: true,
+      updatedAt: "modified",
+      createdAt: "created",
+      instanceMethods: {
+        generateHash: function (password) {
+          return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
         },
-        validPassword: function(password) {
-            return bcrypt.compareSync(password, this.password);
+        validPassword: function (password) {
+          return bcrypt.compareSync(password, this.password);
         },
-    }
-  });
-  return User;
+      },
+    });
 }

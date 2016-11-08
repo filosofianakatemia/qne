@@ -1,15 +1,16 @@
-export default function(sequelize, DataTypes) {
-  var Organization = sequelize.define('organization', {
+import { Sequelize, UUID } from "sequelize";
+
+export function organization(sequelize: Sequelize): any {
+  return sequelize.define("organization", {
     organization_uuid: {
-        type: DataTypes.UUID,
-        primaryKey: true, 
-        allowNull: false
+      type: UUID,
+      primaryKey: true,
+      allowNull: false,
     },
-    creator_user_uuid: DataTypes.UUID
+    creator_user_uuid: UUID,
   }, {
-    freezeTableName: true,
-    updatedAt: 'modified',
-    createdAt: 'created'
-  });
-  return Organization;
+      freezeTableName: true,
+      updatedAt: "modified",
+      createdAt: "created",
+    });
 }

@@ -53,3 +53,4 @@ To make changes to the qne.io API, follow these steps:
 
 We recommend installing these extensions for [Visual Studio Code](https://code.visualstudio.com/):
 * [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+* [TSLint for VS Code](https://marketplace.visualstudio.com/items?itemName=eg2.tslint)

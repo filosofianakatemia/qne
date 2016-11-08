@@ -1,20 +1,20 @@
-export default function(sequelize, DataTypes) {
-  var Token = sequelize.define('token', {
+import { Sequelize, UUID, STRING } from "sequelize";
+
+export function token(sequelize: Sequelize): any {
+  return sequelize.define("token", {
     token_uuid: {
-        type: DataTypes.UUID,
-        primaryKey: true, 
-        allowNull: false
+      type: UUID,
+      primaryKey: true,
+      allowNull: false,
     },
-    expires: DataTypes.STRING,
+    expires: STRING,
     user_uuid: {
-        type: DataTypes.UUID,
-         foreignKey: true,
-          allowNull: false
-    }
+      type: UUID,
+      allowNull: false,
+    },
   }, {
-    freezeTableName: true,
-    updatedAt: 'modified',
-    createdAt: 'created'
-  });
-  return Token;
+      freezeTableName: true,
+      updatedAt: "modified",
+      createdAt: "created",
+    });
 }

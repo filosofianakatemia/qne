@@ -1,29 +1,31 @@
-export default function(sequelize, DataTypes) {
-  var I18n = sequelize.define('i18n', {
-        i18n_uuid: {
-            type: DataTypes.UUID,
-            primaryKey: true,
-            allowNull: false},
-        lang: DataTypes.STRING,
-        title: DataTypes.STRING,
-        description: DataTypes.STRING,
-        questionnaire_path: DataTypes.STRING,
-        action_uuid: {
-            type: DataTypes.UUID,
-            foreignKey: true},
-        element_uuid: {
-            type: DataTypes.UUID,
-            foreignKey: true},
-        option_uuid: {
-            type: DataTypes.UUID,
-            foreignKey: true},
-        questionnaire_uuid: {
-            type: DataTypes.UUID,
-            foreignKey: true}
+import { Sequelize, UUID, STRING } from "sequelize";
+
+export function i18n(sequelize: Sequelize): any {
+  return sequelize.define("i18n", {
+    i18n_uuid: {
+      type: UUID,
+      primaryKey: true,
+      allowNull: false,
+    },
+    lang: STRING,
+    title: STRING,
+    description: STRING,
+    questionnaire_path: STRING,
+    action_uuid: {
+      type: UUID,
+    },
+    element_uuid: {
+      type: UUID,
+    },
+    option_uuid: {
+      type: UUID,
+    },
+    questionnaire_uuid: {
+      type: UUID,
+    },
   }, {
-    freezeTableName: true,
-    updatedAt: 'modified',
-    createdAt: 'created'
-  });
-  return I18n;
+      freezeTableName: true,
+      updatedAt: "modified",
+      createdAt: "created",
+    });
 }

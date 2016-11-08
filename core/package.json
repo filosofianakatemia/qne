@@ -9,34 +9,40 @@
   "webpack": "./dist/core/src/index.js",
   "typings": "./dist/core/src/index.d.ts",
   "dependencies": {
+    "@types/bcryptjs": "^2.3.30",
+    "@types/chai": "^3.4.34",
+    "@types/mocha": "^2.2.32",
+    "@types/sequelize": "^3.4.35",
+    "@types/sequelize-fixtures": "0.4.29",
     "ajv": "^4.5.0",
     "bcryptjs": "^2.3.0",
     "qne-api": "0.0.1",
     "sequelize": "^3.24.8",
+    "sequelize-fixtures": "0.5.5",
     "sqlite3": "^3.1.8"
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "concurrently": "^3.1.0",
     "mocha": "^3.0.2",
     "nodemon": "^1.10.2",
+    "path": "^0.12.7",
     "rimraf": "^2.5.4",
-    "sequelize-fixtures": "^0.5.4",
-    "typescript": "2.0.6",
-    "typings": "^1.3.2"
+    "tslint": "^3.15.1",
+    "typescript": "^2.0.6"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/filosofianakatemia/qne.git"
   },
   "scripts": {
-    "prepublish": "npm run clean && npm run typings && npm run build",
-    "clean": "rimraf build && rimraf typings",
-    "prebuild": "rimraf build",
-    "typings": "typings install",
+    "prepublish": "npm run clean && npm run build && npm test",
+    "clean": "rimraf dist",
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "test": "mocha build/test/**.js",
-    "test:watch": "nodemon -w build -e js --exec \"node ./node_modules/mocha/bin/_mocha ./build/test/**.js\" "
+    "test": "mocha dist/core/test/**.js",
+    "test:watch": "nodemon -w dist -e js --exec \"node ./node_modules/mocha/bin/_mocha ./dist/core/test/**.js\" ",
+    "dev": "concurrently \"npm run build:watch\" \"npm run test:watch\" "
   },
   "contributors": [
     "Timo Tiuraniemi <timo.tiuraniemi@iki.fi>"

@@ -1,5 +1,5 @@
-import {Questionnaire} from 'qne-api';
-import {toNamedAPIType, APIType} from './common.db';
+import {Questionnaire} from "qne-api";
+import {toNamedAPIType} from "./common.db";
 
 export function toQuestionnaire(dbQuestionnaire: any): Questionnaire {
 
@@ -9,7 +9,7 @@ export function toQuestionnaire(dbQuestionnaire: any): Questionnaire {
     toNamedAPIType(
       dbQuestionnaire,
       dbQuestionnaire.questionnaire_uuid,
-      dbQuestionnaire.i18n)
+      dbQuestionnaire.i18n);
 
   // TODO: Submit should be a UUID, probably doesn't work like that
 

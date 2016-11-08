@@ -1,24 +1,24 @@
-export default function(sequelize, DataTypes) {
-  var Role = sequelize.define('role', {
+import { Sequelize, UUID, STRING } from "sequelize";
+
+export function role(sequelize: Sequelize): any {
+  return sequelize.define("role", {
     role_uuid: {
-        type: DataTypes.UUID,
-        primaryKey: true,
-        allowNull: false
+      type: UUID,
+      primaryKey: true,
+      allowNull: false,
     },
-    role_type: DataTypes.STRING,
+    role_type: STRING,
     organization_uuid: {
-        type: DataTypes.UUID,
-        foreignKey: true,
-        allowNull: false
+      type: UUID,
+      allowNull: false,
     },
     user_uuid: {
-        type: DataTypes.UUID,
-        foreignKey: true,
-        allowNull: false}
+      type: UUID,
+      allowNull: false,
+    }
   }, {
-    freezeTableName: true,
-    updatedAt: 'modified',
-    createdAt: 'created'
-  });
-  return Role;
+      freezeTableName: true,
+      updatedAt: "modified",
+      createdAt: "created",
+    });
 }

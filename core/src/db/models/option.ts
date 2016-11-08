@@ -1,19 +1,21 @@
-export default function(sequelize, DataTypes) {
-  var Option = sequelize.define('option', {
+import { Sequelize, UUID, INTEGER, STRING } from "sequelize";
+
+export function option(sequelize: Sequelize): any {
+  return sequelize.define("option", {
     option_uuid: {
-        type:DataTypes.UUID,
-        primaryKey: true,
-        allowNull: false},
-    option_value: DataTypes.INTEGER,
-    title: DataTypes.STRING,
+      type: UUID,
+      primaryKey: true,
+      allowNull: false,
+    },
+    option_value: INTEGER,
+    title: STRING,
     instruction_uuid: {
-        type:DataTypes.UUID,
-        foreignKey: true,
-        allowNull: false}
+      type: UUID,
+      allowNull: false,
+    },
   }, {
-    freezeTableName: true,
-    updatedAt: 'modified',
-    createdAt: 'created'
-  });
-  return Option;
+      freezeTableName: true,
+      updatedAt: "modified",
+      createdAt: "created",
+    });
 }
