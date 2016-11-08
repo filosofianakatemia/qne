@@ -5,7 +5,7 @@ import { UIGroup } from '../action/ui-group.model';
 import { GroupComponent } from '../group/group.component';
 import { QuestionGroup } from '../group/group.model';
 import { QuestionElement } from '../element/element.model';
-import { NextElementAction } from '../shared/shared.actions';
+import { NextElementAction, PreviousElementAction } from '../shared/shared.actions';
 
 import * as fromRoot from '../shared/main.reducer';
 import { Store } from '@ngrx/store';
@@ -28,6 +28,44 @@ export class QuestionnaireComponent {
   constructor(private store: Store<fromRoot.State>){};
 
   prevElement($event:any){
+    //TODO: Check if we are at the start of questionnaire
+
+    //Current state
+    const groups: QuestionGroup[] = this.questionnaire.groups;
+    const currentUIGroup: UIGroup = this.currentUIGroup;
+
+    //Find current group and -element from questionnaire using values from currentUIGroup
+    const currentGroup: QuestionGroup = groups.filter(g => g.uuid === currentUIGroup.uuid)[0];
+    const currentElement: QuestionElement = currentGroup.elements.filter(e => e.uuid === currentUIGroup.currentElement.uuid)[0];
+
+    //Find indexes for current group and element
+    const currentGroupIdx: number = groups.indexOf(currentGroup);
+    const currentElementIdx: number = groups[currentGroupIdx].elements.indexOf(currentElement);
+    console.log("currentIdx: ", currentGroupIdx, currentElementIdx);
+
+    //Check if we are at the start of current group
+    const movetoPrevGroup: boolean = currentElementIdx === 0;
+    console.log("movetoPrevGroup: ", movetoPrevGroup);
+
+    //Get prev indexes for UIGroup
+    const prevGroupIdx: number = movetoPrevGroup ? currentGroupIdx - 1 : currentGroupIdx;
+    const prevElementIdx: number = movetoPrevGroup ? groups[prevGroupIdx].elements.length - 1 : currentElementIdx - 1;
+
+    console.log("prevIdx: ", prevGroupIdx, prevElementIdx);
+
+    //Create new UIGroup from Questionnaire using new indexes
+    const prevUIGroup: UIGroup = {
+      uuid: groups[prevGroupIdx].uuid,
+      type: groups[prevGroupIdx].type,
+      currentElement: {
+        uuid: groups[prevGroupIdx].elements[prevElementIdx].uuid,
+        required: groups[prevGroupIdx].elements[prevElementIdx].required
+      }
+    }
+    console.log(prevUIGroup);
+
+    //Pass to reducer
+    this.store.dispatch(new PreviousElementAction(prevUIGroup));
 
   }
   nextElement($event:any){
