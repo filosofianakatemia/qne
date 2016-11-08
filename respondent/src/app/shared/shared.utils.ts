@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { QuestionGroup } from '../group/group.model';
+import { QuestionElement } from '../element/element.model';
 import { UIGroup } from '../action/ui-group.model';
 
 /**
@@ -23,17 +24,25 @@ export function type<T>(label: T | ''): T {
   return <T>label;
 }
 
+//Filter out groups that are not visible in UIState
 @Pipe({name: 'groupFilter'})
 export class GroupFilterPipe implements PipeTransform {
-  transform(groups: QuestionGroup[], currentGroup: UIGroup){
-    const groupsWithEqualType = groups.filter(g =>{
-      return g.type === currentGroup.type
-    });
-    const currentElement = groupsWithEqualType.filter(
-      function(group, idx, groups){
-        return group.elements[idx].uuid === currentGroup.currentElement.uuid;
-      }
-    );
-    return currentElement;
+  transform(groups: QuestionGroup[], currentUIGroup: UIGroup){
+    //Find group from QuestionGroup[] with the same uuid as in currentUIGroup
+    const currentGroup: QuestionGroup = groups.filter(g => g.uuid === currentUIGroup.uuid)[0];
+    
+    //Filter out other elements if group.type is not "expanded"
+    const filterElements: boolean = currentGroup.type !== "expanded";
+
+    const filteredGroup: QuestionGroup[] = [{
+      uuid: currentGroup.uuid,
+      type: currentGroup.type,
+      action: currentGroup.action,
+      elements: filterElements ? //If true, get only one element, else all of them
+        currentGroup.elements.filter(e => e.uuid === currentUIGroup.currentElement.uuid) :
+        currentGroup.elements
+    }]
+
+    return filteredGroup;
   };
 }

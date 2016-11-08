@@ -12,9 +12,10 @@ import { QuestionGroup } from '../group/group.model';
             <button class="button" (click)="prev.emit(null)">Previous</button>
             <button class="button" (click)="next.emit(null)">Next</button>
         </div>
+        <div>currentGroup: {{currentGroup.uuid}}</div>
         <div>currentElement: {{currentGroup.currentElement.uuid}}</div>
         <div *ngFor="let group of groups">
-          <p>{{group.type}}</p>
+          <p>{{group.uuid}}, {{group.type}}</p>
         </div>
     `
 })

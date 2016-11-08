@@ -10,7 +10,7 @@ import { ProgressbarComponent } from '../shared/progressbar.component';
 @Component({
   selector: 'questionnaire-wrapper',
   template: `
-    <questionnaire [questionnaire]="questionnaire$ | async" [currentGroup]="ui$ | async"></questionnaire>
+    <questionnaire [questionnaire]="questionnaire$ | async" [currentUIGroup]="ui$ | async"></questionnaire>
   `
 })
 
