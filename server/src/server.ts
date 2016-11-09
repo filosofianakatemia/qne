@@ -1,10 +1,11 @@
-import {ui, validate} from "swagger2-koa";
 import * as Koa from "koa";
 import * as Logger from "koa-logger";
 import * as Router from "koa-router";
 import { APIRouting } from "./api.routing";
 import { Core, Options } from "qne-core";
 import * as path from "path";
+import * as swagger from "swagger2";
+import { validate, ui } from "swagger2-koa" ;
 
 export interface Config {
   port: number;
@@ -28,13 +29,10 @@ export class Server {
     this.router = new Router();
   }
 
-  // PUBLIC
   public run() {
     if (this.debug) {
       this.app.use(Logger());
     }
-
-    //this.router = swaggerRouter(path.join(__dirname, "../../../node_modules/qne-api/api.swagger.yaml"));
 
     // Core needs to be added to Koa state to make it visible in routes
     const core = new Core(this.debug, this.options);
@@ -43,11 +41,22 @@ export class Server {
       return next();
     });
 
+    // Setup Swagger 2 validation and ui
+
+    const swaggerDocumentPath = path.join(__dirname, "../../../node_modules/qne-api/api.swagger.yaml");
+    const swaggerDocument = swagger.loadDocumentSync(swaggerDocumentPath);
+    if (!swagger.validateDocument(swaggerDocument)) {
+      throw Error(swaggerDocumentPath + " does not conform to the Swagger 2.0 schema");
+    }
+    this.app.use(validate(swaggerDocument));
+    this.app.use(ui(swaggerDocument, "/qne-api", ['/qne-api/v1']));
+
+    // Setup routing
+
     const apiRouting = new APIRouting(this.router);
     this.app.use(apiRouting.getRoutes());
 
-    // TODO: Figure out how to host Swagger UI
-    //this.app.use(ui(swaggerRouter.document))
+    // Start listening
 
     this.app.listen(this.port);
     console.info("listening on port " + this.port);

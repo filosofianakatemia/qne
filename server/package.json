@@ -7,15 +7,17 @@
     "node": ">= 6"
   },
   "dependencies": {
-    "@types/node": "^6.0.46",
+    "@types/chai": "^3.4.34",
+    "@types/mocha": "^2.2.32",
     "@types/koa": "^2.0.33",
     "@types/koa-logger": "^2.0.1",
     "@types/koa-router": "^7.0.21",
+    "@types/node": "^6.0.46",
     "koa-logger": "^2.0.0",
     "qne-api": "0.0.1",
     "qne-core": "0.0.1",
     "qne-respondent": "0.0.1",
-    "swagger2-koa": "0.0.27"
+    "swagger2-koa": "git+https://git@github.com/ttiurani/swagger2-koa.git"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -40,8 +42,8 @@
     "build:watch": "tsc --watch",
     "start": "node dist/server/src/index.js ../../../config-devel.json",
     "start:watch": "nodemon -w dist -w test -w ../core/build/src -e js dist/server/index.js",
-    "test": "mocha test/**.js",
-    "test:watch": "nodemon -w build -e js --exec \"node ./node_modules/mocha/bin/_mocha ./test/**.js\" ",
+    "test": "mocha dist/server/test/**.js",
+    "test:watch": "nodemon -w build -e js --exec \"node ./node_modules/mocha/bin/_mocha ./dist/server/test/**.js\" ",
     "start-test:watch": "concurrently \"npm run start:watch\" \"npm run test:watch\" "
   },
   "contributors": [

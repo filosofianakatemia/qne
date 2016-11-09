@@ -4,8 +4,8 @@ export class APIRouting {
 
   constructor(private router: Router){
     // SETUP router
-    this.router.get("/", this.getRoot);
-    this.router.get("/:path", this.getQuestions);
+    this.router.get("/qne-api/v1", this.getRoot);
+    this.router.get("/qne-api/v1/questions/:path", this.getQuestions);
   }
 
   // PUBLIC
