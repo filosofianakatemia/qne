@@ -3,6 +3,7 @@ import * as Sequelize from "sequelize";
 import {DBModels} from "./models";
 import * as sequelizeFixtures from "sequelize-fixtures";
 import {toQuestionnaire} from "./questionnaire.db";
+import {toAction} from "./action.db";
 
 export class DB {
 
@@ -63,5 +64,6 @@ export class DB {
   public async getAction(title:string):Promise<Action> {
     const result = await this.models.action.findAll({where:{title:title}});
     console.info(result[0].dataValues);
+    return toAction(result[0].dataValues);
   }
 }
