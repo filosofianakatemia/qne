@@ -1,4 +1,4 @@
-import {Questionnaire, Info} from "qne-api";
+import {Questionnaire, Info, Action} from "qne-api";
 import * as Sequelize from "sequelize";
 import {DBModels} from "./models";
 import * as sequelizeFixtures from "sequelize-fixtures";
@@ -58,5 +58,10 @@ export class DB {
       console.info(result[0].dataValues);
       console.info(toQuestionnaire(result[0].dataValues));
       return toQuestionnaire(result[0].dataValues);
+  }
+
+  public async getAction(title:string):Promise<Action> {
+    const result = await this.models.action.findAll({where:{title:title}});
+    console.info(result[0].dataValues);
   }
 }
