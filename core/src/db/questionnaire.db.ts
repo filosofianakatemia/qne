@@ -17,7 +17,7 @@ export function toQuestionnaire(dbQuestionnaire: any): Questionnaire {
     questionnaire.defaultLang = dbQuestionnaire.defaultLang;
 
   if (dbQuestionnaire.submit)
-    questionnaire.submit = dbQuestionnaire.submit.action_uuid;
+    questionnaire.submit = dbQuestionnaire.submit_action_uuid;
 
   if (dbQuestionnaire.questionnaire_path)
     questionnaire.path = dbQuestionnaire.questionnaire_path;

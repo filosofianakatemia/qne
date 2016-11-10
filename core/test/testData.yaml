@@ -19,7 +19,7 @@ fixtures:
             title: Test Questionnaire
             description: This is a questionnaire suitable for testing
             questionnaire_path : test-questionnaire
-            submitted: efabf3d2-2f69-4419-9a9c-05f69261c876
+            submit_action_uuid: efabf3d2-2f69-4419-9a9c-05f69261c876
             organization_uuid: fd3802f6-f4dd-41f7-bae6-f5a4ebfb8f36
     - model: i18n
       data:

@@ -30,15 +30,17 @@ export interface Action {
 
     uuid?: string;
 
-    actionType?: Action.ActionTypeEnum;
+    actionType?: string;
 
     title?: string;
 
     i18n?: Array<models.I18n>;
 }
-export namespace Action {
+/*export namespace Action {
 
     export enum ActionTypeEnum { 
         button = <any> 'button',
     }
-}
+}*/
+
+/*actionType?: Action.ActionTypeEnum;*/

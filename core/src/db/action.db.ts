@@ -13,9 +13,8 @@ export function toAction(dbAction: any): Action {
 
   // TODO: Submit should be a UUID, probably doesn't work like that
 
-
   if (dbAction.type)
-    Action.actionType = dbAction.type;
+    action.actionType = dbAction.type;
 
 
 
