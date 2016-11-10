@@ -13,11 +13,14 @@ export function toQuestionnaire(dbQuestionnaire: any): Questionnaire {
 
   // TODO: Submit should be a UUID, probably doesn't work like that
 
+  if (dbQuestionnaire.defaultLang)
+    questionnaire.defaultLang = dbQuestionnaire.defaultLang;
+
   if (dbQuestionnaire.submit)
     questionnaire.submit = dbQuestionnaire.submit.action_uuid;
 
-  if (dbQuestionnaire.path)
-    questionnaire.path = dbQuestionnaire.path;
+  if (dbQuestionnaire.questionnaire_path)
+    questionnaire.path = dbQuestionnaire.questionnaire_path;
 
   return questionnaire;
 }

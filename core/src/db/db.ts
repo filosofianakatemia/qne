@@ -2,6 +2,7 @@ import {Questionnaire, Info} from "qne-api";
 import * as Sequelize from "sequelize";
 import {DBModels} from "./models";
 import * as sequelizeFixtures from "sequelize-fixtures";
+import {toQuestionnaire} from "./questionnaire.db";
 
 export class DB {
 
@@ -52,16 +53,10 @@ export class DB {
   };
 
   public async getQuestions(path: string): Promise<Questionnaire> {
-    return new Promise<Questionnaire>((resolve, reject) => {
       // TODO: Link this to questionnaire.db.ts getQuestions method
-      const questionnaire: Questionnaire = {
-        uuid: "12345-1231233121",
-        title: "Test questionnaire",
-        submit: "123214234",
-        path: "test-questionnaire",
-      };
-      resolve(questionnaire);
-    });
+      const result = await this.models.questionnaire.findAll({where: {questionnaire_path: path}});
+      console.info(result[0].dataValues);
+      console.info(toQuestionnaire(result[0].dataValues));
+      return toQuestionnaire(result[0].dataValues);
   }
-
 }

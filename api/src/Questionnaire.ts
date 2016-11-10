@@ -37,4 +37,6 @@ export interface Questionnaire {
     path?: string;
 
     i18n?: Array<models.I18n>;
+
+    defaultLang?: string;
 }

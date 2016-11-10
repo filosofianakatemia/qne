@@ -10,6 +10,10 @@ export function questionnaire(sequelize: Sequelize): any {
     defaultLang: STRING,
     title: STRING,
     description: STRING,
+    submit_action_uuid: {
+      type: UUID,
+      allowNull: false,
+    },
     deployed: DATE,
     closed: DATE,
     questionnaire_path: STRING,
