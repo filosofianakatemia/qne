@@ -25,12 +25,20 @@
 'use strict';
 import * as models from './models';
 
-export interface I18n {
+export interface Action {
     
 
-    lang?: string;
+    uuid?: string;
+
+    actionType?: Action.ActionTypeEnum;
 
     title?: string;
 
-    description?: string;
+    i18n?: Array<models.I18n>;
+}
+export namespace Action {
+
+    export enum ActionTypeEnum { 
+        button = <any> 'button',
+    }
 }

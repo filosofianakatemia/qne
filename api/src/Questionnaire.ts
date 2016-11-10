@@ -34,9 +34,11 @@ export interface Questionnaire {
 
     submit?: string;
 
+    defaultLang?: string;
+
     path?: string;
 
     i18n?: Array<models.I18n>;
 
-    defaultLang?: string;
+    actions?: Array<models.Action>;
 }

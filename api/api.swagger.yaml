@@ -82,6 +82,10 @@ definitions:
       submit:
         type: string
         format: uuid
+      defaultLang:
+        type: string
+        minLength: 2
+        maxLength: 2
       path:
         type: string
         minLength: 1
@@ -90,6 +94,10 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/I18n"
+      actions:
+        type: array
+        items:
+          $ref: "#/definitions/Action"
   I18n:
     type: object
     required:
@@ -107,6 +115,30 @@ definitions:
         type: string
         minLength: 1
         maxLength: 1024
+  Action:
+    type: object
+    required:
+      - actionType
+      - title
+    properties:
+      uuid:
+        type: string
+        format: uuid
+      actionType:
+        type: string
+        enum: [
+          "button"
+        ]
+        minLength: 1
+        maxLength: 256
+      title:
+        type: string
+        minLength: 1
+        maxLength: 256
+      i18n:
+        type: array
+        items:
+          $ref: "#/definitions/I18n"
   Error:
     type: object
     required:
