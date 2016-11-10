@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import '../../public/css/styles.css';
 import { Observable } from 'rxjs/Observable';
 import { Questionnaire } from './questionnaire/questionnaire.model';
 
