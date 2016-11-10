@@ -5,17 +5,14 @@ import { QuestionGroup } from '../group/group.model';
 @Component({
     selector: 'progressbar',
     template: `
+        <!-- TODO:
         <div class="progress-meter" style="width: 25%">
             <p class="progress-meter-text">25%</p>
         </div>
+        -->
         <div class="button-group">
-            <button class="button" (click)="prev.emit(null)">Previous</button>
-            <button class="button" (click)="next.emit(null)">Next</button>
-        </div>
-        <div>currentGroup: {{currentGroup.uuid}}</div>
-        <div>currentElement: {{currentGroup.currentElement.uuid}}</div>
-        <div *ngFor="let group of groups">
-          <p>{{group.uuid}}, {{group.type}}</p>
+            <button class="button" [disabled]="hidePrevButton" (click)="navigate.emit(-1)">Previous</button>
+            <button class="button" [disabled]="hideNextButton" (click)="navigate.emit(1)">Next</button>
         </div>
     `
 })
@@ -23,6 +20,7 @@ import { QuestionGroup } from '../group/group.model';
 export class ProgressbarComponent{
   @Input() currentGroup: UIGroup;
   @Input() groups: QuestionGroup[];
-  @Output() prev: EventEmitter<any> = new EventEmitter<any>();
-  @Output() next: EventEmitter<any> = new EventEmitter<any>();
+  @Input() hidePrevButton: boolean;
+  @Input() hideNextButton: boolean;
+  @Output() navigate: EventEmitter<number> = new EventEmitter<number>();
 }
