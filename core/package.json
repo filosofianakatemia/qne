@@ -36,7 +36,7 @@
     "url": "git+https://github.com/filosofianakatemia/qne.git"
   },
   "scripts": {
-    "prepublish": "npm run clean && npm run build && npm test && npm run test:createdb",
+    "prepublish": "npm run clean && npm run build && npm run test:createdb",
     "clean": "rimraf dist",
     "build": "tsc",
     "build:watch": "tsc --watch",

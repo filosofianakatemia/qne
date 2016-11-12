@@ -6,6 +6,8 @@
 # run test suite
 ./node_modules/.bin/mocha dist/server/test/**.js
 
+teststatus=$?
+
 # cleanup opened processes, assume OSX when not Linux
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
@@ -13,3 +15,5 @@ if [[ "$unamestr" == 'Linux' ]]; then
 else
    lsof -i tcp:3000 | grep LISTEN | awk '{print $2}' | xargs kill
 fi
+
+exit $teststatus
