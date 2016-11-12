@@ -126,9 +126,7 @@ definitions:
         format: uuid
       actionType:
         type: string
-        enum: [
-          "button"
-        ]
+        enum: ["button"]
         minLength: 1
         maxLength: 256
       title:
