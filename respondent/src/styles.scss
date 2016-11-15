@@ -1,0 +1,10 @@
+@import "../node_modules/foundation-sites/scss/foundation";
+// include flex
+@include foundation-everything(true);
+
+main {
+  padding: 1em;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 50px;
+  display: block;
+}
