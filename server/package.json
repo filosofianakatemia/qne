@@ -17,7 +17,7 @@
     "qne-api": "0.0.1",
     "qne-core": "0.0.1",
     "qne-respondent": "0.0.1",
-    "swagger2-koa": "git+https://git@github.com/ttiurani/swagger2-koa.git"
+    "swagger2-koa": "0.0.28"
   },
   "devDependencies": {
     "chai": "^3.5.0",
