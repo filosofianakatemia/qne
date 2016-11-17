@@ -3,6 +3,7 @@ import { Questionnaire } from '../questionnaire/questionnaire.model';
 import { AnswerValue } from '../action/answer-value.model';
 import { UIGroup } from '../action/ui-group.model';
 import { type } from './shared.utils';
+import { QuestionGroup } from '../group/group.model';
 
 /**
  * For each action type in an action group, make a simple
@@ -17,6 +18,7 @@ export const ActionTypes = {
   ANSWER:              type('[Answer] Answer'),
   TO_NEXT_ELEMENT:     type('[UIGroup] Next'),
   TO_PREVIOUS_ELEMENT: type('[UIGroup] Previous'),
+  NAVIGATE:            type('[Object] Navigate')
 // SUBMIT:           type('[SUBMIT] Submit')
 };
 
@@ -48,6 +50,11 @@ export class PreviousElementAction implements Action {
 
   constructor(public payload: UIGroup) {}
 }
+export class NavigateAction implements Action {
+  type = ActionTypes.NAVIGATE;
+
+  constructor(public payload: {direction:number, groups:QuestionGroup[], currentUIGroup: UIGroup}) {}
+}
 /*
 export class SubmitAction implements Action {
   type = ActionTypes.SUBMIT;
@@ -64,7 +71,8 @@ export type Actions
   = LoadAction
   | AnswerAction
   | NextElementAction
-  | PreviousElementAction;
+  | PreviousElementAction
+  | NavigateAction;
 
 
 /*

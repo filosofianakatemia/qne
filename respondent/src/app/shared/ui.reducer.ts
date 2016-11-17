@@ -11,6 +11,8 @@ import { Observable } from 'rxjs/Observable';
 import { Actions, ActionTypes } from '../shared/shared.actions';
 import { Questionnaire } from '../questionnaire/questionnaire.model';
 import { UIGroup } from '../action/ui-group.model';
+import { QuestionGroup } from '../group/group.model';
+import { QuestionElement } from '../element/element.model'
 import '@ngrx/core/add/operator/select';
 
 
@@ -42,22 +44,45 @@ export function reducer(state = initialState, action: Actions): State {
         },
         errors: []
       }
-      console.log("uistate:", newState);
       return newState;
     }
-    case ActionTypes.TO_PREVIOUS_ELEMENT:
-    case ActionTypes.TO_NEXT_ELEMENT: {
-      const group = action.payload;
+    case ActionTypes.NAVIGATE: {
+      const direction = action.payload.direction;
+      const groups = action.payload.groups;
+      const currentUIGroup = action.payload.currentUIGroup;
+
+      //Find current group and -element from questionnaire using values from currentUIGroup
+      const currentGroup: QuestionGroup = groups.filter(g => g.uuid === currentUIGroup.uuid)[0];
+      const currentElement: QuestionElement = currentGroup.elements.filter(e => e.uuid === currentUIGroup.currentElement.uuid)[0];
+
+      //Find indexes for current group and element
+      const currentGroupIdx: number = groups.indexOf(currentGroup);
+      const currentElementIdx: number = groups[currentGroupIdx].elements.indexOf(currentElement);
+
+      //Check if we are at the start or end of current group depending on the direction we are going
+      const switchGroup: boolean =
+        currentGroup.type === "expanded" ? true : //Always switch group if type is "expanded"
+          direction < 0 ?
+            currentElementIdx === 0 : //Switch if direction === -1 AND currentElementIdx === 0
+            currentElementIdx === groups[currentGroupIdx].elements.length - 1; //Switch if direction === +1 AND currentElementIdx equals size of array
+
+      //If we swich group, add the direction (-1 OR 1) to index
+      const newGroupIdx: number = switchGroup ? currentGroupIdx + direction : currentGroupIdx;
+      //New element index depending on direction and switchGroup
+      const newElementIdx: number = direction < 0 ?
+          switchGroup ? groups[newGroupIdx].elements.length - 1 : currentElementIdx + direction :
+          switchGroup ? 0 : currentElementIdx + direction;
+
       const newState: State = {
         currentGroup: {
-          uuid: group.uuid,
-          type: group.type,
+          uuid: groups[newGroupIdx].uuid,
+          type: groups[newGroupIdx].type,
           currentElement: {
-            uuid: group.currentElement.uuid,
-            required: group.currentElement.required
+            uuid: groups[newGroupIdx].elements[newElementIdx].uuid,
+            required: groups[newGroupIdx].elements[newElementIdx].required
           }
         },
-        errors: [] //TODO
+        errors: []
       }
       return newState;
     }

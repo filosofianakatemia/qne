@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Questionnaire } from './questionnaire.model';
 import { UIGroup } from '../action/ui-group.model';
+import { AnswerValue } from '../action/answer-value.model';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../shared/main.reducer';
 import { Observable } from 'rxjs/Observable';
@@ -10,13 +11,18 @@ import { ProgressbarComponent } from '../shared/progressbar.component';
 @Component({
   selector: 'questionnaire-wrapper',
   template: `
-    <questionnaire [questionnaire]="questionnaire$ | async" [currentUIGroup]="ui$ | async"></questionnaire>
+    <questionnaire
+      [questionnaire]="questionnaire$ | async"
+      [currentUIGroup]="ui$ | async"
+      [answers]="answers$ | async">
+    </questionnaire>
   `
 })
 
 export class QuestionnaireWrapperComponent {
   public questionnaire$: Observable<Questionnaire>;
   public ui$: Observable<UIGroup>;
+  public answers$: Observable<AnswerValue[]>;
 
   constructor(private store: Store<fromRoot.State>){
       /*
@@ -28,5 +34,6 @@ export class QuestionnaireWrapperComponent {
       */
       this.questionnaire$ = this.store.let(fromRoot.getQuestionnaire);
       this.ui$ = this.store.let(fromRoot.getCurrentUIGroup);
+      this.answers$ = this.store.let(fromRoot.getAnswerValues);
     }
 }
