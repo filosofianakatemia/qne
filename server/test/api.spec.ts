@@ -19,8 +19,6 @@ describe("qne server API", () => {
   it("should return valid questions from GET qne-api/v1/questions/test-questionnaire", function () {
     const questionnaire = chakram.get("http://localhost:3000/qne-api/v1/questions/test-questionnaire");
     expect(questionnaire).to.have.json("uuid", "223e469e-1118-4155-bdc8-af43a505b167");
-    expect(questionnaire).to.have.json("created", 1479214291977);
-    expect(questionnaire).to.have.json("modified", 1479214291977);
     expect(questionnaire).to.have.json("title", "Test Questionnaire");
     expect(questionnaire).to.have.json("description", "This is a questionnaire suitable for testing");
     expect(questionnaire).to.have.json("defaultLang", "en");
