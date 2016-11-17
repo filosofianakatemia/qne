@@ -58,11 +58,13 @@ export class DB {
       const result = await this.models.questionnaire.findAll({where: {questionnaire_path: path}});
       console.info(result[0].dataValues);
       console.info(toQuestionnaire(result[0].dataValues));
+      result[0].dataValues.created = result[0].dataValues.created.getTime();
+      result[0].dataValues.modified = result[0].dataValues.modified.getTime();
       return toQuestionnaire(result[0].dataValues);
   }
 
-  public async getAction(title:string):Promise<Action> {
-    const result = await this.models.action.findAll({where:{title:title}});
+  public async getAction(title: string): Promise<Action> {
+    const result = await this.models.action.findAll({where: {title: title}});
     console.info(result[0].dataValues);
     return toAction(result[0].dataValues);
   }

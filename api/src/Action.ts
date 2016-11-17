@@ -36,11 +36,3 @@ export interface Action {
 
     i18n?: Array<models.I18n>;
 }
-/*export namespace Action {
-
-    export enum ActionTypeEnum { 
-        button = <any> 'button',
-    }
-}*/
-
-/*actionType?: Action.ActionTypeEnum;*/

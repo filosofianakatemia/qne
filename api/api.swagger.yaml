@@ -70,7 +70,6 @@ definitions:
     type: object
     required:
       - title
-      - submit
     properties:
       uuid:
         type: string
@@ -90,6 +89,10 @@ definitions:
         type: string
         minLength: 1
         maxLength: 256
+      description:
+        type: string
+        minLength: 1
+        maxLength: 1024
       i18n:
         type: array
         items:
@@ -98,6 +101,10 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/Action"
+      created:
+        type: number
+      modified:
+        type: number
   I18n:
     type: object
     required:
@@ -126,7 +133,6 @@ definitions:
         format: uuid
       actionType:
         type: string
-        enum: ["button"]
         minLength: 1
         maxLength: 256
       title:

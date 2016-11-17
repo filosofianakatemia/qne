@@ -38,7 +38,13 @@ export interface Questionnaire {
 
     path?: string;
 
+    description?: string;
+
     i18n?: Array<models.I18n>;
 
     actions?: Array<models.Action>;
+
+    created?: number;
+
+    modified?: number;
 }
