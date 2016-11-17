@@ -5,6 +5,7 @@ import { TextComponent } from './element.text.component';
 import { TextareaComponent } from './element.textarea.component';
 import { AnswerValue } from '../action/answer-value.model';
 import { AnswerAction } from '../shared/shared.actions';
+import { Instruction } from '../instruction/instruction.model';
 
 import * as fromRoot from '../shared/main.reducer';
 import { Store } from '@ngrx/store';
@@ -37,12 +38,17 @@ import { Store } from '@ngrx/store';
         <div *ngIf= "(element.type == 'checkbox')">
           <checkbox [element]="element" (answer)="addToAnswers($event)"></checkbox>
         </div>
+
+        <div *ngIf= "(element.instruction != null)">
+          <instruction [instruction]="element.instruction" [instructions]="instructions"></instruction>
+        </div>
     <hr/>
     </div>
   `
 })
 
 export class ElementComponent{
+  @Input() instructions: Instruction[];
   @Input() elements: QuestionElement[];
   constructor(private store: Store<fromRoot.State>){};
 

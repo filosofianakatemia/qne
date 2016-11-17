@@ -17,7 +17,7 @@ import { Store } from '@ngrx/store';
       <h1>{{questionnaire.title}}</h1>
       <p>{{questionnaire.description}}</p>
 
-      <groups [groups]="questionnaire.groups" [currentGroup]="currentUIGroup"></groups>
+      <groups [groups]="questionnaire.groups" [currentGroup]="currentUIGroup" [instructions]=questionnaire.instructions></groups>
       <progressbar
         [groups]="questionnaire.groups"
         [currentGroup]="currentUIGroup"

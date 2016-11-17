@@ -17,6 +17,8 @@ import { TextComponent } from './element/element.text.component';
 import { TextareaComponent } from './element/element.textarea.component';
 import { CheckboxComponent } from './element/element.checkbox.component';
 import { ProgressbarComponent } from './shared/progressbar.component';
+import { InstructionComponent } from './instruction/instruction.component';
+import { InstructionOptionComponent } from './instruction/instruction-option.component';
 
 import { routing } from './app.routing';
 import { AppGuard } from './app.guard';
@@ -56,7 +58,9 @@ import { GroupFilterPipe } from './shared/shared.utils';
     TextareaComponent,
     CheckboxComponent,
     ProgressbarComponent,
-    GroupFilterPipe
+    GroupFilterPipe,
+    InstructionComponent,
+    InstructionOptionComponent
   ],
   providers: [
     AppGuard,

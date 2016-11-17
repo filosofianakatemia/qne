@@ -4,6 +4,7 @@ import { UIGroup } from '../action/ui-group.model';
 import { GroupFilterPipe } from '../shared/shared.utils';
 
 import { ElementComponent } from '../element/element.component';
+import { Instruction } from '../instruction/instruction.model';
 
 @Component({
   selector: 'groups',
@@ -13,7 +14,7 @@ import { ElementComponent } from '../element/element.component';
       <h3>g.type: {{group.type}}</h3>
       <h3>g.action: {{group.action}}</h3>
 
-     <elements [elements]="group.elements"></elements>
+     <elements [elements]="group.elements" [instructions]="instructions"></elements>
 
     </div>
   `
@@ -21,5 +22,6 @@ import { ElementComponent } from '../element/element.component';
 export class GroupComponent {
   @Input() groups: QuestionGroup[];
   @Input() currentGroup: UIGroup;
+  @Input() instructions: Instruction[];
   constructor(){};
 }
