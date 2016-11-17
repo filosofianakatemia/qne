@@ -101,6 +101,14 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/Action"
+      instructions:
+        type: array
+        items:
+          $ref: "#/definitions/Instruction"
+      groups:
+        type: array
+        items:
+          $ref: "#/definitions/Group"
       created:
         type: number
       modified:
@@ -122,16 +130,56 @@ definitions:
         type: string
         minLength: 1
         maxLength: 1024
-  Action:
+  Instruction:
     type: object
-    required:
-      - actionType
+    required: 
       - title
     properties:
       uuid:
         type: string
         format: uuid
-      actionType:
+      type:
+        type: string
+        minLength: 1
+        maxLength: 256
+      title:
+        type: string
+        minLength: 1
+        maxLength: 256
+      description:
+        type: string
+        minLength: 1
+        maxLength: 1024
+      i18n:
+        type: array
+        items:
+          $ref: "#/definitions/I18n"
+  Group:
+    type: object
+    required:
+      - type
+    properties:
+      uuid:
+        type: string
+        format: uuid
+      type:
+        type: string
+        minLength: 1
+        maxLength: 256
+      action:
+        type: array
+        items:
+          $ref: "#/definitions/Action"
+  Action:
+    type: object
+    required:
+      - type
+      - title
+    properties:
+      uuid:
+        type: string
+        format: uuid
+      type:
         type: string
         minLength: 1
         maxLength: 256

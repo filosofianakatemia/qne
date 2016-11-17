@@ -22,15 +22,12 @@
  * limitations under the License.
  */
 
-'use strict';
 import * as models from './models';
 
 export interface Questionnaire {
-    
-
     uuid?: string;
 
-    title?: string;
+    title: string;
 
     submit?: string;
 
@@ -44,7 +41,12 @@ export interface Questionnaire {
 
     actions?: Array<models.Action>;
 
+    instructions?: Array<models.Instruction>;
+
+    groups?: Array<models.Group>;
+
     created?: number;
 
     modified?: number;
+
 }

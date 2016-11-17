@@ -22,17 +22,15 @@
  * limitations under the License.
  */
 
-'use strict';
 import * as models from './models';
 
 export interface Action {
-    
-
     uuid?: string;
 
-    actionType?: string;
+    type: string;
 
-    title?: string;
+    title: string;
 
     i18n?: Array<models.I18n>;
+
 }

@@ -24,9 +24,15 @@
 
 import * as models from './models';
 
-export interface Error {
-    code: number;
+export interface Instruction {
+    uuid?: string;
 
-    message: string;
+    type?: string;
+
+    title: string;
+
+    description?: string;
+
+    i18n?: Array<models.I18n>;
 
 }

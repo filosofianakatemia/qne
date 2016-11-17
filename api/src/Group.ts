@@ -24,9 +24,11 @@
 
 import * as models from './models';
 
-export interface Error {
-    code: number;
+export interface Group {
+    uuid?: string;
 
-    message: string;
+    type: string;
+
+    action?: Array<models.Action>;
 
 }

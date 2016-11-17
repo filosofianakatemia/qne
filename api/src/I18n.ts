@@ -22,15 +22,13 @@
  * limitations under the License.
  */
 
-'use strict';
 import * as models from './models';
 
 export interface I18n {
-    
-
-    lang?: string;
+    lang: string;
 
     title?: string;
 
     description?: string;
+
 }
