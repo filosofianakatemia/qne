@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { UIGroup } from '../action/ui-group.model';
 import { QuestionGroup } from '../group/group.model';
 
@@ -11,29 +11,24 @@ import { QuestionGroup } from '../group/group.model';
         </div>
         <div class="progress" role="progressbar" tabindex="0" aria-valuenow="20" aria-valuemin="0" aria-valuetext="25 percent" aria-valuemax="100">
           <span class="progress-meter" [style.width]="progBarLength" >
-            <p class="progress-meter-text">{{questionNumber}}/{{amountOfQuestions.length}}</p>
+            <p class="progress-meter-text">{{answeredQuestions}}/{{amountOfQuestions.length}}</p>
           </span>
         </div>
-        <!--<div>currentElement: {{currentGroup.currentElement.uuid}}</div>
-        <div *ngFor="let group of groups">
-          <p>{{group.type}}</p>
-        </div>-->
     `
 })
-//aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-//style="width:25%; background-color:black; height:50px;"
-export class ProgressbarComponent{
+export class ProgressbarComponent implements OnInit {
   @Input() currentGroup: UIGroup;
   @Input() groups: QuestionGroup[];
   @Input() hidePrevButton: boolean;
   @Input() hideNextButton: boolean;
   @Output() navigate: EventEmitter<number> = new EventEmitter<number>();
 
-
-    progBarLength:string = '25%';
-    questionNumber:number = 1;
+    questionNumber:number = 0;
     amountOfQuestions:number[] = [];
     allQuestions:number;
+    progBarLength:string = '10%';
+    answerProgress:any;
+    answeredQuestions:number = 0;
 
     ngOnInit(){
         for(let i = 0; i < this.groups.length; i++) {
@@ -41,8 +36,9 @@ export class ProgressbarComponent{
                 this.amountOfQuestions.push(x);
             }
         }
-        console.log(this.amountOfQuestions);
+        console.log(this.currentGroup.currentElement);
         this.allQuestions = this.amountOfQuestions.length;
+        this.answerProgress = (this.questionNumber / this.amountOfQuestions.length) * 100;
     }
 
     questionNumberPlusOne(){
@@ -52,6 +48,8 @@ export class ProgressbarComponent{
         } else {
             this.questionNumber = this.questionNumber + 2;
         }
+        this.answerProgress = (this.questionNumber / this.amountOfQuestions.length) * 100;
+        this.progBarLength = '' + this.answerProgress + '%';
     }
     questionNumberMinusOne() {
         let expanded = this.currentGroup.type.toString();
@@ -60,6 +58,8 @@ export class ProgressbarComponent{
         } else {
             this.questionNumber = this.questionNumber - 2;
         }
+        this.answerProgress = (this.questionNumber / this.amountOfQuestions.length) * 100;
+        this.progBarLength = '' + this.answerProgress + '%';
     }
 
 }
