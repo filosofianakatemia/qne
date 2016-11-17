@@ -26,7 +26,7 @@ export class ProgressbarComponent implements OnInit {
     questionNumber:number = 0;
     amountOfQuestions:number[] = [];
     allQuestions:number;
-    progBarLength:string = '10%';
+    progBarLength:string = '0%';
     answerProgress:any;
     answeredQuestions:number = 0;
 
