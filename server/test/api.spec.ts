@@ -17,22 +17,16 @@ describe("qne server API", () => {
   });
 
   it("should return valid questions from GET qne-api/v1/questions/test-questionnaire", function () {
-    const questionnairesPromise = chakram.get("http://localhost:3000/qne-api/v1/questions/test-questionnaire");
+    const questionnaire = chakram.get("http://localhost:3000/qne-api/v1/questions/test-questionnaire");
+    expect(questionnaire).to.have.json("uuid", "223e469e-1118-4155-bdc8-af43a505b167");
+    expect(questionnaire).to.have.json("created", 1479214291977);
+    expect(questionnaire).to.have.json("modified", 1479214291977);
+    expect(questionnaire).to.have.json("title", "Test Questionnaire");
+    expect(questionnaire).to.have.json("description", "This is a questionnaire suitable for testing");
+    expect(questionnaire).to.have.json("defaultLang", "en");
+    expect(questionnaire).to.have.json("path", "test-questionnaire");
+    expect(questionnaire).to.have.status(200);
 
-    // TODO: Use something like this when JSON is returned from the server
-    // return expect(questionnaires).to.have.json('with[0].content', questionnaires);
-
-    return questionnairesPromise.then(function(response){
-      return expect(response).to.have.json(response[0].dataValues, function(title){
-        expect (title.to.equal("Test Questionnaire"));
-      });
-      /*expect(response).to.have.json("title", function (title) {
-        expect(title.to.equal("Test Questionnaire"));
-    });*/
-
-    });
+    return chakram.wait();
   });
 });
-
-      /*expect(JSON.stringify(response.body)).to.equal(
-        '{"uuid":"12345-1231233121","title":"Test questionnaire","submit":"123214234","path":"test-questionnaire"}');*/

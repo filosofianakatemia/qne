@@ -43,7 +43,7 @@
     "start": "node dist/server/src/index.js ../../../config-devel.json",
     "start:watch": "nodemon -w dist -w test -w ../core/build/src -e js dist/server/index.js",
     "test": "./test-runner.sh",
-    "test:watch": "nodemon -w build -e js --exec \"node ./node_modules/mocha/bin/_mocha ./dist/server/test/**.js\" ",
+    "dev": "nodemon -w build -e js --exec \"node ./node_modules/mocha/bin/_mocha ./dist/server/test/**.js\" ",
     "start-test:watch": "concurrently \"npm run start:watch\" \"npm run test:watch\" "
   },
   "contributors": [
