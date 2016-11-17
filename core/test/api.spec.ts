@@ -1,6 +1,6 @@
 import * as mocha from "mocha";
 import { expect, should } from "chai";
-import { Core, Options, Questionnaire, Action} from "../src/index";
+import { Core, Options, Questionnaire, Action, Group} from "../src/index";
 import * as path from "path";
 
 describe("API", () => {
@@ -35,6 +35,13 @@ describe("API", () => {
     it("should get submit values", async function() {
       const action: Action = await core.getAction("Submit");
       expect(action.title).to.equal("Submit");
+    });
+  });
+
+  describe("getGroup", () => {
+    it("should get normal values", async function(){
+      const group: Group = await core.getGroup("normal");
+      expect(group.type).to.equal("normal");
     });
   });
 

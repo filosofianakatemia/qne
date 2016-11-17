@@ -3,7 +3,7 @@ import {toNamedAPIType} from "./common.db";
 
 export function toQuestionnaire(dbQuestionnaire: any): Questionnaire {
 
-  // TODO: i18n probably doesn't work like that in the Sequelize model
+   // checking for the most common datarows
 
   let questionnaire: Questionnaire =
     toNamedAPIType(
@@ -11,7 +11,7 @@ export function toQuestionnaire(dbQuestionnaire: any): Questionnaire {
       dbQuestionnaire.questionnaire_uuid,
       dbQuestionnaire.i18n);
 
-  // TODO: Submit should be a UUID, probably doesn't work like that
+   //Checking for any datarows specific to this model
 
   if (dbQuestionnaire.defaultLang)
     questionnaire.defaultLang = dbQuestionnaire.defaultLang;

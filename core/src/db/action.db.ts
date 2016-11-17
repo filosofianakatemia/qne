@@ -3,7 +3,7 @@ import {toNamedAPIType} from "./common.db";
 
 export function toAction(dbAction: any): Action {
 
-  // TODO: i18n probably doesn't work like that in the Sequelize model
+  // checking for the most common datarows
 
   let action: Action =
     toNamedAPIType(
@@ -11,7 +11,7 @@ export function toAction(dbAction: any): Action {
       dbAction.Action_uuid,
       dbAction.i18n);
 
-  // TODO: Submit should be a UUID, probably doesn't work like that
+   //Checking for any datarows specific to this model
 
   if (dbAction.type)
     action.actionType = dbAction.type;
