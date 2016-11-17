@@ -4,7 +4,9 @@ import { QuestionElement } from './element.model';
 @Component({
     selector: 'checkbox',
     template: `
-        <input type= "checkbox">
+      <h3>{{element.title}}</h3>
+      <p *ngIf="(element.required)==true">*</p>
+      <input type= "checkbox">
     `
 
 })

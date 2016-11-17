@@ -5,7 +5,9 @@ import { AnswerValue } from '../action/answer-value.model';
 @Component({
     selector: 'likert',
     template: `
-       <button type="submit" *ngFor="let value of [1,2,3,4,5]" class="button" (click)="answer.emit({element: element.uuid, value: value})">{{value}}</button>
+        <h3>{{element.title}}</h3>
+        <p *ngIf="(element.required)==true">*</p>
+        <button type="submit" *ngFor="let value of [1,2,3,4,5]" class="button" (click)="answer.emit({element: element.uuid, value: value})">{{value}}</button>
     `
 
 })

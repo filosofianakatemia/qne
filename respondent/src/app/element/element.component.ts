@@ -15,14 +15,6 @@ import { Store } from '@ngrx/store';
   template: `
     <div *ngFor="let element of elements">
 
-        <p>uuid: {{element.uuid}}</p>
-        <p>type {{element.type}}</p>
-        <p>title: {{element.title}}</p>
-        <p>description: {{element.description}}</p>
-        <p>required: {{element.required}}</p>
-        <p>instruction: {{element.instruction}}</p>
-
-        <p>subcomponent:</p>
         <div *ngIf= "(element.type == 'likert')">
           <likert [element]="element" (answer)="addToAnswers($event)"></likert>
         </div>
