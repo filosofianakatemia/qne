@@ -10,12 +10,7 @@ import { Instruction } from '../instruction/instruction.model';
   selector: 'groups',
   template: `
     <div *ngFor="let group of (groups | groupFilter:currentGroup)">
-      <h3>g.uuid: {{group.uuid}}</h3>
-      <h3>g.type: {{group.type}}</h3>
-      <h3>g.action: {{group.action}}</h3>
-
-     <elements [elements]="group.elements" [instructions]="instructions"></elements>
-
+      <elements [elements]="group.elements" [instructions]="instructions"></elements>
     </div>
   `
 })

@@ -1,15 +1,16 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { QuestionElement } from './element.model';
 
 @Component({
     selector: 'text',
     template: `
-        <button type="button" class="success button" (click)="answer.emit({element: element.uuid, value: box.value})">Submit</button>
+        <h3>{{element.title}}</h3>
+        <p>{{element.description}}</p>
+        <button class="success button">Out of order</button>
+        <p>TODO: this button needs questionnaire.action</p>
     `
-
 })
 
 export class TextComponent{
   @Input() element: QuestionElement;
-  @Output() answer = new EventEmitter<{element: string, value: number | string}>();
 }

@@ -16,7 +16,7 @@ import { Store } from '@ngrx/store';
   selector: 'questionnaire',
   template: `
       <h1>{{questionnaire.title}}</h1>
-      <p>{{questionnaire.description}}</p>
+      <hr>
 
       <groups [groups]="questionnaire.groups"
         [currentGroup]="currentUIGroup"
