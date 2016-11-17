@@ -25,11 +25,11 @@
 import * as models from './models';
 
 export interface Instruction {
-    uuid?: string;
+    uuid: string;
 
     type?: string;
 
-    title: string;
+    title?: string;
 
     description?: string;
 

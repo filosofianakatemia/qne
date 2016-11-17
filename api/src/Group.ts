@@ -25,9 +25,9 @@
 import * as models from './models';
 
 export interface Group {
-    uuid?: string;
+    uuid: string;
 
-    type: string;
+    type?: string;
 
     action?: Array<models.Action>;
 

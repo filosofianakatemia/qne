@@ -25,9 +25,9 @@
 import * as models from './models';
 
 export interface Questionnaire {
-    uuid?: string;
+    uuid: string;
 
-    title: string;
+    title?: string;
 
     submit?: string;
 

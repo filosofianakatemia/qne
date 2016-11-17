@@ -7,6 +7,7 @@ export interface APIType {
   title?: string;
   description?: string;
   i18n?: Array<I18n>;
+  type?: string;
 }
 export function toAPIType(dbObject: any, dbObjectUuid: string): APIType {
   return {

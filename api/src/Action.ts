@@ -25,11 +25,11 @@
 import * as models from './models';
 
 export interface Action {
-    uuid?: string;
+    uuid: string;
 
-    type: string;
+    type?: string;
 
-    title: string;
+    title?: string;
 
     i18n?: Array<models.I18n>;
 

@@ -14,7 +14,7 @@ export function toGroup(dbGroup: any): Group {
  
  //Checking for any datarows specific to this model
   if (dbGroup.type)
-    Group.GroupType = dbGroup.type;
+    Group.type = dbGroup.type;
 
 
 

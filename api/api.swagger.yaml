@@ -69,7 +69,7 @@ definitions:
   Questionnaire:
     type: object
     required:
-      - title
+      - uuid
     properties:
       uuid:
         type: string
@@ -133,7 +133,7 @@ definitions:
   Instruction:
     type: object
     required: 
-      - title
+      - uuid
     properties:
       uuid:
         type: string
@@ -157,7 +157,7 @@ definitions:
   Group:
     type: object
     required:
-      - type
+      - uuid
     properties:
       uuid:
         type: string
@@ -173,8 +173,7 @@ definitions:
   Action:
     type: object
     required:
-      - type
-      - title
+      - uuid
     properties:
       uuid:
         type: string
