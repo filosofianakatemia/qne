@@ -4,7 +4,7 @@ import {Options as DatabaseOptions} from "sequelize";
 
 // PUBLIC
 
-export {Questionnaire, Action} from "qne-api";
+export {Questionnaire, Action, Group} from "qne-api";
 export {Options as DatabaseOptions} from "sequelize";
 
 export interface Options {

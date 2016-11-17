@@ -69,8 +69,8 @@ export class DB {
     console.info(result[0].dataValues);
     return toAction(result[0].dataValues);
   }
-  public async getGroup(type:string): Promise<Group> {
-    const result = await this.models.group.findAll({where: {type: type}});
+  public async getGroup(type: string): Promise<Group> {
+    const result = await this.models.group.findAll({where: {group_type: type}});
     console.info(result[0].dataValues);
     return toGroup(result[0].dataValues);
   }

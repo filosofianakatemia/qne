@@ -5,7 +5,7 @@ export function toGroup(dbGroup: any): Group {
 
   
  // checking for the most common datarows
-  let Group: Group =
+  let group: Group =
     toNamedAPIType(
       dbGroup,
       dbGroup.Group_uuid,
@@ -13,10 +13,10 @@ export function toGroup(dbGroup: any): Group {
 
  
  //Checking for any datarows specific to this model
-  if (dbGroup.type)
-    Group.type = dbGroup.type;
+  if (dbGroup.group_type)
+    group.type = dbGroup.group_type;
 
 
 
-  return Group;
-}
+  return group;
+};
