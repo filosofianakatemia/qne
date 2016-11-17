@@ -3,6 +3,7 @@ import { QuestionElement } from './element.model';
 import { LikertComponent } from './element.likert.component';
 import { TextComponent } from './element.text.component';
 import { TextareaComponent } from './element.textarea.component';
+import { CheckboxComponent } from './element.checkbox.component';
 import { AnswerValue } from '../action/answer-value.model';
 import { AnswerAction } from '../shared/shared.actions';
 import { Instruction } from '../instruction/instruction.model';
