@@ -38,7 +38,7 @@ fixtures:
     - model: action
       data:
             action_uuid: 3b99828b-852b-478a-a976-84b51a3214b8
-            type: button
+            action_type: button
             title: Begin
             questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167
     - model: i18n
@@ -51,7 +51,7 @@ fixtures:
     - model: action
       data:
             action_uuid: efabf3d2-2f69-4419-9a9c-05f69261c876
-            type: button
+            action_type: button
             title: Submit
             questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167
     - model: i18n
@@ -64,7 +64,7 @@ fixtures:
     - model: instruction
       data:
             instruction_uuid: e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15
-            type: likert
+            instruction_type: likert
             title: Choose the value that matches reality
             description: Don't overthink, the first answer is probably the right one
             questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167

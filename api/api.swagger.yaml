@@ -171,7 +171,8 @@ definitions:
         minLength: 1
         maxLength: 256
       action:
-        type: array
+        type: string
+        format: uuid
         items:
           $ref: "#/definitions/Action"
   Action:

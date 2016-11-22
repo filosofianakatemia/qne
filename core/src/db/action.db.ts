@@ -14,7 +14,7 @@ export function toAction(dbAction: any): Action {
    //Checking for any datarows specific to this model
 
   if (dbAction.type)
-    action.type = dbAction.type;
+    action.type = dbAction.action_type;
 
 
 
