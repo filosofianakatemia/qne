@@ -55,7 +55,7 @@ describe("API", () => {
     it("should get likert value", async function(){
       const instruction: Instruction = await core.getInstruction("likert");
       expect(instruction.type).to.equal("likert");
-    }
-  })
+    });
+  });
 
 });

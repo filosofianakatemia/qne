@@ -5,7 +5,7 @@ export function toInstruction(dbInstruction: any): Instruction {
 
    // checking for the most common datarows
 
-  let Instruction: Instruction =
+  let instruction: Instruction =
     toNamedAPIType(
       dbInstruction,
       dbInstruction.Instruction_uuid,
@@ -13,8 +13,8 @@ export function toInstruction(dbInstruction: any): Instruction {
 
    //Checking for any datarows specific to this model
 
-  if (dbInstruction.type)
-    Instruction.type = dbInstruction.type;  
+  if (dbInstruction.instruction_type)
+    instruction.type = dbInstruction.instruction_type;
 
-  return Instruction;
+  return instruction;
 }

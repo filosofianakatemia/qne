@@ -57,7 +57,6 @@ export class DB {
   };
 
   public async getQuestions(path: string): Promise<Questionnaire> {
-      // TODO: Link this to questionnaire.db.ts getQuestions method
       const result = await this.models.questionnaire.findAll({where: {questionnaire_path: path}});
       console.info(result[0].dataValues);
       console.info(toQuestionnaire(result[0].dataValues));
@@ -82,7 +81,7 @@ export class DB {
     return toOption(result[0].dataValues);
   }
   public async getInstruction(type:string): Promise<Instruction> {
-    const result = await this.models.instruction.findAll({where: {type:type}});
+    const result = await this.models.instruction.findAll({where: {instruction_type: type}});
     console.info(result[0].dataValues);
     return toInstruction(result[0].dataValues);
   }
