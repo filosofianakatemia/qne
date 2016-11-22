@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { QuestionElement } from './element.model';
 import { LikertComponent } from './element.likert.component';
 import { TextComponent } from './element.text.component';
@@ -43,10 +43,12 @@ import { Store } from '@ngrx/store';
 export class ElementComponent{
   @Input() instructions: Instruction[];
   @Input() elements: QuestionElement[];
+  @Output() navigate: EventEmitter<any> = new EventEmitter<any>();
   constructor(private store: Store<fromRoot.State>){};
 
   addToAnswers($event: any){
     let ans: AnswerValue = this.createAnswer($event.element, $event.value);
+    this.navigate.emit(null);
     this.store.dispatch(new AnswerAction(ans));
   }
 

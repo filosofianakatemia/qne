@@ -18,10 +18,11 @@ import { Store } from '@ngrx/store';
       <h1>{{questionnaire.title}}</h1>
       <hr>
 
-      <groups [groups]="questionnaire.groups"
-        [currentGroup]="currentUIGroup"
-        [instructions]="questionnaire.instructions" (click)="questionHasBeenAnswered()">
-      </groups>
+      <groups
+        [groups]="questionnaire.groups"
+        [currentUIGroup]="currentUIGroup"
+        [instructions]="questionnaire.instructions" (click)="questionHasBeenAnswered()"
+      ></groups>
 
       <progressbar
         [groups]="questionnaire.groups"
