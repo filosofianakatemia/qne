@@ -14,11 +14,9 @@ import { AnswerValue } from '../action/answer-value.model';
           </span>
         </div>
         </div>
-        <div class="large-3 large-offset-1 columns">
-        <div class="button-group">
+        <div class="large-4 columns">
             <button class="button" [disabled]="hidePrevButton" (click)="navigate.emit(-1)" (click)="questionNumberMinusOne()">Previous</button>
             <button class="button" [disabled]="hideNextButton" (click)="navigate.emit(1)" (click)="questionNumberPlusOne()">Next</button>
-        </div>
         </div>
         </div>
     `
