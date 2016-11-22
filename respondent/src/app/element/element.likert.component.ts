@@ -6,7 +6,9 @@ import { AnswerValue } from '../action/answer-value.model';
     selector: 'likert',
     template: `
         <h3>{{element.title}}<span *ngIf="(element.required)==true">*</span></h3>
+        <div class="button-group likert">
         <button type="submit" *ngFor="let value of [1,2,3,4,5]" class="button" (click)="answer.emit({element: element.uuid, value: value})">{{value}}</button>
+        <div>
     `
 
 })
