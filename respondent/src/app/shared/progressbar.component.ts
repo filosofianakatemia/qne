@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { UIGroup } from '../action/ui-group.model';
 import { QuestionGroup } from '../group/group.model';
+import { AnswerValue } from '../action/answer-value.model';
 
 @Component({
     selector: 'progressbar',
@@ -17,18 +18,19 @@ import { QuestionGroup } from '../group/group.model';
     `
 })
 export class ProgressbarComponent implements OnInit {
-  @Input() currentGroup: UIGroup;
-  @Input() groups: QuestionGroup[];
-  @Input() hidePrevButton: boolean;
-  @Input() hideNextButton: boolean;
-  @Output() navigate: EventEmitter<number> = new EventEmitter<number>();
+    @Input() currentGroup: UIGroup;
+    @Input() groups: QuestionGroup[];
+    @Input() hidePrevButton: boolean;
+    @Input() hideNextButton: boolean;
+    @Output() navigate: EventEmitter<number> = new EventEmitter<number>();
+    @Input() answeredQuestions:number = 0;
 
     questionNumber:number = 0;
     amountOfQuestions:number[] = [];
     allQuestions:number;
     progBarLength:string = '0%';
     answerProgress:any;
-    answeredQuestions:number = 0;
+    //answeredQuestions:number = 0;
 
     ngOnInit(){
         for(let i = 0; i < this.groups.length; i++) {
@@ -36,12 +38,12 @@ export class ProgressbarComponent implements OnInit {
                 this.amountOfQuestions.push(x);
             }
         }
-        console.log(this.currentGroup.currentElement);
         this.allQuestions = this.amountOfQuestions.length;
         this.answerProgress = (this.questionNumber / this.amountOfQuestions.length) * 100;
     }
 
     questionNumberPlusOne(){
+        //console.log(this.answers);
         let expanded = this.currentGroup.type.toString();
         if(expanded != "expanded") {
             this.questionNumber++;

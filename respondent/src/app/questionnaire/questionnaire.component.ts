@@ -20,7 +20,7 @@ import { Store } from '@ngrx/store';
 
       <groups [groups]="questionnaire.groups"
         [currentGroup]="currentUIGroup"
-        [instructions]="questionnaire.instructions">
+        [instructions]="questionnaire.instructions" (click)="questionHasBeenAnswered()">
       </groups>
 
       <progressbar
@@ -28,6 +28,7 @@ import { Store } from '@ngrx/store';
         [currentGroup]="currentUIGroup"
         [hidePrevButton]="negativeBounds"
         [hideNextButton]="positiveBounds"
+        [answeredQuestions]="answeredQuestions"
         (navigate)="navigate($event)">
       </progressbar>
   `
@@ -37,6 +38,7 @@ export class QuestionnaireComponent implements OnChanges{
   @Input() questionnaire: Questionnaire;
   @Input() currentUIGroup: UIGroup;
   @Input() answers: AnswerValue[];
+  answeredQuestions:number=0;
   negativeBounds:boolean;
   positiveBounds:boolean;
 
@@ -73,6 +75,10 @@ export class QuestionnaireComponent implements OnChanges{
       (currentElement.required && currentAnswer === undefined) || //Current element required and not answered
       (lastElementID === UIGroup.currentElement.uuid) ||  //Last element of the array
       ((currentUIGroup.uuid === lastGroup.uuid) && (lastGroup.type === "expanded"));  //Or last group with type==="expanded"
+  }
+
+  questionHasBeenAnswered(){
+    this.answeredQuestions = this.answers.length;
   }
 
   navigate($event:number){
