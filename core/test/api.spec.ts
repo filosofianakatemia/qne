@@ -1,6 +1,6 @@
 import * as mocha from "mocha";
 import { expect, should } from "chai";
-import { Core, Options, Questionnaire, Action, Group, Option} from "../src/index";
+import { Core, Options, Questionnaire, Action, Group, Option, Instruction} from "../src/index";
 import * as path from "path";
 
 describe("API", () => {
@@ -51,5 +51,11 @@ describe("API", () => {
       expect(option.title).to.equal("Strongly disagree");
     });
   });
+  describe("getInstruction", () => {
+    it("should get likert value", async function(){
+      const instruction: Instruction = await core.getInstruction("likert");
+      expect(instruction.type).to.equal("likert");
+    }
+  })
 
 });
