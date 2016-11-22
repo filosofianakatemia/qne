@@ -10,7 +10,7 @@ import { Instruction } from './instruction.model';
         <div [hidden]=hidden>
           <h3>{{instruction.title}}</h3>
           <p>{{instruction.description}}</p>
-          <option [options]="instruction.options"></option>
+          <option-app [options]="instruction.options"></option-app>
         </div>
       </div>
     </div>
