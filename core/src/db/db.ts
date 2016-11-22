@@ -1,10 +1,11 @@
-import {Questionnaire, Info, Action, Group} from "qne-api";
+import {Questionnaire, Info, Action, Group, Option} from "qne-api";
 import * as Sequelize from "sequelize";
 import {DBModels} from "./models";
 import * as sequelizeFixtures from "sequelize-fixtures";
 import {toQuestionnaire} from "./questionnaire.db";
 import {toAction} from "./action.db";
 import {toGroup} from "./group.db";
+import {toOption} from "./option.db";
 
 export class DB {
 
@@ -73,5 +74,10 @@ export class DB {
     const result = await this.models.group.findAll({where: {group_type: type}});
     console.info(result[0].dataValues);
     return toGroup(result[0].dataValues);
+  }
+  public async getOption(title:string): Promise<Option> {
+    const result = await this.models.option.findAll({where: {title: title}});
+    console.info(result[0].dataValues);
+    return toOption(result[0].dataValues);
   }
 }

@@ -1,6 +1,6 @@
 import * as mocha from "mocha";
 import { expect, should } from "chai";
-import { Core, Options, Questionnaire, Action, Group} from "../src/index";
+import { Core, Options, Questionnaire, Action, Group, Option} from "../src/index";
 import * as path from "path";
 
 describe("API", () => {
@@ -42,6 +42,13 @@ describe("API", () => {
     it("should get normal values", async function(){
       const group: Group = await core.getGroup("normal");
       expect(group.type).to.equal("normal");
+    });
+  });
+
+  describe("getOption", () => {
+    it("should get title Strongly disagree value", async function(){
+      const option: Option = await core.getOption("Strongly disagree");
+      expect(option.title).to.equal("Strongly disagree");
     });
   });
 

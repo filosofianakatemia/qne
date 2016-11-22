@@ -4,4 +4,5 @@ export * from './Group';
 export * from './I18n';
 export * from './Info';
 export * from './Instruction';
+export * from './Option';
 export * from './Questionnaire';

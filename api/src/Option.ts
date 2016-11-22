@@ -24,17 +24,11 @@
 
 import * as models from './models';
 
-export interface Instruction {
+export interface Option {
     uuid: string;
 
-    type?: string;
+    value?: number;
 
     title?: string;
-
-    description?: string;
-
-    i18n?: Array<models.I18n>;
-
-    options?: Array<models.Option>;
 
 }

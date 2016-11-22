@@ -1,10 +1,10 @@
 import {DB} from "./db/db";
-import {Questionnaire, Info, Action, Group} from "qne-api";
+import {Questionnaire, Info, Action, Group, Option} from "qne-api";
 import {Options as DatabaseOptions} from "sequelize";
 
 // PUBLIC
 
-export {Questionnaire, Action, Group} from "qne-api";
+export {Questionnaire, Action, Group, Option} from "qne-api";
 export {Options as DatabaseOptions} from "sequelize";
 
 export interface Options {
@@ -40,5 +40,8 @@ export class Core {
   }
   public async getGroup(type: string): Promise<Group> {
     return await this.db.getGroup(type);
+  }
+  public async getOption(title: string): Promise<Option> {
+    return await this.db.getOption(title);
   }
 }
