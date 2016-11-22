@@ -1,4 +1,4 @@
-import {Questionnaire, Info, Action, Group, Option, Instruction} from "qne-api";
+import {Questionnaire, Info, Action, Group, Option, Instruction, Element} from "qne-api";
 import * as Sequelize from "sequelize";
 import {DBModels} from "./models";
 import * as sequelizeFixtures from "sequelize-fixtures";
@@ -7,6 +7,7 @@ import {toAction} from "./action.db";
 import {toGroup} from "./group.db";
 import {toOption} from "./option.db";
 import {toInstruction} from "./instruction.db";
+import {toElement} from "./element.db";
 
 export class DB {
 
@@ -84,5 +85,10 @@ export class DB {
     const result = await this.models.instruction.findAll({where: {instruction_type: type}});
     console.info(result[0].dataValues);
     return toInstruction(result[0].dataValues);
+  }
+  public async getElement(type:string): Promise<Element> {
+    const result = await this.models.element.findAll({where: {element_type: type}});
+    console.info(result[0].dataValues);
+    return toElement(result[0].dataValues);
   }
 }

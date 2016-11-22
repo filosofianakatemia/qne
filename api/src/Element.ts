@@ -24,31 +24,15 @@
 
 import * as models from './models';
 
-export interface Questionnaire {
+export interface Element {
     uuid: string;
+
+    type?: string;
 
     title?: string;
 
-    submit?: string;
-
-    defaultLang?: string;
-
-    path?: string;
-
     description?: string;
 
-    i18n?: Array<models.I18n>;
-
-    actions?: Array<models.Action>;
-
-    instructions?: Array<models.Instruction>;
-
-    groups?: Array<models.Group>;
-
-    elements?: Array<models.Element>;
-
-    created?: number;
-
-    modified?: number;
+    required?: boolean;
 
 }

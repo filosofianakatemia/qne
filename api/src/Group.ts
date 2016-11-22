@@ -29,6 +29,6 @@ export interface Group {
 
     type?: string;
 
-    action?: Array<models.Action>;
+    action?: string;
 
 }

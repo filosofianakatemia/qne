@@ -109,6 +109,10 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/Group"
+      elements:
+        type: array
+        items:
+          $ref: "#/definitions/Element"
       created:
         type: number
       modified:
@@ -209,6 +213,28 @@ definitions:
         type: string
         minLength: 1
         maxLength: 256
+  Element:
+    type: object
+    required:
+      - uuid
+    properties:
+      uuid:
+        type: string
+        format: uuid
+      type:
+        type: string
+        minLength: 1
+        maxLength: 256
+      title:
+        type: string
+        minLength: 1
+        maxLength: 256
+      description:
+        type: string
+        minLength: 1
+        maxLength: 256
+      required:
+        type: boolean
   Error:
     type: object
     required:
