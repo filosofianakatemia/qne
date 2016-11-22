@@ -4,7 +4,7 @@ import { QuestionElement } from './element.model';
 @Component({
     selector: 'checkbox',
     template: `
-      <input type= "checkbox" (change)= "onChange()">
+      <input type= "checkbox" (click)= "onChange()">
     `
 })
 
