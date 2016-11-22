@@ -57,10 +57,46 @@ export class DB {
     });
   };
 
-  public async getQuestions(path: string): Promise<Questionnaire> {
-      const result = await this.models.questionnaire.findAll({where: {questionnaire_path: path}});
+public async getQuestions(path: string): Promise<Questionnaire> {
+      const result = await this.models.questionnaire.findAll({
+        include: [{
+          model: this.models.action,
+          where: {questionnaire_uuid: Sequelize.col("questionnaire.questionnaire_uuid")},
+          required: false,
+          include: {
+            model: this.models.i18n,
+            required: false,
+          },
+        }, {
+          model: this.models.group,
+          where: {questionnaire_uuid: Sequelize.col("questionnaire.questionnaire_uuid")},
+          include: [{
+            model: this.models.element,
+            through: {
+              attributes: ["element_uuid", "element_type", "title", "description", "required", "instruction_uuid"],
+            },
+            include: [{
+              model: this.models.i18n,
+              required: false,
+            }],
+            required: false,
+          }],
+          required: false,
+        }, {
+          model: this.models.instruction,
+          where: {questionnaire_uuid: Sequelize.col("questionnaire.questionnaire_uuid")},
+          required: false,
+          include: [{
+            model: this.models.option,
+            required: false,
+            include: {
+              model: this.models.i18n,
+              required: false,
+            },
+          }],
+        }],
+         where: {questionnaire_path: path}});
       console.info(result[0].dataValues);
-      console.info(toQuestionnaire(result[0].dataValues));
       result[0].dataValues.created = result[0].dataValues.created.getTime();
       result[0].dataValues.modified = result[0].dataValues.modified.getTime();
       return toQuestionnaire(result[0].dataValues);

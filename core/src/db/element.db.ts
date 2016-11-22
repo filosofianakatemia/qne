@@ -5,7 +5,7 @@ export function toElement(dbElement: any): Element {
 
    // checking for the most common datarows
 
-  let Element: Element =
+  let element: Element =
     toNamedAPIType(
       dbElement,
       dbElement.Element_uuid,
@@ -13,11 +13,11 @@ export function toElement(dbElement: any): Element {
 
    //Checking for any datarows specific to this model
 
-  if (dbElement.Element_type)
-    Element.type = dbElement.Element_type;
+  if (dbElement.element_type)
+    element.type = dbElement.element_type;
 
   if (dbElement.required)
-    Element.required = dbElement.required;
+    element.required = dbElement.required;
 
-  return Element;
+  return element;
 }
