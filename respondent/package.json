@@ -5,7 +5,7 @@
   "scripts": {
     "build": "ng build --prod",
     "api": "json-server --watch mock.api.json --port 3004",
-    "start": "concurrently \"ng serve\" \"npm run api\" "
+    "start": "concurrently \"npm install\" \"ng serve\" \"npm run api\" "
   },
   "dependencies": {
     "@angular/common": "^2.1.0",
