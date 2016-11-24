@@ -1,4 +1,5 @@
 @import "../node_modules/foundation-sites/scss/foundation";
+@import 'settings';
 // include flex
 @include foundation-everything(true);
 
@@ -16,12 +17,12 @@ main {
   width:50%;
 }
 
-.progress {
+/* .progress {
   font-size: 1.277rem;
   padding:1em;
   background-color:#2199e8;
-  min-width:100px;
-}
+  min-width:100px; 
+} */
 .likert {
   display:block;
 }
