@@ -25,7 +25,7 @@ import { AppGuard } from './app.guard';
 import { AppComponent } from './app.component';
 
 import { reducer } from './shared/main.reducer';
-import { GroupFilterPipe } from './shared/shared.utils';
+import { GroupFilterPipe, InstructionFilterPipe } from './shared/shared.utils';
 
 
 @NgModule({
@@ -59,6 +59,7 @@ import { GroupFilterPipe } from './shared/shared.utils';
     CheckboxComponent,
     ProgressbarComponent,
     GroupFilterPipe,
+    InstructionFilterPipe,
     InstructionComponent,
     InstructionOptionComponent
   ],
