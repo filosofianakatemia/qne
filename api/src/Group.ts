@@ -31,4 +31,6 @@ export interface Group {
 
     action?: string;
 
+    elements?: Array<models.Element>;
+
 }

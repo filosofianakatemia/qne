@@ -31,4 +31,6 @@ export interface Option {
 
     title?: string;
 
+    i18n?: Array<models.I18n>;
+
 }

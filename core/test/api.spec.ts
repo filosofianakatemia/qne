@@ -27,6 +27,7 @@ describe("API", () => {
   describe("getQuestions", () => {
     it("should get test-questionnaire values", async function () {
       const questions: Questionnaire = await core.getQuestions("test-questionnaire");
+      console.info(questions);
       expect(questions.path).to.equal("test-questionnaire");
     });
   });
@@ -61,7 +62,6 @@ describe("API", () => {
     it ("should get likert value", async function(){
       const element: Element = await core.getElement("likert");
       expect(element.type).to.equal("likert");
-    
     });
   });
 

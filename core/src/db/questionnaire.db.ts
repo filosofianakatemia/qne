@@ -1,5 +1,8 @@
 import {Questionnaire} from "qne-api";
-import {toNamedAPIType} from "./common.db";
+import {toNamedAPIType, toI18n} from "./common.db";
+import {toAction} from "./action.db";
+import {toGroup} from "./group.db";
+import {toInstruction} from "./instruction.db";
 
 export function toQuestionnaire(dbQuestionnaire: any): Questionnaire {
 
@@ -21,6 +24,26 @@ export function toQuestionnaire(dbQuestionnaire: any): Questionnaire {
 
   if (dbQuestionnaire.questionnaire_path)
     questionnaire.path = dbQuestionnaire.questionnaire_path;
+
+  if (dbQuestionnaire.i18ns) {
+    const i18n = dbQuestionnaire.i18ns.map(row => toAction(row));
+    questionnaire.i18n = i18n;
+  }
+
+  if (dbQuestionnaire.instructions) {
+    const instructions = dbQuestionnaire.instructions.map(row => toInstruction(row));
+    questionnaire.instructions = instructions;
+  }
+
+  if (dbQuestionnaire.actions) {
+    const actions = dbQuestionnaire.actions.map(row => toAction(row));
+    questionnaire.actions = actions;
+  }
+
+  if (dbQuestionnaire.groups) {
+    const groups = dbQuestionnaire.groups.map(row => toGroup(row));
+    questionnaire.groups = groups;
+  }
 
   return questionnaire;
 }

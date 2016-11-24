@@ -1,5 +1,5 @@
 import {Action} from "qne-api";
-import {toNamedAPIType} from "./common.db";
+import {toNamedAPIType, toI18n} from "./common.db";
 
 export function toAction(dbAction: any): Action {
 
@@ -8,7 +8,7 @@ export function toAction(dbAction: any): Action {
   let action: Action =
     toNamedAPIType(
       dbAction,
-      dbAction.Action_uuid,
+      dbAction.action_uuid,
       dbAction.i18n);
 
    //Checking for any datarows specific to this model
@@ -16,7 +16,13 @@ export function toAction(dbAction: any): Action {
   if (dbAction.action_type)
     action.type = dbAction.action_type;
 
+  if (dbAction.i18ns) {
+    const i18n = dbAction.i18ns.map(row => toI18n(row));
+    action.i18n = i18n;
+  }
 
 
+  console.info(action);
+  console.info(action.i18n);
   return action;
 }

@@ -35,4 +35,8 @@ export interface Element {
 
     required?: boolean;
 
+    i18n?: Array<models.I18n>;
+
+    instruction?: string;
+
 }

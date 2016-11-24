@@ -179,6 +179,10 @@ definitions:
         format: uuid
         items:
           $ref: "#/definitions/Action"
+      elements:
+        type: array
+        items:
+          $ref: "#/definitions/Element"
   Action:
     type: object
     required:
@@ -213,6 +217,10 @@ definitions:
         type: string
         minLength: 1
         maxLength: 256
+      i18n:
+        type: array
+        items:
+          $ref: "#/definitions/I18n"
   Element:
     type: object
     required:
@@ -235,6 +243,15 @@ definitions:
         maxLength: 256
       required:
         type: boolean
+      i18n:
+        type: array
+        items:
+          $ref: "#/definitions/I18n"
+      instruction:
+        type: string
+        format: uuid
+        items:
+          $ref: "#/definitions/Instruction"
   Error:
     type: object
     required:

@@ -60,6 +60,10 @@ export class DB {
 public async getQuestions(path: string): Promise<Questionnaire> {
       const result = await this.models.questionnaire.findAll({
         include: [{
+          model: this.models.i18n,
+          where: {questionnaire_uuid: Sequelize.col("questionnaire.questionnaire_uuid")},
+          required: false,
+        }, {
           model: this.models.action,
           where: {questionnaire_uuid: Sequelize.col("questionnaire.questionnaire_uuid")},
           required: false,
@@ -96,7 +100,7 @@ public async getQuestions(path: string): Promise<Questionnaire> {
           }],
         }],
          where: {questionnaire_path: path}});
-      console.info(result[0].dataValues);
+      console.info(result[0]);
       result[0].dataValues.created = result[0].dataValues.created.getTime();
       result[0].dataValues.modified = result[0].dataValues.modified.getTime();
       return toQuestionnaire(result[0].dataValues);
@@ -104,7 +108,7 @@ public async getQuestions(path: string): Promise<Questionnaire> {
 
   public async getAction(title: string): Promise<Action> {
     const result = await this.models.action.findAll({where: {title: title}});
-    console.info(result[0].dataValues);
+    /*console.info(result[0].dataValues);*/
     return toAction(result[0].dataValues);
   }
   public async getGroup(type: string): Promise<Group> {
