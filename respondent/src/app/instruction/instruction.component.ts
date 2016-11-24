@@ -4,8 +4,7 @@ import { Instruction } from './instruction.model';
 @Component({
   selector: 'instruction',
   template: `
-    <div *ngFor="let instruction of instructions">
-      <div *ngIf="(instruction.uuid) == instructionId">
+    <div *ngFor="let instruction of (instructions | instructionFilter:instructionId)">
         <button class="button" (click)="showHelp()">Instructions</button>
         <div [hidden]=hidden>
           <h3>{{instruction.title}}</h3>
@@ -13,7 +12,6 @@ import { Instruction } from './instruction.model';
           <option-app [options]="instruction.options"></option-app>
         </div>
       </div>
-    </div>
   `
 })
 export class InstructionComponent {

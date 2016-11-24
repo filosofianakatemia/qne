@@ -2,6 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { QuestionGroup } from '../group/group.model';
 import { QuestionElement } from '../element/element.model';
 import { UIGroup } from '../action/ui-group.model';
+import { Instruction } from '../instruction/instruction.model'
+
 
 /**
  * This function coerces a string into a string literal type.
@@ -44,5 +46,16 @@ export class GroupFilterPipe implements PipeTransform {
     }]
 
     return filteredGroup;
+  };
+}
+
+@Pipe({name: 'instructionFilter'})
+export class InstructionFilterPipe implements PipeTransform {
+  transform(instructions: Instruction[], instructionId: string){
+
+     const filteredInstruction: Instruction[] = instructions.filter(i => i.uuid === instructionId);
+
+     return filteredInstruction;
+    
   };
 }
