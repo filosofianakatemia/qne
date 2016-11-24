@@ -6,7 +6,7 @@ import { GroupComponent } from '../group/group.component';
 import { QuestionGroup } from '../group/group.model';
 import { QuestionElement } from '../element/element.model';
 import { AnswerValue } from '../action/answer-value.model';
-import { NavigateAction } from '../shared/shared.actions';
+import { NavigateAction, CompletionAction } from '../shared/shared.actions';
 
 import * as fromRoot from '../shared/main.reducer';
 import { Store } from '@ngrx/store';
@@ -24,6 +24,11 @@ import { Store } from '@ngrx/store';
         [instructions]="questionnaire.instructions" (click)="questionHasBeenAnswered()"
       ></groups>
 
+      <summary
+        [answers]="answers"
+        [groups]="questionnaire.groups"
+      ></summary>
+
       <progressbar
         [groups]="questionnaire.groups"
         [currentGroup]="currentUIGroup"
@@ -39,13 +44,17 @@ export class QuestionnaireComponent implements OnChanges{
   @Input() questionnaire: Questionnaire;
   @Input() currentUIGroup: UIGroup;
   @Input() answers: AnswerValue[];
+  requiredElements: QuestionElement[];
   answeredQuestions:number=0;
   negativeBounds:boolean;
   positiveBounds:boolean;
+  isCompleted:boolean;
 
   constructor(private store: Store<fromRoot.State>){};
 
   ngOnChanges(changes: SimpleChanges) {
+    this.requiredElements = this.getRequiredElements(this.questionnaire.groups);
+    this.isCompleted = this.checkCompletion(this.answers, this.requiredElements);
     this.toggleNavigationButtons(this.currentUIGroup);
   }
 
@@ -62,7 +71,6 @@ export class QuestionnaireComponent implements OnChanges{
     //First and last element IDs
     const firstElementID = groups[0].elements[0].uuid;
     const lastElementID = lastElement.uuid;
-
 
     //Find current group and -element from questionnaire using values from currentUIGroup
     const currentGroup: QuestionGroup = groups.filter(g => g.uuid === currentUIGroup.uuid)[0];
@@ -85,12 +93,29 @@ export class QuestionnaireComponent implements OnChanges{
   navigate($event:number){
     //Movement direction within the array
     const direction: number = $event; // => -1 OR 1
-
     //Current state
     const groups: QuestionGroup[] = this.questionnaire.groups;
     const currentUIGroup: UIGroup = this.currentUIGroup;
-
     //Pass to reducer
     this.store.dispatch(new NavigateAction({direction, groups, currentUIGroup}));
+  }
+  
+  getRequiredElements(groups:QuestionGroup[]){
+    let elems: QuestionElement[] = [];
+    for(let group of groups){ elems = elems.concat(group.elements); }
+    elems = elems.filter(e => e.required===true);
+    return elems;
+  }
+
+  checkCompletion(answers, requiredElements){
+    let answeredRequired: AnswerValue[] = [];
+    for(let elem of requiredElements){
+      answeredRequired = answeredRequired.concat(answers.filter(a => a.element === elem.uuid));
+    }
+    let isCompleted: boolean = requiredElements.length === answeredRequired.length;
+
+    if(isCompleted) this.store.dispatch(new CompletionAction(isCompleted));
+
+    return isCompleted;
   }
 }

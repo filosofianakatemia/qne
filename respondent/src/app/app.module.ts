@@ -19,6 +19,7 @@ import { CheckboxComponent } from './element/element.checkbox.component';
 import { ProgressbarComponent } from './shared/progressbar.component';
 import { InstructionComponent } from './instruction/instruction.component';
 import { InstructionOptionComponent } from './instruction/instruction-option.component';
+import { SummaryComponent } from './summary/summary.component';
 
 import { routing } from './app.routing';
 import { AppGuard } from './app.guard';
@@ -61,7 +62,8 @@ import { GroupFilterPipe, InstructionFilterPipe } from './shared/shared.utils';
     GroupFilterPipe,
     InstructionFilterPipe,
     InstructionComponent,
-    InstructionOptionComponent
+    InstructionOptionComponent,
+    SummaryComponent
   ],
   providers: [
     AppGuard,

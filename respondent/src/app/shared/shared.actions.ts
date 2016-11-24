@@ -16,9 +16,8 @@ import { QuestionGroup } from '../group/group.model';
 export const ActionTypes = {
   LOAD:                type('[Questionnaire] Load'),
   ANSWER:              type('[Answer] Answer'),
-  TO_NEXT_ELEMENT:     type('[UIGroup] Next'),
-  TO_PREVIOUS_ELEMENT: type('[UIGroup] Previous'),
-  NAVIGATE:            type('[Object] Navigate')
+  NAVIGATE:            type('[Object] Navigate'),
+  COMPLETE:            type('[boolean] isCompleted')
 // SUBMIT:           type('[SUBMIT] Submit')
 };
 
@@ -40,20 +39,15 @@ export class AnswerAction implements Action {
 
   constructor(public payload: AnswerValue) {}
 }
-export class NextElementAction implements Action {
-  type = ActionTypes.TO_NEXT_ELEMENT;
-
-  constructor(public payload: UIGroup) {}
-}
-export class PreviousElementAction implements Action {
-  type = ActionTypes.TO_PREVIOUS_ELEMENT;
-
-  constructor(public payload: UIGroup) {}
-}
 export class NavigateAction implements Action {
   type = ActionTypes.NAVIGATE;
 
   constructor(public payload: {direction:number, groups:QuestionGroup[], currentUIGroup: UIGroup}) {}
+}
+export class CompletionAction implements Action {
+  type = ActionTypes.COMPLETE;
+
+  constructor(public payload: boolean){}
 }
 /*
 export class SubmitAction implements Action {
@@ -70,9 +64,8 @@ export class SubmitAction implements Action {
 export type Actions
   = LoadAction
   | AnswerAction
-  | NextElementAction
-  | PreviousElementAction
-  | NavigateAction;
+  | NavigateAction
+  | CompletionAction;
 
 
 /*

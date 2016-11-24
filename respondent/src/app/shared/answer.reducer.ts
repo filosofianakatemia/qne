@@ -32,7 +32,7 @@ export function reducer(state = initialState, action: Actions): State {
       //Filter out duplicate values
       let uniqueValues: AnswerValue[] = state.values.filter(x =>{
            return x.element !== answer.element
-        });
+      });
 
       //Add answer to value array
       const newState: State =
@@ -41,7 +41,16 @@ export function reducer(state = initialState, action: Actions): State {
           completed: false //TODO
       });
 
-      console.table(newState.values);
+      return newState;
+    }
+    case ActionTypes.COMPLETE: {
+      const isCompleted = action.payload;
+
+      const newState: State =
+        Object.assign({}, state, {
+          values: state.values,
+          completed: isCompleted
+        });
       return newState;
     }
     default: {
