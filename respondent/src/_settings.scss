@@ -1,5 +1,9 @@
-$progress-height: 4rem;
-$progress-background: red;
+// This file is copied from node_modules/foundation-sites/scss/settings/_settings.scss
+// This overwrites default values in node_modules so npm install doesn't change them back to defaults everytime
+// Do changes to default values of Foundation functions HERE.
+
+$progress-height: 2.554rem;
+$progress-background:#2199e8;
 $progress-margin-bottom: $global-margin;
-$progress-meter-background: $primary-color;
+$progress-meter-background: red;
 $progress-radius: $global-radius;
