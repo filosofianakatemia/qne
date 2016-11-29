@@ -57,7 +57,32 @@ export class DB {
     });
   };
 
-public async getQuestions(path: string): Promise<Questionnaire> {
+  /*public async getAction(title: string): Promise<Action> {
+    const result = await this.models.action.findAll({where: {title: title}});
+    return toAction(result[0].dataValues);
+  }
+  public async getGroup(type: string): Promise<Group> {
+    const result = await this.models.group.findAll({where: {group_type: type}});
+    console.info(result[0].dataValues);
+    return toGroup(result[0].dataValues);
+  }
+  public async getOption(title:string): Promise<Option> {
+    const result = await this.models.option.findAll({where: {title: title}});
+    console.info(result[0].dataValues);
+    return toOption(result[0].dataValues);
+  }
+  public async getInstruction(type:string): Promise<Instruction> {
+    const result = await this.models.instruction.findAll({where: {instruction_type: type}});
+    console.info(result[0].dataValues);
+    return toInstruction(result[0].dataValues);
+  }
+  public async getElement(type:string): Promise<Element> {
+    const result = await this.models.element.findAll({where: {element_type: type}});
+    console.info(result[0].dataValues);
+    return toElement(result[0].dataValues);
+  }*/
+
+  public async getQuestions(path: string): Promise<Questionnaire> {
       const result = await this.models.questionnaire.findAll({
         include: [{
           model: this.models.i18n,
@@ -87,10 +112,10 @@ public async getQuestions(path: string): Promise<Questionnaire> {
           }],
           required: false,
         }, {
-          model: this.models.instruction,
-          where: {questionnaire_uuid: Sequelize.col("questionnaire.questionnaire_uuid")},
-          required: false,
-          include: [{
+         model: this.models.instruction,
+         where: {questionnaire_uuid: Sequelize.col("questionnaire.questionnaire_uuid")},
+         required: false,
+         include: [{
             model: this.models.option,
             required: false,
             include: {
@@ -99,36 +124,9 @@ public async getQuestions(path: string): Promise<Questionnaire> {
             },
           }],
         }],
-         where: {questionnaire_path: path}});
-      console.info(result[0]);
+        where: {questionnaire_path: path}});
       result[0].dataValues.created = result[0].dataValues.created.getTime();
       result[0].dataValues.modified = result[0].dataValues.modified.getTime();
       return toQuestionnaire(result[0].dataValues);
-  }
-
-  public async getAction(title: string): Promise<Action> {
-    const result = await this.models.action.findAll({where: {title: title}});
-    /*console.info(result[0].dataValues);*/
-    return toAction(result[0].dataValues);
-  }
-  public async getGroup(type: string): Promise<Group> {
-    const result = await this.models.group.findAll({where: {group_type: type}});
-    console.info(result[0].dataValues);
-    return toGroup(result[0].dataValues);
-  }
-  public async getOption(title:string): Promise<Option> {
-    const result = await this.models.option.findAll({where: {title: title}});
-    console.info(result[0].dataValues);
-    return toOption(result[0].dataValues);
-  }
-  public async getInstruction(type:string): Promise<Instruction> {
-    const result = await this.models.instruction.findAll({where: {instruction_type: type}});
-    console.info(result[0].dataValues);
-    return toInstruction(result[0].dataValues);
-  }
-  public async getElement(type:string): Promise<Element> {
-    const result = await this.models.element.findAll({where: {element_type: type}});
-    console.info(result[0].dataValues);
-    return toElement(result[0].dataValues);
   }
 }

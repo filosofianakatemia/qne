@@ -35,7 +35,7 @@ export class Core {
   public async getQuestions(path: string): Promise<Questionnaire> {
     return await this.db.getQuestions(path);
   }
-  public async getAction(title:string): Promise<Action> {
+  /*public async getAction(title:string): Promise<Action> {
     return await this.db.getAction(title);
   }
   public async getGroup(type: string): Promise<Group> {
@@ -50,5 +50,5 @@ export class Core {
   public async getElement(type:string): Promise<Element> {
     return await this.db.getElement(type);
 
-  }
+  }*/
 }

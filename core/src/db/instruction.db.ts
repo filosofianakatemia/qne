@@ -17,10 +17,8 @@ export function toInstruction(dbInstruction: any): Instruction {
   if (dbInstruction.instruction_type)
     instruction.type = dbInstruction.instruction_type;
 
-  if (dbInstruction.options) {
-    const options = dbInstruction.options.map(row => toOption(row));
-    instruction.options = options;
-  }
+  if (dbInstruction.options)
+    instruction.options = dbInstruction.options.map(row => toOption(row));
 
   return instruction;
 }

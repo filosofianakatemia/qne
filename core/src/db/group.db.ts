@@ -17,15 +17,11 @@ export function toGroup(dbGroup: any): Group {
   if (dbGroup.group_type)
     group.type = dbGroup.group_type;
 
-  if (dbGroup.elements) {
-    const elements = dbGroup.elements.map(row => toElement(row));
-    group.elements = elements;
-  }
+  if (dbGroup.elements)
+    group.elements = dbGroup.elements.map(row => toElement(row));
 
   if (dbGroup.action_uuid)
     group.action = dbGroup.action_uuid;
 
-  console.info("<========================= GROUP ==========================>");
-  console.info(group);
   return group;
 };

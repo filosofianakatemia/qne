@@ -16,13 +16,8 @@ export function toAction(dbAction: any): Action {
   if (dbAction.action_type)
     action.type = dbAction.action_type;
 
-  if (dbAction.i18ns) {
-    const i18n = dbAction.i18ns.map(row => toI18n(row));
-    action.i18n = i18n;
-  }
+  if (dbAction.i18ns)
+    action.i18n = dbAction.i18ns.map(row => toI18n(row));
 
-
-  console.info(action);
-  console.info(action.i18n);
   return action;
 }

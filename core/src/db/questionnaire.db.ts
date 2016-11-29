@@ -19,31 +19,23 @@ export function toQuestionnaire(dbQuestionnaire: any): Questionnaire {
   if (dbQuestionnaire.defaultLang)
     questionnaire.defaultLang = dbQuestionnaire.defaultLang;
 
-  if (dbQuestionnaire.submit)
+  if (dbQuestionnaire.submit_action_uuid)
     questionnaire.submit = dbQuestionnaire.submit_action_uuid;
 
   if (dbQuestionnaire.questionnaire_path)
     questionnaire.path = dbQuestionnaire.questionnaire_path;
 
-  if (dbQuestionnaire.i18ns) {
-    const i18n = dbQuestionnaire.i18ns.map(row => toAction(row));
-    questionnaire.i18n = i18n;
-  }
+  if (dbQuestionnaire.i18ns)
+    questionnaire.i18n = dbQuestionnaire.i18ns.map(row => toI18n(row));
 
-  if (dbQuestionnaire.instructions) {
-    const instructions = dbQuestionnaire.instructions.map(row => toInstruction(row));
-    questionnaire.instructions = instructions;
-  }
+  if (dbQuestionnaire.instructions)
+    questionnaire.instructions = dbQuestionnaire.instructions.map(row => toInstruction(row));
 
-  if (dbQuestionnaire.actions) {
-    const actions = dbQuestionnaire.actions.map(row => toAction(row));
-    questionnaire.actions = actions;
-  }
+  if (dbQuestionnaire.actions)
+    questionnaire.actions = dbQuestionnaire.actions.map(row => toAction(row));
 
-  if (dbQuestionnaire.groups) {
-    const groups = dbQuestionnaire.groups.map(row => toGroup(row));
-    questionnaire.groups = groups;
-  }
+  if (dbQuestionnaire.groups)
+    questionnaire.groups = dbQuestionnaire.groups.map(row => toGroup(row));
 
   return questionnaire;
 }

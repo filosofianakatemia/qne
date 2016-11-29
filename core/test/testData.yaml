@@ -23,7 +23,7 @@ fixtures:
             organization_uuid: fd3802f6-f4dd-41f7-bae6-f5a4ebfb8f36
     - model: i18n
       data:
-            i18n_uuid: fa1d406b-3c1d-4a99-8dc8-6568d8f7ffc8
+            i18n_uuid: 7412590b-fb37-4df2-a9a8-9653fd46c32c
             lang: fi
             title: Testikysely
             description: Tämä on kysely, joka soveltuu testaukseen
@@ -198,7 +198,6 @@ fixtures:
             element_type: textarea
             title: Comments?
             required: false
-            instruction_uuid: e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15
     - model: i18n
       data:
             i18n_uuid: e813e3bd-7f87-4ba0-9172-ce62f41dcd69

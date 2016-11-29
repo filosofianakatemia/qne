@@ -32,7 +32,7 @@ describe("API", () => {
     });
   });
 
-  describe("getAction", () => {
+  /*describe("getAction", () => {
     it("should get submit values", async function() {
       const action: Action = await core.getAction("Submit");
       expect(action.title).to.equal("Submit");
@@ -63,6 +63,6 @@ describe("API", () => {
       const element: Element = await core.getElement("likert");
       expect(element.type).to.equal("likert");
     });
-  });
+  });*/
 
 });

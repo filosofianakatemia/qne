@@ -16,10 +16,8 @@ export function toOption(dbOption: any): Option {
   if (dbOption.option_value)
     option.value = dbOption.option_value;
 
-  if (dbOption.i18ns) {
-    const i18n = dbOption.i18ns.map(row => toOption(row));
-    option.i18n = i18n;
-  }
+  if (dbOption.i18ns)
+    option.i18n = dbOption.i18ns.map(row => toI18n(row));
 
   return option;
 }

@@ -16,10 +16,8 @@ export function toElement(dbElement: any): Element {
   if (dbElement.element_type)
     element.type = dbElement.element_type;
 
-  if (dbElement.i18ns) {
-    const i18n = dbElement.i18ns.map(row => toI18n(row));
-    element.i18n = i18n;
-  }
+  if (dbElement.i18ns) 
+    element.i18n = dbElement.i18ns.map(row => toI18n(row));
 
   if (dbElement.required)
     element.required = dbElement.required;
@@ -27,7 +25,5 @@ export function toElement(dbElement: any): Element {
   if (dbElement.instruction_uuid)
     element.instruction = dbElement.instruction_uuid;
 
-  /*console.info("<========================= ELEMENTTI ==========================>");
-  console.info(element);*/
   return element;
 }
