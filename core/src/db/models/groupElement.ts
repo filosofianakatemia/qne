@@ -1,7 +1,7 @@
 import { Sequelize, UUID, INTEGER } from "sequelize";
 
-export function groupsElements(sequelize: Sequelize): any {
-  return sequelize.define("groups_elements", {
+export function groupElement(sequelize: Sequelize): any {
+  return sequelize.define("group_element", {
     element_uuid: {
       type: UUID,
       primaryKey: true,

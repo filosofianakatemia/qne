@@ -127,7 +127,7 @@ export class DB {
         order: [
           [this.models.group, "weight", "ASC"],
           [this.models.instruction, this.models.option, "weight", "ASC"],
-          [this.models.group, this.models.element, this.models.groupsElements, "weight", "ASC"],
+          [this.models.group, this.models.element, this.models.groupElement, "weight", "ASC"],
         ],
         where: {questionnaire_path: path}});
       result[0].dataValues.created = result[0].dataValues.created.getTime();

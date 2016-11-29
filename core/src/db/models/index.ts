@@ -4,7 +4,7 @@ import {answer} from "./answer";
 import {answerElement} from "./answerElement";
 import {element} from "./element";
 import {group} from "./group";
-import {groupsElements} from "./groupsElements";
+import {groupElement} from "./groupElement";
 import {i18n} from "./i18n";
 import {instruction} from "./instruction";
 import {option} from "./option";
@@ -23,7 +23,7 @@ export class DBModels{
   public answerElement: any;
   public element: any;
   public group: any;
-  public groupsElements: any;
+  public groupElement: any;
   public i18n: any;
   public instruction: any;
   public option: any;
@@ -39,7 +39,7 @@ export class DBModels{
     this.answerElement = answerElement(this.sequelize);
     this.element = element(this.sequelize);
     this.group = group(this.sequelize);
-    this.groupsElements = groupsElements(this.sequelize);
+    this.groupElement = groupElement(this.sequelize);
     this.i18n = i18n(this.sequelize);
     this.instruction = instruction(this.sequelize);
     this.option = option(this.sequelize);
@@ -71,8 +71,8 @@ export class DBModels{
     this.i18n.belongsTo(this.element, { foreignKey: "element_uuid"});
     this.i18n.belongsTo(this.action, { foreignKey: "action_uuid"});
     this.i18n.belongsTo(this.questionnaire, { foreignKey: "questionnaire_uuid"});
-    this.element.belongsToMany(this.group, {through: this.groupsElements, foreignKey: "element_uuid"});
-    this.group.belongsToMany(this.element, {through: this.groupsElements, foreignKey: "group_uuid"});
+    this.element.belongsToMany(this.group, {through: this.groupElement, foreignKey: "element_uuid"});
+    this.group.belongsToMany(this.element, {through: this.groupElement, foreignKey: "group_uuid"});
     this.group.belongsTo(this.action, {foreignKey: "action_uuid"});
     this.group.belongsTo(this.questionnaire, { foreignKey: "questionnaire_uuid"});
     this.questionnaire.hasMany(this.group, { foreignKey: "questionnaire_uuid"});
@@ -92,7 +92,7 @@ export class DBModels{
       "answer_element": this.answerElement,
       "element": this.element,
       "group": this.group,
-      "groups_elements": this.groupsElements,
+      "group_element": this.groupElement,
       "i18n": this.i18n,
       "instruction": this.instruction,
       "option": this.option,
