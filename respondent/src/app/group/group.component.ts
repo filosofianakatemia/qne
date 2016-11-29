@@ -28,7 +28,7 @@ export class GroupComponent {
   @Input() instructions: Instruction[];
   constructor(private store: Store<fromRoot.State>){};
 
-
+  //Triggers navigation action when answer action is done in <elements>
   navigate($event){
     const direction = 1; //Positive direction
     const groups = this.groups;
@@ -37,8 +37,8 @@ export class GroupComponent {
     const lastGroup = groups[groups.length-1];
     const lastElement = lastGroup.elements[lastGroup.elements.length-1];
 
-    //Navigate to somewhere else from last element?
-    if(lastElement.uuid === currentUIGroup.uuid){ }
+    //Disable autonavigation from last element
+    if(lastElement.uuid === currentUIGroup.currentElement.uuid){ }
     //Disable autonavigation with expanded type
     else if(currentUIGroup.type === "expanded"){ }
     else{

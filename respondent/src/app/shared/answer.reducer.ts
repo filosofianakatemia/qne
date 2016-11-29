@@ -51,6 +51,8 @@ export function reducer(state = initialState, action: Actions): State {
           values: state.values,
           completed: isCompleted
         });
+      console.table(newState.values);
+      console.log("isCompleted:",newState.completed);
       return newState;
     }
     default: {

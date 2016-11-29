@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
 import { Questionnaire } from './questionnaire.model';
 import { UIGroup } from '../action/ui-group.model';
@@ -19,42 +19,50 @@ import { Store } from '@ngrx/store';
       <hr>
 
       <groups
+        [hidden]="showSummary"
         [groups]="questionnaire.groups"
         [currentUIGroup]="currentUIGroup"
-        [instructions]="questionnaire.instructions" (click)="questionHasBeenAnswered()"
-      ></groups>
+        [instructions]="questionnaire.instructions">
+      </groups>
 
       <summary
+        [hidden]="!showSummary"
         [answers]="answers"
-        [groups]="questionnaire.groups"
-      ></summary>
+        [groups]="questionnaire.groups">
+      </summary>
 
       <progressbar
         [groups]="questionnaire.groups"
         [currentGroup]="currentUIGroup"
         [hidePrevButton]="negativeBounds"
         [hideNextButton]="positiveBounds"
-        [answeredQuestions]="answeredQuestions"
+        [answeredQuestions]="requiredAnswers"
         (navigate)="navigate($event)">
       </progressbar>
   `
 })
 
-export class QuestionnaireComponent implements OnChanges{
+export class QuestionnaireComponent implements OnInit, OnChanges{
   @Input() questionnaire: Questionnaire;
   @Input() currentUIGroup: UIGroup;
   @Input() answers: AnswerValue[];
   requiredElements: QuestionElement[];
-  answeredQuestions:number=0;
-  negativeBounds:boolean;
-  positiveBounds:boolean;
-  isCompleted:boolean;
+  requiredAnswers: AnswerValue[] = [];
+
+  negativeBounds:boolean = true;
+  positiveBounds:boolean = false;
+  isCompleted:boolean = false;
+  showSummary:boolean = false;
 
   constructor(private store: Store<fromRoot.State>){};
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnInit(){
     this.requiredElements = this.getRequiredElements(this.questionnaire.groups);
-    this.isCompleted = this.checkCompletion(this.answers, this.requiredElements);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {  
+    this.requiredAnswers = this.getRequiredAnswers(this.requiredElements, this.answers);
+    this.isCompleted = this.checkCompletion(this.requiredElements, this.requiredAnswers);
     this.toggleNavigationButtons(this.currentUIGroup);
   }
 
@@ -82,40 +90,47 @@ export class QuestionnaireComponent implements OnChanges{
     this.negativeBounds = firstElementID === UIGroup.currentElement.uuid;
     this.positiveBounds =
       (currentElement.required && currentAnswer === undefined) || //Current element required and not answered
-      (lastElementID === UIGroup.currentElement.uuid) ||  //Last element of the array
+      (lastElementID === UIGroup.currentElement.uuid) ||          //Last element of the array
       ((currentUIGroup.uuid === lastGroup.uuid) && (lastGroup.type === "expanded"));  //Or last group with type==="expanded"
   }
 
-  questionHasBeenAnswered(){
-    this.answeredQuestions = this.answers.length;
-  }
-
   navigate($event:number){
-    //Movement direction within the array
-    const direction: number = $event; // => -1 OR 1
-    //Current state
+    /*Movement direction within the array
+    -1 => Previous question
+     1 => Next question
+     0 => Summary page
+    */
+    const direction: number = $event;
     const groups: QuestionGroup[] = this.questionnaire.groups;
     const currentUIGroup: UIGroup = this.currentUIGroup;
-    //Pass to reducer
-    this.store.dispatch(new NavigateAction({direction, groups, currentUIGroup}));
+    if(direction === 0) this.showSummary = true              //Navigate to summary
+    else if(this.showSummary === true && direction === -1){  //Navigate backwards from summary
+      this.showSummary = false;
+    }else{
+      //Pass to reducer
+      this.store.dispatch(new NavigateAction({direction, groups, currentUIGroup}));
+    }
   }
   
-  getRequiredElements(groups:QuestionGroup[]){
+  getRequiredElements(groups:QuestionGroup[]): QuestionElement[] {
     let elems: QuestionElement[] = [];
     for(let group of groups){ elems = elems.concat(group.elements); }
     elems = elems.filter(e => e.required===true);
     return elems;
   }
-
-  checkCompletion(answers, requiredElements){
-    let answeredRequired: AnswerValue[] = [];
+  getRequiredAnswers(requiredElements: QuestionElement[], answers: AnswerValue[]): AnswerValue[]{
+    let requiredAnswers: AnswerValue[] = [];
     for(let elem of requiredElements){
-      answeredRequired = answeredRequired.concat(answers.filter(a => a.element === elem.uuid));
+      requiredAnswers = requiredAnswers.concat(answers.filter(a => a.element === elem.uuid));
     }
-    let isCompleted: boolean = requiredElements.length === answeredRequired.length;
+    return requiredAnswers;
+  }
 
+  checkCompletion(requiredElements:QuestionElement[], requiredAnswers:AnswerValue[]){
+    const isCompleted: boolean = requiredElements.length === requiredAnswers.length;
     if(isCompleted) this.store.dispatch(new CompletionAction(isCompleted));
-
     return isCompleted;
   }
+  
+
 }
