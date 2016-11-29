@@ -27,7 +27,7 @@ describe("API", () => {
   describe("getQuestions", () => {
     it("should get test-questionnaire values", async function () {
       const questions: Questionnaire = await core.getQuestions("test-questionnaire");
-      console.info(questions);
+      /*console.info(questions);*/
       expect(questions.path).to.equal("test-questionnaire");
     });
   });

@@ -9,6 +9,7 @@ export function option(sequelize: Sequelize): any {
     },
     option_value: INTEGER,
     title: STRING,
+    weight: INTEGER,
     instruction_uuid: {
       type: UUID,
       allowNull: false,

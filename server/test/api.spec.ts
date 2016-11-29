@@ -36,26 +36,26 @@ describe("qne server API", () => {
       expect(actions[0].i18n[0].title).to.equal("Aloita");
    });
     expect(questionnaire).to.have.json("groups", function(groups){
-      expect(groups[2].uuid).to.equal("dbe8a9e1-65bb-4f32-b553-ec95ea26a847");
-      expect(groups[2].type).to.equal("normal");
-      expect(groups[2].elements[1].uuid).to.equal("878ee544-6b3b-4588-b6af-e5046501ff8b");
-      expect(groups[2].elements[1].title).to.equal("I love filling out this questionnaire");
-      expect(groups[2].elements[1].description).to.equal(
+      expect(groups[1].uuid).to.equal("dbe8a9e1-65bb-4f32-b553-ec95ea26a847");
+      expect(groups[1].type).to.equal("normal");
+      expect(groups[1].elements[1].uuid).to.equal("878ee544-6b3b-4588-b6af-e5046501ff8b");
+      expect(groups[1].elements[1].title).to.equal("I love filling out this questionnaire");
+      expect(groups[1].elements[1].description).to.equal(
         "(Because this is the middle question of a normal group, I should kinda see the previous and next question)");
-      expect(groups[2].elements[1].type).to.equal("likert");
-      expect(groups[2].elements[1].required).to.equal(true);
-      expect(groups[2].elements[1].instruction).to.equal("e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15");
-      expect(groups[2].elements[1].i18n[0].lang).to.equal("fi");
-      expect(groups[2].elements[1].i18n[0].title).to.equal("Rakastan tähän kyselyyn vastaamista");
+      expect(groups[1].elements[1].type).to.equal("likert");
+      expect(groups[1].elements[1].required).to.equal(true);
+      expect(groups[1].elements[1].instruction).to.equal("e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15");
+      expect(groups[1].elements[1].i18n[0].lang).to.equal("fi");
+      expect(groups[1].elements[1].i18n[0].title).to.equal("Rakastan tähän kyselyyn vastaamista");
     });
     expect(questionnaire).to.have.json("instructions", function(instructions){
       expect(instructions[0].uuid).to.equal("e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15");
       expect(instructions[0].title).to.equal("Choose the value that matches reality");
       expect(instructions[0].description).to.equal("Don\'t overthink, the first answer is probably the right one");
-      expect(instructions[0].options[2].value).to.equal(5);
-      expect(instructions[0].options[2].title).to.equal("Strongly agree");
-      expect(instructions[0].options[2].i18n[0].lang).to.equal("fi");
-      expect(instructions[0].options[2].i18n[0].title).to.equal("Vahvasti samaa mieltä");
+      expect(instructions[0].options[4].value).to.equal(5);
+      expect(instructions[0].options[4].title).to.equal("Strongly agree");
+      expect(instructions[0].options[4].i18n[0].lang).to.equal("fi");
+      expect(instructions[0].options[4].i18n[0].title).to.equal("Vahvasti samaa mieltä");
     });
     expect(questionnaire).to.have.status(200);
 

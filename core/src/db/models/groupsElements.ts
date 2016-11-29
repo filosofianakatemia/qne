@@ -1,4 +1,4 @@
-import { Sequelize, UUID } from "sequelize";
+import { Sequelize, UUID, INTEGER } from "sequelize";
 
 export function groupsElements(sequelize: Sequelize): any {
   return sequelize.define("groups_elements", {
@@ -12,6 +12,7 @@ export function groupsElements(sequelize: Sequelize): any {
       primaryKey: true,
       allowNull: false,
     },
+    weight: INTEGER,
   }, {
       freezeTableName: true,
       updatedAt: "modified",

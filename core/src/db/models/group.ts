@@ -1,4 +1,4 @@
-import { Sequelize, UUID, STRING } from "sequelize";
+import { Sequelize, UUID, STRING, INTEGER } from "sequelize";
 
 export function group(sequelize: Sequelize): any {
   return sequelize.define("group", {
@@ -8,6 +8,7 @@ export function group(sequelize: Sequelize): any {
       allowNull: false,
     },
     group_type: STRING,
+    weight: INTEGER,
     action_uuid: {
       type: UUID,
     },

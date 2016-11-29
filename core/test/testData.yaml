@@ -74,6 +74,7 @@ fixtures:
             option_uuid: 3e351fe9-2a06-43e9-b5fe-402c5d05d505
             option_value: 1
             title: Strongly disagree
+            weight: 0
             instruction_uuid: e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15
     - model: i18n
       data:
@@ -87,6 +88,7 @@ fixtures:
             option_uuid: c4bd61e2-56c2-4eed-a06f-6e730ce91786
             option_value: 2
             title: Disagree
+            weight: 1024
             instruction_uuid: e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15
     - model: i18n
       data:
@@ -100,6 +102,7 @@ fixtures:
             option_uuid: fa5d3c99-faa3-486e-92fe-d087d49a0eb9
             option_value: 3
             title: Neither agree nor disagree
+            weight: 2048
             instruction_uuid: e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15
     - model: i18n
       data:
@@ -113,6 +116,7 @@ fixtures:
             option_uuid: 4f01c36a-2ea9-46e2-834e-a22d8f3ea650
             option_value: 4
             title: Agree
+            weight: 3072
             instruction_uuid: e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15
     - model: i18n
       data:
@@ -126,6 +130,7 @@ fixtures:
             option_uuid: 878892c2-837c-4400-b98c-5614bd9d18ab
             option_value: 5
             title: Strongly agree
+            weight: 4096
             instruction_uuid: e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15
     - model: i18n
       data:
@@ -138,6 +143,7 @@ fixtures:
       data:
             group_uuid: 0f9e6cf5-1590-4be0-991b-f4ff51f39ff4
             group_type: action
+            weight: 0
             questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167
             action_uuid: 3b99828b-852b-478a-a976-84b51a3214b8
     # Element - for group_type: action
@@ -160,6 +166,7 @@ fixtures:
       data:
             group_uuid: dbe8a9e1-65bb-4f32-b553-ec95ea26a847
             group_type: normal
+            weight: 1024
             questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167
     # Element - for group_type: normal
     - model: element
@@ -209,6 +216,7 @@ fixtures:
       data:
             group_uuid: fa2b8df6-8441-41ae-abe3-f8ba0eff145d
             group_type: expanded
+            weight: 2048
             questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167
     # Element - for group_type: expanded
     - model: element
@@ -244,6 +252,7 @@ fixtures:
       data:
             group_uuid: 4199e924-313c-4ea5-9c58-5f496f6011b4
             group_type: normal
+            weight: 3072
             questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167 
     # Element - for type: normal
     - model: element
@@ -278,6 +287,7 @@ fixtures:
       data:
             group_uuid: f29037ee-24d3-4eb9-acb8-167528e8830f
             group_type: expanded
+            weight: 4096
             questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167 
     # Element - for type: expanded
     - model: element
@@ -313,42 +323,52 @@ fixtures:
       data:
             element_uuid: 713e32f8-027d-4a49-ae7b-c6bfe59c8695
             group_uuid: 0f9e6cf5-1590-4be0-991b-f4ff51f39ff4
+            weight: 0
     - model: groupsElements
       data:
             element_uuid: 8dee78e2-2f01-410e-beca-53d4b6766a08
             group_uuid: dbe8a9e1-65bb-4f32-b553-ec95ea26a847
+            weight: 0
     - model: groupsElements
       data:
             element_uuid: 878ee544-6b3b-4588-b6af-e5046501ff8b
             group_uuid: dbe8a9e1-65bb-4f32-b553-ec95ea26a847
+            weight: 1024
     - model: groupsElements
       data:
             element_uuid: 3c159b26-e072-4012-868b-d26d1ec9a964
             group_uuid: dbe8a9e1-65bb-4f32-b553-ec95ea26a847
+            weight: 2048
     - model: groupsElements
       data:
             element_uuid: 267ad9e0-fbac-456f-b739-40cb44ab73ee
             group_uuid: fa2b8df6-8441-41ae-abe3-f8ba0eff145d
+            weight: 0
     - model: groupsElements
       data:
             element_uuid: 749f6333-7b65-497d-804d-fc9294a1d2a5
             group_uuid: fa2b8df6-8441-41ae-abe3-f8ba0eff145d
+            weight: 1024
     - model: groupsElements
       data:
             element_uuid: 66c33f33-3f65-42bd-ac62-98731ff3b640
             group_uuid: 4199e924-313c-4ea5-9c58-5f496f6011b4
+            weight: 0
     - model: groupsElements
       data:
             element_uuid: 5e15fab0-2a33-4df6-bb0b-0c380a74f766
             group_uuid: 4199e924-313c-4ea5-9c58-5f496f6011b4
+            weight: 1024
     - model: groupsElements
       data:
             element_uuid: 53b53f93-7835-46ba-8559-b14f56263ce8
             group_uuid: f29037ee-24d3-4eb9-acb8-167528e8830f
+            weight: 0
     - model: groupsElements
       data:
             element_uuid: 8e26d0a7-594a-4bb8-a251-52a37f81ea7c
             group_uuid: f29037ee-24d3-4eb9-acb8-167528e8830f
+            weight: 1024
     # Role
     - model: role
       data:
