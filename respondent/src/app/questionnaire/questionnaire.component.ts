@@ -42,7 +42,7 @@ import { Store } from '@ngrx/store';
   `
 })
 
-export class QuestionnaireComponent implements OnInit, OnChanges{
+export class QuestionnaireComponent implements OnChanges{
   @Input() questionnaire: Questionnaire;
   @Input() currentUIGroup: UIGroup;
   @Input() answers: AnswerValue[];
@@ -56,11 +56,8 @@ export class QuestionnaireComponent implements OnInit, OnChanges{
 
   constructor(private store: Store<fromRoot.State>){};
 
-  ngOnInit(){
-    this.requiredElements = this.getRequiredElements(this.questionnaire.groups);
-  }
-
   ngOnChanges(changes: SimpleChanges) {  
+    this.requiredElements = this.getRequiredElements(this.questionnaire.groups);
     this.requiredAnswers = this.getRequiredAnswers(this.requiredElements, this.answers);
     this.isCompleted = this.checkCompletion(this.requiredElements, this.requiredAnswers);
     this.toggleNavigationButtons(this.currentUIGroup);
