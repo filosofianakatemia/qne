@@ -19,14 +19,13 @@ import { Store } from '@ngrx/store';
       <hr>
 
       <groups
-        [hidden]="showSummary"
         [groups]="questionnaire.groups"
         [currentUIGroup]="currentUIGroup"
         [instructions]="questionnaire.instructions">
       </groups>
 
       <summary
-        [hidden]="!showSummary"
+        [hidden]="true"
         [answers]="answers"
         [groups]="questionnaire.groups">
       </summary>
@@ -56,7 +55,7 @@ export class QuestionnaireComponent implements OnChanges{
 
   constructor(private store: Store<fromRoot.State>){};
 
-  ngOnChanges(changes: SimpleChanges) {  
+  ngOnChanges(changes: SimpleChanges) {
     this.requiredElements = this.getRequiredElements(this.questionnaire.groups);
     this.requiredAnswers = this.getRequiredAnswers(this.requiredElements, this.answers);
     this.isCompleted = this.checkCompletion(this.requiredElements, this.requiredAnswers);
@@ -86,7 +85,9 @@ export class QuestionnaireComponent implements OnChanges{
     //Detect if we are at bounds
     this.negativeBounds = firstElementID === UIGroup.currentElement.uuid;
     this.positiveBounds =
-      (currentElement.required && currentAnswer === undefined) || //Current element required and not answered
+      (currentGroup.type !== "action" &&
+        currentElement.required &&
+        currentAnswer === undefined) || //Current element required and not answered
       (lastElementID === UIGroup.currentElement.uuid) ||          //Last element of the array
       ((currentUIGroup.uuid === lastGroup.uuid) && (lastGroup.type === "expanded"));  //Or last group with type==="expanded"
   }
@@ -108,7 +109,7 @@ export class QuestionnaireComponent implements OnChanges{
       this.store.dispatch(new NavigateAction({direction, groups, currentUIGroup}));
     }
   }
-  
+
   getRequiredElements(groups:QuestionGroup[]): QuestionElement[] {
     let elems: QuestionElement[] = [];
     for(let group of groups){ elems = elems.concat(group.elements); }
@@ -128,6 +129,6 @@ export class QuestionnaireComponent implements OnChanges{
     if(isCompleted) this.store.dispatch(new CompletionAction(isCompleted));
     return isCompleted;
   }
-  
+
 
 }

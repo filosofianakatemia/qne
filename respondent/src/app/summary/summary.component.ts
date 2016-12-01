@@ -8,7 +8,10 @@ import { QuestionGroup } from '../group/group.model';
     template: `
         <div *ngFor="let group of groups">
             <div *ngFor="let elem of group.elements">
-
+                <p *ngIf="elem.type !== 'text'">
+                    {{elem.title}}
+                    {{getElementAnswer(elem.uuid)}}
+                </p>
             </div>
             <br/>
         </div>
@@ -21,9 +24,15 @@ export class SummaryComponent{
   @Input() answers: AnswerValue[];
   @Input() groups: QuestionGroup[];
 
-  getElementAnswer(uuid:string): AnswerValue{
+  getElementAnswer(uuid:string): string | number{
+      const ans = this.answers.filter(a => a.element === uuid)[0];
+      if(ans === undefined) return "";
+      else if(ans.value.type === "string"){
+        return ans.value.valueAsString;
+      }else{
+        return ans.value.valueAsInteger;
+      }
 
-      return null;
   }
 }
 
