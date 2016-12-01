@@ -28,6 +28,7 @@
     "core-js": "^2.2.2",
     "ngrx-store-freeze": "^0.1.0",
     "foundation-sites": "^6.2.4",
+    "qne-api": "0.0.1",
     "rxjs": "^5.0.0-beta.12",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.6.25"
