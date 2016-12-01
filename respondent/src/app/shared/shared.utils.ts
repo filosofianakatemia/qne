@@ -3,6 +3,7 @@ import { QuestionGroup } from '../group/group.model';
 import { QuestionElement } from '../element/element.model';
 import { UIGroup } from '../action/ui-group.model';
 import { Instruction } from '../instruction/instruction.model'
+import { Action } from '../action/action.model'
 
 
 /**
@@ -57,6 +58,16 @@ export class InstructionFilterPipe implements PipeTransform {
 
      const filteredInstruction: Instruction[] = instructions.filter(i => i.uuid === instructionId);
      return filteredInstruction;
+
+  };
+}
+
+@Pipe({name: 'actionFilter'})
+export class ActionFilterPipe implements PipeTransform {
+  transform(actions: Action[], actionId: string){
+
+     const filteredAction: Action[] = actions.filter(i => i.uuid === actionId);
+     return filteredAction;
 
   };
 }
