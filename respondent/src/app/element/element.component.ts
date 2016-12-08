@@ -13,19 +13,19 @@ import { Store } from '@ngrx/store';
     <div *ngFor="let element of elements">
 
         <div *ngIf= "(element.type == 'likert')">
-          <likert [element]="element" (answer)="addToAnswers($event)"></likert>
+          <likert [element]="element" [previousAnswer]="getElementAnswer(element.uuid)" (answer)="addToAnswers($event)"></likert>
+        </div>
+
+        <div *ngIf= "(element.type == 'textarea')">
+          <textareaSelector [element]="element" [previousAnswer]="getElementAnswer(element.uuid)" (answer)="addToAnswers($event)"></textareaSelector>
+        </div>
+
+        <div *ngIf= "(element.type == 'checkbox')">
+          <checkbox [element]="element" [previousAnswer]="getElementAnswer(element.uuid)" (answer)="addToAnswers($event)"></checkbox>
         </div>
 
         <div *ngIf= "(element.type == 'text')">
           <text [element]="element" (answer)="addToAnswers($event)"></text>
-        </div>
-
-        <div *ngIf= "(element.type == 'textarea')">
-          <textareaSelector [element]="element" (answer)="addToAnswers($event)"></textareaSelector>
-        </div>
-
-        <div *ngIf= "(element.type == 'checkbox')">
-          <checkbox [element]="element" (answer)="addToAnswers($event)"></checkbox>
         </div>
 
         <div *ngIf= "(element.instruction != null)">
@@ -39,8 +39,13 @@ import { Store } from '@ngrx/store';
 export class ElementComponent{
   @Input() instructions: Instruction[];
   @Input() elements: QuestionElement[];
+  @Input() answers: AnswerValue[];
   @Output() navigate: EventEmitter<any> = new EventEmitter<any>();
   constructor(private store: Store<fromRoot.State>){};
+
+  getElementAnswer(uuid: string):AnswerValue{
+    return this.answers.filter(a => a.element === uuid)[0];
+  }
 
   addToAnswers($event: any){
     let ans: AnswerValue = this.createAnswer($event.element, $event.value);

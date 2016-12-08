@@ -3,8 +3,9 @@ import { QuestionGroup } from './group.model';
 import { UIGroup } from '../action/ui-group.model';
 
 import { Instruction } from '../instruction/instruction.model';
-import { Action } from '../action/action.model';
+import { AnswerValue } from '../action/answer-value.model';
 
+import { Action } from '../action/action.model';
 import { NavigateAction } from '../shared/shared.actions';
 import * as fromRoot from '../shared/main.reducer';
 import { Store } from '@ngrx/store';
@@ -14,6 +15,7 @@ import { Store } from '@ngrx/store';
   template: `
     <div *ngFor="let group of (groups | groupFilter:currentUIGroup)">
       <elements
+        [answers]="answers"
         [elements]="group.elements"
         [instructions]="instructions"
         (navigate)="navigate($event)"
@@ -32,6 +34,7 @@ export class GroupComponent {
   @Input() currentUIGroup: UIGroup;
   @Input() instructions: Instruction[];
   @Input() actions: Action[];
+  @Input() answers: AnswerValue[];
   constructor(private store: Store<fromRoot.State>){};
 
   //Triggers navigation action when answer action is done in <elements>

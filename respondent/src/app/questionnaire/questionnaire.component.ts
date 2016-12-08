@@ -22,7 +22,8 @@ import { Store } from '@ngrx/store';
         [groups]="questionnaire.groups"
         [currentUIGroup]="currentUIGroup"
         [instructions]="questionnaire.instructions"
-        [actions]="questionnaire.actions">
+        [actions]="questionnaire.actions"
+        [answers]="answers">
       </groups>
 
       <summary
