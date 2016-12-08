@@ -57,7 +57,7 @@ export class InstructionFilterPipe implements PipeTransform {
   transform(instructions: Instruction[], instructionId: string){
 
      const filteredInstruction: Instruction[] = instructions.filter(i => i.uuid === instructionId);
-     return filteredInstruction;
+     return filteredInstruction[0];
   };
 }
 

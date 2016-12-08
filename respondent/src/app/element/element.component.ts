@@ -1,9 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { QuestionElement } from './element.model';
-import { LikertComponent } from './element.likert.component';
-import { TextComponent } from './element.text.component';
-import { TextareaComponent } from './element.textarea.component';
-import { CheckboxComponent } from './element.checkbox.component';
 import { AnswerValue } from '../action/answer-value.model';
 import { AnswerAction } from '../shared/shared.actions';
 import { Instruction } from '../instruction/instruction.model';
@@ -33,7 +29,7 @@ import { Store } from '@ngrx/store';
         </div>
 
         <div *ngIf= "(element.instruction != null)">
-          <instruction [instruction]="element.instruction" [instructions]="instructions"></instruction>
+          <instruction [instruction]="instructions | instructionFilter:element.instruction"></instruction>
         </div>
     <hr/>
     </div>
