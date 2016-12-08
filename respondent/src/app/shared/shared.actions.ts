@@ -17,8 +17,8 @@ export const ActionTypes = {
   LOAD:                type('[Questionnaire] Load'),
   ANSWER:              type('[Answer] Answer'),
   NAVIGATE:            type('[Object] Navigate'),
-  COMPLETE:            type('[boolean] isCompleted')
-// SUBMIT:           type('[SUBMIT] Submit')
+  COMPLETE:            type('[boolean] isCompleted'),
+  SUBMIT:              type('[AnswerValue[]] Submit')
 };
 
 /**
@@ -49,13 +49,13 @@ export class CompletionAction implements Action {
 
   constructor(public payload: boolean){}
 }
-/*
+
 export class SubmitAction implements Action {
   type = ActionTypes.SUBMIT;
 
-  constructor(public payload: Submit) {}
+  constructor(public payload: AnswerValue[]) {}
 }
-*/
+
 
 /**
  * Exxport a type alias of all actions in this action group
@@ -65,9 +65,6 @@ export type Actions
   = LoadAction
   | AnswerAction
   | NavigateAction
-  | CompletionAction;
-
-
-/*
+  | CompletionAction
   | SubmitAction;
-*/
+

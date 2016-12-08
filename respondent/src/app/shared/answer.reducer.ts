@@ -55,6 +55,14 @@ export function reducer(state = initialState, action: Actions): State {
       console.log("isCompleted:",newState.completed);
       return newState;
     }
+    case ActionTypes.SUBMIT: {
+      const answers = action.payload;
+
+      //TODO: send answers to back-end
+      //Wrap answers to questionnaire uuid and unique uuid?
+
+      return state;
+    }
     default: {
       return state;
     }

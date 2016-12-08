@@ -4,11 +4,11 @@
 @include foundation-everything(true);
 
 // global styles
-
+$background-color: #eff1f4;
 
 body {
-    background-color:#eff1f4;
-    text-align:center;
+    background-color: $background-color;
+    text-align: center;
 }
 main {
   font-family: Arial, Helvetica, sans-serif;
@@ -18,11 +18,17 @@ main {
 }
 
 .progress {
-  min-width:100px; 
+  min-width:100px;
 }
 .likert {
   display:block;
 }
-p.progress-meter-text {
+
+span.progress-meter-text {
   margin-left: 50px;
+}
+
+//Currently classes override angular binding [hidden]. Workaround until then.
+[hidden]{
+  display:none !important;
 }

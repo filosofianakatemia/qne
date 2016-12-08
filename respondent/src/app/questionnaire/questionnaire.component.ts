@@ -6,7 +6,7 @@ import { GroupComponent } from '../group/group.component';
 import { QuestionGroup } from '../group/group.model';
 import { QuestionElement } from '../element/element.model';
 import { AnswerValue } from '../action/answer-value.model';
-import { NavigateAction, CompletionAction } from '../shared/shared.actions';
+import { NavigateAction, CompletionAction, SubmitAction } from '../shared/shared.actions';
 
 import * as fromRoot from '../shared/main.reducer';
 import { Store } from '@ngrx/store';
@@ -37,8 +37,10 @@ import { Store } from '@ngrx/store';
         [currentGroup]="currentUIGroup"
         [hidePrevButton]="negativeBounds"
         [hideNextButton]="positiveBounds"
-        [answeredQuestions]="requiredAnswers"
-        (navigate)="navigate($event)">
+        [requiredAnswers]="requiredAnswers"
+        [isCompleted]="isCompleted"
+        (navigate)="navigate($event)"
+        (submit)="submitQuestionnaire($event)">
       </progressbar>
   `
 })
@@ -103,21 +105,28 @@ export class QuestionnaireComponent implements OnChanges{
     const direction: number = $event;
     const groups: QuestionGroup[] = this.questionnaire.groups;
     const currentUIGroup: UIGroup = this.currentUIGroup;
-    if(direction === 0) this.showSummary = true              //Navigate to summary
-    else if(this.showSummary === true && direction === -1){  //Navigate backwards from summary
-      this.showSummary = false;
+      if(direction === 0){}                                    //TODO: Navigate to summary
+      else if(this.showSummary === true && direction === -1){  //Navigate backwards from summary
+        this.showSummary = false;
     }else{
       //Pass to reducer
       this.store.dispatch(new NavigateAction({direction, groups, currentUIGroup}));
     }
   }
 
+  //Returns elements with required === true
   getRequiredElements(groups:QuestionGroup[]): QuestionElement[] {
     let elems: QuestionElement[] = [];
-    for(let group of groups){ elems = elems.concat(group.elements); }
-    elems = elems.filter(e => e.required===true);
+    for(let group of groups){
+      if(group.type !== "action"){  //Do not count action elements
+        elems = elems.concat(group.elements)
+      };
+    }
+    elems = elems.filter(e => e.required === true);
     return elems;
   }
+
+  //Returns answers with required === true
   getRequiredAnswers(requiredElements: QuestionElement[], answers: AnswerValue[]): AnswerValue[]{
     let requiredAnswers: AnswerValue[] = [];
     for(let elem of requiredElements){
@@ -126,11 +135,16 @@ export class QuestionnaireComponent implements OnChanges{
     return requiredAnswers;
   }
 
+  //Returns true if all required elements have answers
   checkCompletion(requiredElements:QuestionElement[], requiredAnswers:AnswerValue[]){
     const isCompleted: boolean = requiredElements.length === requiredAnswers.length;
     if(isCompleted) this.store.dispatch(new CompletionAction(isCompleted));
     return isCompleted;
   }
 
+  //Submit questionnaire to back-end via answer.reducer
+  submitQuestionnaire($event:any, answers:AnswerValue[]){
+    this.store.dispatch(new SubmitAction(this.answers));
+  }
 
 }
