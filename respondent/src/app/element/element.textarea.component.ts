@@ -4,8 +4,7 @@ import { QuestionElement } from './element.model';
 @Component({
     selector: 'textareaSelector',
     template: `
-      <h3>{{element.title}}</h3>
-      <p *ngIf="(element.required)==true">*</p>
+      <h3>{{element.title}}<span *ngIf="(element.required)===true">*</span></h3>
       <textarea #box (keyup)="0"></textarea>
       <button type="button" class="success button" (click)="answer.emit({element: element.uuid, value: box.value})">Submit</button>
     `
