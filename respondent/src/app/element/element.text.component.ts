@@ -5,9 +5,6 @@ import { QuestionElement } from './element.model';
     selector: 'text',
     template: `
         <h3>{{element.title}}</h3>
-        <p>{{element.description}}</p>
-        <button class="success button">Out of order</button>
-        <p>TODO: this button needs questionnaire.action</p>
     `
 })
 

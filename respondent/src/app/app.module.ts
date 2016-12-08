@@ -20,13 +20,14 @@ import { ProgressbarComponent } from './shared/progressbar.component';
 import { InstructionComponent } from './instruction/instruction.component';
 import { InstructionOptionComponent } from './instruction/instruction-option.component';
 import { SummaryComponent } from './summary/summary.component';
+import { ActionComponent } from './action/action.component';
 
 import { routing } from './app.routing';
 import { AppGuard } from './app.guard';
 import { AppComponent } from './app.component';
 
 import { reducer } from './shared/main.reducer';
-import { GroupFilterPipe, InstructionFilterPipe } from './shared/shared.utils';
+import { GroupFilterPipe, InstructionFilterPipe, ActionFilterPipe } from './shared/shared.utils';
 
 
 @NgModule({
@@ -63,7 +64,9 @@ import { GroupFilterPipe, InstructionFilterPipe } from './shared/shared.utils';
     InstructionFilterPipe,
     InstructionComponent,
     InstructionOptionComponent,
-    SummaryComponent
+    SummaryComponent,
+    ActionComponent,
+    ActionFilterPipe
   ],
   providers: [
     AppGuard,

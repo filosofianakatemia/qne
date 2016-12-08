@@ -1,10 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { QuestionGroup } from './group.model';
 import { UIGroup } from '../action/ui-group.model';
-import { GroupFilterPipe } from '../shared/shared.utils';
 
-import { ElementComponent } from '../element/element.component';
 import { Instruction } from '../instruction/instruction.model';
+import { Action } from '../action/action.model';
 
 import { NavigateAction } from '../shared/shared.actions';
 import * as fromRoot from '../shared/main.reducer';
@@ -19,6 +18,12 @@ import { Store } from '@ngrx/store';
         [instructions]="instructions"
         (navigate)="navigate($event)"
       ></elements>
+      <div *ngIf="(group.type)==='action'">
+        <app-action
+          [action]="actions | actionFilter:group.action"
+          (navigate)="navigate($event)"
+        ></app-action>
+      </div>
     </div>
   `
 })
@@ -26,6 +31,7 @@ export class GroupComponent {
   @Input() groups: QuestionGroup[];
   @Input() currentUIGroup: UIGroup;
   @Input() instructions: Instruction[];
+  @Input() actions: Action[];
   constructor(private store: Store<fromRoot.State>){};
 
   //Triggers navigation action when answer action is done in <elements>

@@ -58,7 +58,6 @@ export class InstructionFilterPipe implements PipeTransform {
 
      const filteredInstruction: Instruction[] = instructions.filter(i => i.uuid === instructionId);
      return filteredInstruction;
-
   };
 }
 
@@ -66,8 +65,7 @@ export class InstructionFilterPipe implements PipeTransform {
 export class ActionFilterPipe implements PipeTransform {
   transform(actions: Action[], actionId: string){
 
-     const filteredAction: Action[] = actions.filter(i => i.uuid === actionId);
-     return filteredAction;
-
+     const filteredAction: Action[] = actions.filter(a => a.uuid === actionId);
+     return filteredAction[0];
   };
 }
