@@ -4,6 +4,7 @@
   "description": "qne respondent client",
   "scripts": {
     "build": "ng build --prod",
+    "clean": "rimraf dist",
     "api": "json-server --watch mock.api.json --port 3004",
     "start": "concurrently \"ng serve\" \"npm run api\" "
   },
@@ -39,6 +40,7 @@
     "angular-cli": "1.0.0-beta.17",
     "codelyzer": "~0.0.26",
     "concurrently": "^2.2.0",
+    "rimraf": "^2.5.4",
     "ts-node": "1.2.1",
     "tslint": "3.13.0",
     "typescript": "2.0.2",

@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # start test server for this test run
-(node dist/server/src/index.js ../../../config-devel.json &)
+(node dist/src/index.js ../../config-devel.json &)
 
 # run test suite
-./node_modules/.bin/mocha dist/server/test/**.js
+./node_modules/.bin/mocha dist/test/**.js
 
 teststatus=$?
 

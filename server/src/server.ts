@@ -43,7 +43,7 @@ export class Server {
 
     // Setup Swagger 2 validation and ui
 
-    const swaggerDocumentPath = path.join(__dirname, "../../../node_modules/qne-api/api.swagger.yaml");
+    const swaggerDocumentPath = path.join(__dirname, "../../node_modules/qne-api/api.swagger.yaml");
     const swaggerDocument = swagger.loadDocumentSync(swaggerDocumentPath);
     if (!swagger.validateDocument(swaggerDocument)) {
       throw Error(swaggerDocumentPath + " does not conform to the Swagger 2.0 schema");
