@@ -5,9 +5,9 @@
   "engines": {
     "node": ">= 6"
   },
-  "main": "./dist/core/src/index.js",
-  "webpack": "./dist/core/src/index.js",
-  "typings": "./dist/core/src/index.d.ts",
+  "main": "./dist/src/index.js",
+  "webpack": "./dist/src/index.js",
+  "typings": "./dist/src/index.d.ts",
   "dependencies": {
     "@types/bcryptjs": "^2.3.30",
     "@types/chai": "^3.4.34",
@@ -29,7 +29,7 @@
     "nodemon": "^1.10.2",
     "rimraf": "^2.5.4",
     "tslint": "^3.15.1",
-    "typescript": "^2.0.6"
+    "typescript": "^2.1.4"
   },
   "repository": {
     "type": "git",
@@ -40,9 +40,9 @@
     "clean": "rimraf dist",
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "test": "mocha dist/core/test/**.spec.js",
-    "test:watch": "nodemon -w dist -e js --exec \"node ./node_modules/mocha/bin/_mocha ./dist/core/test/**.spec.js\" ",
-    "test:createdb": "node dist/core/test/createTestDatabase",
+    "test": "mocha dist/test/**.spec.js",
+    "test:watch": "nodemon -w dist -e js --exec \"node ./node_modules/mocha/bin/_mocha ./dist/test/**.spec.js\" ",
+    "test:createdb": "node dist/test/createTestDatabase",
     "dev": "concurrently \"npm run build:watch\" \"npm run test:watch\" "
   },
   "contributors": [

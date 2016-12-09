@@ -16,7 +16,7 @@ describe("API", () => {
     },
   };
 
-  const sequelizeFixturesPath = path.join(__dirname, "../../../test/testData.yaml");
+  const sequelizeFixturesPath = path.join(__dirname, "../../test/testData.yaml");
   let core: Core;
 
   before(async function(){

@@ -12,6 +12,6 @@ const testQneOptions: Options = {
   },
 };
 
-const sequelizeFixturesPath = path.join(__dirname, "../../../test/testData.yaml");
+const sequelizeFixturesPath = path.join(__dirname, "../../test/testData.yaml");
 let core = new Core(false, testQneOptions);
 core.syncDatabase(true, sequelizeFixturesPath);
