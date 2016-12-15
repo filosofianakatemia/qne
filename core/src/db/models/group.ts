@@ -8,6 +8,7 @@ export function group(sequelize: Sequelize): any {
       allowNull: false,
     },
     group_type: STRING,
+    model_type: STRING,
     weight: INTEGER,
     action_uuid: {
       type: UUID,

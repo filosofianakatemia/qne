@@ -7,6 +7,7 @@ export function questionnaire(sequelize: Sequelize): any {
       primaryKey: true,
       allowNull: false,
     },
+    model_type: STRING,
     defaultLang: STRING,
     title: STRING,
     description: STRING,

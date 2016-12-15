@@ -1,13 +1,8 @@
-import {Questionnaire, Info, Action, Group, Option, Instruction, Element} from "qne-api";
+import {Questionnaire, Info} from "qne-api";
 import * as Sequelize from "sequelize";
 import {DBModels} from "./models";
 import * as sequelizeFixtures from "sequelize-fixtures";
 import {toQuestionnaire} from "./questionnaire.db";
-import {toAction} from "./action.db";
-import {toGroup} from "./group.db";
-import {toOption} from "./option.db";
-import {toInstruction} from "./instruction.db";
-import {toElement} from "./element.db";
 
 export class DB {
 
@@ -56,31 +51,6 @@ export class DB {
       resolve(info);
     });
   };
-
-  /*public async getAction(title: string): Promise<Action> {
-    const result = await this.models.action.findAll({where: {title: title}});
-    return toAction(result[0].dataValues);
-  }
-  public async getGroup(type: string): Promise<Group> {
-    const result = await this.models.group.findAll({where: {group_type: type}});
-    console.info(result[0].dataValues);
-    return toGroup(result[0].dataValues);
-  }
-  public async getOption(title:string): Promise<Option> {
-    const result = await this.models.option.findAll({where: {title: title}});
-    console.info(result[0].dataValues);
-    return toOption(result[0].dataValues);
-  }
-  public async getInstruction(type:string): Promise<Instruction> {
-    const result = await this.models.instruction.findAll({where: {instruction_type: type}});
-    console.info(result[0].dataValues);
-    return toInstruction(result[0].dataValues);
-  }
-  public async getElement(type:string): Promise<Element> {
-    const result = await this.models.element.findAll({where: {element_type: type}});
-    console.info(result[0].dataValues);
-    return toElement(result[0].dataValues);
-  }*/
 
   public async getQuestions(path: string): Promise<Questionnaire> {
       const result = await this.models.questionnaire.findAll({
@@ -132,6 +102,26 @@ export class DB {
         where: {questionnaire_path: path}});
       result[0].dataValues.created = result[0].dataValues.created.getTime();
       result[0].dataValues.modified = result[0].dataValues.modified.getTime();
+      result[0].dataValues.actions.forEach(function(action){
+        action.dataValues.created = action.dataValues.created.getTime();
+        action.dataValues.modified = action.dataValues.modified.getTime();
+      });
+      result[0].dataValues.groups.forEach(function(group){
+        group.dataValues.created = group.dataValues.created.getTime();
+        group.dataValues.modified = group.dataValues.modified.getTime();
+        group.dataValues.elements.forEach(function(element){
+          element.dataValues.created = element.dataValues.created.getTime();
+          element.dataValues.modified = element.dataValues.modified.getTime();
+        });
+      });
+      result[0].dataValues.instructions.forEach(function(instruction){
+        instruction.dataValues.created = instruction.dataValues.created.getTime();
+        instruction.dataValues.modified = instruction.dataValues.modified.getTime();
+        instruction.dataValues.options.forEach(function(option){
+          option.dataValues.created = option.dataValues.created.getTime();
+          option.dataValues.modified = option.dataValues.modified.getTime();
+        });
+      });
       return toQuestionnaire(result[0].dataValues);
   }
 }

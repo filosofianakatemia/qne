@@ -8,6 +8,7 @@ export function element(sequelize: Sequelize): any {
       allowNull: false,
     },
     element_type: STRING,
+    model_type: STRING,
     title: STRING,
     description: STRING,
     required: BOOLEAN,

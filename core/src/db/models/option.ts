@@ -8,6 +8,7 @@ export function option(sequelize: Sequelize): any {
       allowNull: false,
     },
     option_value: INTEGER,
+    model_type: STRING,
     title: STRING,
     weight: INTEGER,
     instruction_uuid: {

@@ -24,9 +24,7 @@
 
 import * as models from './models';
 
-export interface Option {
-    uuid: string;
-
+export interface Option extends models.Base {
     value?: number;
 
     title?: string;

@@ -17,6 +17,7 @@ fixtures:
             questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167
             defaultLang: en
             title: Test Questionnaire
+            model_type: Questionnaire
             description: This is a questionnaire suitable for testing
             questionnaire_path : test-questionnaire
             submit_action_uuid: efabf3d2-2f69-4419-9a9c-05f69261c876
@@ -39,6 +40,7 @@ fixtures:
       data:
             action_uuid: 3b99828b-852b-478a-a976-84b51a3214b8
             action_type: button
+            model_type: Action
             title: Begin
             questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167
     - model: i18n
@@ -52,6 +54,7 @@ fixtures:
       data:
             action_uuid: efabf3d2-2f69-4419-9a9c-05f69261c876
             action_type: button
+            model_type: Action
             title: Submit
             questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167
     - model: i18n
@@ -65,6 +68,7 @@ fixtures:
       data:
             instruction_uuid: e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15
             instruction_type: likert
+            model_type: Instruction
             title: Choose the value that matches reality
             description: Don't overthink, the first answer is probably the right one
             questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167
@@ -72,6 +76,7 @@ fixtures:
     - model: option
       data:
             option_uuid: 3e351fe9-2a06-43e9-b5fe-402c5d05d505
+            model_type: Option
             option_value: 1
             title: Strongly disagree
             weight: 0
@@ -86,6 +91,7 @@ fixtures:
     - model: option
       data:
             option_uuid: c4bd61e2-56c2-4eed-a06f-6e730ce91786
+            model_type: Option
             option_value: 2
             title: Disagree
             weight: 1024
@@ -100,6 +106,7 @@ fixtures:
     - model: option
       data:
             option_uuid: fa5d3c99-faa3-486e-92fe-d087d49a0eb9
+            model_type: Option
             option_value: 3
             title: Neither agree nor disagree
             weight: 2048
@@ -114,6 +121,7 @@ fixtures:
     - model: option
       data:
             option_uuid: 4f01c36a-2ea9-46e2-834e-a22d8f3ea650
+            model_type: Option
             option_value: 4
             title: Agree
             weight: 3072
@@ -128,6 +136,7 @@ fixtures:
     - model: option
       data:
             option_uuid: 878892c2-837c-4400-b98c-5614bd9d18ab
+            model_type: Option
             option_value: 5
             title: Strongly agree
             weight: 4096
@@ -143,6 +152,7 @@ fixtures:
       data:
             group_uuid: 0f9e6cf5-1590-4be0-991b-f4ff51f39ff4
             group_type: action
+            model_type: Group
             weight: 0
             questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167
             action_uuid: 3b99828b-852b-478a-a976-84b51a3214b8
@@ -151,6 +161,7 @@ fixtures:
       data:
             element_uuid: 713e32f8-027d-4a49-ae7b-c6bfe59c8695
             element_type: text
+            model_type: Element
             title: This is the first view of the questionnaire
             description: As this is inside a group of type 'action', the user needs to push a button after reading this.
             required: true
@@ -166,6 +177,7 @@ fixtures:
       data:
             group_uuid: dbe8a9e1-65bb-4f32-b553-ec95ea26a847
             group_type: normal
+            model_type: Group
             weight: 1024
             questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167
     # Element - for group_type: normal
@@ -173,6 +185,7 @@ fixtures:
       data:
             element_uuid: 8dee78e2-2f01-410e-beca-53d4b6766a08
             element_type: likert
+            model_type: Element
             title: This looks like the best possible questionnaire
             required: true
             instruction_uuid: e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15
@@ -187,6 +200,7 @@ fixtures:
       data:
             element_uuid: 878ee544-6b3b-4588-b6af-e5046501ff8b
             element_type: likert
+            model_type: Element
             title: I love filling out this questionnaire
             description: (Because this is the middle question of a normal group, I should kinda see the previous and next question)
             required: true
@@ -203,6 +217,7 @@ fixtures:
       data:
             element_uuid: 3c159b26-e072-4012-868b-d26d1ec9a964
             element_type: textarea
+            model_type: Element
             title: Comments?
             required: false
     - model: i18n
@@ -216,6 +231,7 @@ fixtures:
       data:
             group_uuid: fa2b8df6-8441-41ae-abe3-f8ba0eff145d
             group_type: expanded
+            model_type: Group
             weight: 2048
             questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167
     # Element - for group_type: expanded
@@ -223,6 +239,7 @@ fixtures:
       data:
             element_uuid: 267ad9e0-fbac-456f-b739-40cb44ab73ee
             element_type: likert
+            model_type: Element
             title: This was the best possible questionnaire.
             required: true
             instruction_uuid: e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15
@@ -237,6 +254,7 @@ fixtures:
       data:
             element_uuid: 749f6333-7b65-497d-804d-fc9294a1d2a5
             element_type: checkbox
+            model_type: Element
             title: I agree
             description: (Because this is in a 'expanded' group, this question should be visible at the same time as the above, if possible.)
             required: false
@@ -252,6 +270,7 @@ fixtures:
       data:
             group_uuid: 4199e924-313c-4ea5-9c58-5f496f6011b4
             group_type: normal
+            model_type: Group
             weight: 3072
             questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167 
     # Element - for type: normal
@@ -259,6 +278,7 @@ fixtures:
       data:
             element_uuid: 66c33f33-3f65-42bd-ac62-98731ff3b640
             element_type: likert
+            model_type: Element
             title: This is a test likert
             required: true
             instruction_uuid: e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15
@@ -273,6 +293,7 @@ fixtures:
       data:
             element_uuid: 5e15fab0-2a33-4df6-bb0b-0c380a74f766
             element_type: textarea
+            model_type: Element
             title: This is a test textarea
             required: true
             instruction_uuid: e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15
@@ -287,6 +308,7 @@ fixtures:
       data:
             group_uuid: f29037ee-24d3-4eb9-acb8-167528e8830f
             group_type: expanded
+            model_type: Group
             weight: 4096
             questionnaire_uuid: 223e469e-1118-4155-bdc8-af43a505b167 
     # Element - for type: expanded
@@ -294,6 +316,7 @@ fixtures:
       data:
             element_uuid: 53b53f93-7835-46ba-8559-b14f56263ce8
             element_type: likert
+            model_type: Element
             title: This is the last expanded group. Rate 1-5.
             required: true
             instruction_uuid: e1ccbcee-a8f6-41ee-80d3-f0c1b7788f15
@@ -308,6 +331,7 @@ fixtures:
       data:
             element_uuid: 8e26d0a7-594a-4bb8-a251-52a37f81ea7c
             element_type: checkbox
+            model_type: Element
             title: Nice questionnaire
             description: 
             required: true

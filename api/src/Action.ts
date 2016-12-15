@@ -24,9 +24,7 @@
 
 import * as models from './models';
 
-export interface Action {
-    uuid: string;
-
+export interface Action extends models.Base {
     type?: string;
 
     title?: string;

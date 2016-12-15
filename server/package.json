@@ -40,7 +40,7 @@
     "clean": "rimraf dist",
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "start": "node dist/src/index.js ../../../config-devel.json",
+    "start": "node dist/src/index.js ../../config-devel.json",
     "start:watch": "nodemon -w dist -w test -w ../core/dist/src -e js dist/src/index.js",
     "test": "./test-runner.sh",
     "dev": "nodemon -w dist -e js --exec \"node ./node_modules/mocha/bin/_mocha ./dist/test/**.js\" ",

@@ -9,6 +9,7 @@ export function action(sq: Sequelize): any {
       allowNull: false,
     },
     action_type: STRING,
+    model_type: STRING,
     title: STRING,
     questionnaire_uuid: {
       type: UUID,

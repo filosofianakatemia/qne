@@ -24,11 +24,13 @@
 
 import * as models from './models';
 
-export interface Group extends models.Base {
-    type?: string;
+export interface Base {
+    uuid: string;
 
-    action?: string;
+    created?: number;
 
-    elements?: Array<models.Element>;
+    modified?: number;
+
+    modelType: string;
 
 }

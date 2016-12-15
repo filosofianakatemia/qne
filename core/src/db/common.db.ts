@@ -4,6 +4,7 @@ export interface APIType {
   uuid: string;
   created: number;
   modified: number;
+  modelType: string;
   title?: string;
   description?: string;
   i18n?: Array<I18n>;
@@ -14,6 +15,7 @@ export function toAPIType(dbObject: any, dbObjectUuid: string): APIType {
     uuid: dbObjectUuid,
     created: dbObject.created,
     modified: dbObject.modified,
+    modelType: dbObject.model_type,
   };
 }
 export function toI18n(dbI18n: any): I18n {

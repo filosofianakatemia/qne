@@ -59,6 +59,22 @@ paths:
           schema:
             $ref: '#/definitions/Error'
 definitions:
+  Base:
+    type: object
+    discriminator: modelType
+    properties:
+      uuid:
+        type: string
+        format: uuid
+      created:
+        type: number
+      modified:
+        type: number
+      modelType:
+        type: string
+    required:
+      - uuid
+      - modelType
   Info:
     type: object
     required:
@@ -67,56 +83,49 @@ definitions:
       version:
         type: string
   Questionnaire:
-    type: object
-    required:
-      - uuid
-    properties:
-      uuid:
-        type: string
-        format: uuid
-      title:
-        type: string
-        minLength: 1
-        maxLength: 256
-      submit:
-        type: string
-        format: uuid
-      defaultLang:
-        type: string
-        minLength: 2
-        maxLength: 2
-      path:
-        type: string
-        minLength: 1
-        maxLength: 256
-      description:
-        type: string
-        minLength: 1
-        maxLength: 1024
-      i18n:
-        type: array
-        items:
-          $ref: "#/definitions/I18n"
-      actions:
-        type: array
-        items:
-          $ref: "#/definitions/Action"
-      instructions:
-        type: array
-        items:
-          $ref: "#/definitions/Instruction"
-      groups:
-        type: array
-        items:
-          $ref: "#/definitions/Group"
-      elements:
-        type: array
-        items:
-          $ref: "#/definitions/Element"
-      created:
-        type: number
-      modified:
-        type: number
+    allOf:
+      - $ref: "#/definitions/Base"
+      - type: object
+        properties:
+          title:
+            type: string
+            minLength: 1
+            maxLength: 256
+          submit:
+            type: string
+            format: uuid
+          defaultLang:
+            type: string
+            minLength: 2
+            maxLength: 2
+          path:
+            type: string
+            minLength: 1
+            maxLength: 256
+          description:
+            type: string
+            minLength: 1
+            maxLength: 1024
+          i18n:
+            type: array
+            items:
+              $ref: "#/definitions/I18n"
+          actions:
+            type: array
+            items:
+              $ref: "#/definitions/Action"
+          instructions:
+            type: array
+            items:
+              $ref: "#/definitions/Instruction"
+          groups:
+            type: array
+            items:
+              $ref: "#/definitions/Group"
+          elements:
+            type: array
+            items:
+              $ref: "#/definitions/Element"
   I18n:
     type: object
     required:
@@ -135,123 +144,108 @@ definitions:
         minLength: 1
         maxLength: 1024
   Instruction:
-    type: object
-    required: 
-      - uuid
-    properties:
-      uuid:
-        type: string
-        format: uuid
-      type:
-        type: string
-        minLength: 1
-        maxLength: 256
-      title:
-        type: string
-        minLength: 1
-        maxLength: 256
-      description:
-        type: string
-        minLength: 1
-        maxLength: 1024
-      i18n:
-        type: array
-        items:
-          $ref: "#/definitions/I18n"
-      options:
-        type: array
-        items:
-          $ref: "#/definitions/Option"
+    allOf:
+      - $ref: "#/definitions/Base"
+      - type: object
+        properties:
+          type:
+            type: string
+            minLength: 1
+            maxLength: 256
+          title:
+            type: string
+            minLength: 1
+            maxLength: 256
+          description:
+            type: string
+            minLength: 1
+            maxLength: 1024
+          i18n:
+            type: array
+            items:
+              $ref: "#/definitions/I18n"
+          options:
+            type: array
+            items:
+              $ref: "#/definitions/Option"
   Group:
-    type: object
-    required:
-      - uuid
-    properties:
-      uuid:
-        type: string
-        format: uuid
-      type:
-        type: string
-        minLength: 1
-        maxLength: 256
-      action:
-        type: string
-        format: uuid
-        items:
-          $ref: "#/definitions/Action"
-      elements:
-        type: array
-        items:
-          $ref: "#/definitions/Element"
+    allOf:
+      - $ref: "#/definitions/Base"
+      - type: object
+        properties:
+          type:
+            type: string
+            minLength: 1
+            maxLength: 256
+          action:
+            type: string
+            format: uuid
+            items:
+              $ref: "#/definitions/Action"
+          elements:
+            type: array
+            items:
+              $ref: "#/definitions/Element"
   Action:
-    type: object
-    required:
-      - uuid
-    properties:
-      uuid:
-        type: string
-        format: uuid
-      type:
-        type: string
-        minLength: 1
-        maxLength: 256
-      title:
-        type: string
-        minLength: 1
-        maxLength: 256
-      i18n:
-        type: array
-        items:
-          $ref: "#/definitions/I18n"
+    allOf:
+      - $ref: "#/definitions/Base"
+      - type: object
+        properties:
+          type:
+            type: string
+            minLength: 1
+            maxLength: 256
+          title:
+            type: string
+            minLength: 1
+            maxLength: 256
+          i18n:
+            type: array
+            items:
+              $ref: "#/definitions/I18n"
   Option:
-    type: object
-    required:
-      - uuid
-    properties:
-      uuid:
-        type: string
-        format: uuid
-      value:
-        type: integer
-      title:
-        type: string
-        minLength: 1
-        maxLength: 256
-      i18n:
-        type: array
-        items:
-          $ref: "#/definitions/I18n"
+    allOf:
+      - $ref: "#/definitions/Base"
+      - type: object
+        properties:
+          value:
+            type: integer
+          title:
+            type: string
+            minLength: 1
+            maxLength: 256
+          i18n:
+            type: array
+            items:
+              $ref: "#/definitions/I18n"
   Element:
-    type: object
-    required:
-      - uuid
-    properties:
-      uuid:
-        type: string
-        format: uuid
-      type:
-        type: string
-        minLength: 1
-        maxLength: 256
-      title:
-        type: string
-        minLength: 1
-        maxLength: 256
-      description:
-        type: string
-        minLength: 1
-        maxLength: 256
-      required:
-        type: boolean
-      i18n:
-        type: array
-        items:
-          $ref: "#/definitions/I18n"
-      instruction:
-        type: string
-        format: uuid
-        items:
-          $ref: "#/definitions/Instruction"
+    allOf:
+      - $ref: "#/definitions/Base"
+      - type: object
+        properties:
+          type:
+            type: string
+            minLength: 1
+            maxLength: 256
+          title:
+            type: string
+            minLength: 1
+            maxLength: 256
+          description:
+            type: string
+            minLength: 1
+            maxLength: 256
+          required:
+            type: boolean
+          i18n:
+            type: array
+            items:
+              $ref: "#/definitions/I18n"
+          instruction:
+            type: string
+            format: uuid
+            items:
+              $ref: "#/definitions/Instruction"
   Error:
     type: object
     required:

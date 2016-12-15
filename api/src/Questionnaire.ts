@@ -24,9 +24,7 @@
 
 import * as models from './models';
 
-export interface Questionnaire {
-    uuid: string;
-
+export interface Questionnaire extends models.Base {
     title?: string;
 
     submit?: string;
@@ -46,9 +44,5 @@ export interface Questionnaire {
     groups?: Array<models.Group>;
 
     elements?: Array<models.Element>;
-
-    created?: number;
-
-    modified?: number;
 
 }

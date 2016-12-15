@@ -1,4 +1,5 @@
 export * from './Action';
+export * from './Base';
 export * from './Element';
 export * from './Error';
 export * from './Group';

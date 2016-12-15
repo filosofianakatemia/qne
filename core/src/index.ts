@@ -1,5 +1,5 @@
 import {DB} from "./db/db";
-import {Questionnaire, Info, Action, Group, Option, Instruction, Element} from "qne-api";
+import {Questionnaire, Info} from "qne-api";
 import {Options as DatabaseOptions} from "sequelize";
 
 // PUBLIC
@@ -35,20 +35,4 @@ export class Core {
   public async getQuestions(path: string): Promise<Questionnaire> {
     return await this.db.getQuestions(path);
   }
-  /*public async getAction(title:string): Promise<Action> {
-    return await this.db.getAction(title);
-  }
-  public async getGroup(type: string): Promise<Group> {
-    return await this.db.getGroup(type);
-  }
-  public async getOption(title: string): Promise<Option> {
-    return await this.db.getOption(title);
-  }
-  public async getInstruction(type: string): Promise<Instruction> {
-    return await this.db.getInstruction(type);
-  }
-  public async getElement(type:string): Promise<Element> {
-    return await this.db.getElement(type);
-
-  }*/
 }

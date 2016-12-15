@@ -8,6 +8,7 @@ export function instruction(sequelize: Sequelize): any {
       allowNull: false,
     },
     instruction_type: STRING,
+    model_type: STRING,
     title: STRING,
     description: STRING,
     questionnaire_uuid: {

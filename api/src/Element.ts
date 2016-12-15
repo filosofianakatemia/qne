@@ -24,9 +24,7 @@
 
 import * as models from './models';
 
-export interface Element {
-    uuid: string;
-
+export interface Element extends models.Base {
     type?: string;
 
     title?: string;
