@@ -47,7 +47,7 @@
     "json-server": "^0.8.19"
   },
   "engines": {
-    "node": ">= 6"
+    "node": ">= 7"
   },
   "contributors": [
     "Timo Tiuraniemi <timo.tiuraniemi@iki.fi>"

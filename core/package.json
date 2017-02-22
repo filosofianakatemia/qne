@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Questionnaire Service – Backend Core",
   "engines": {
-    "node": ">= 6"
+    "node": ">= 7"
   },
   "main": "./dist/src/index.js",
   "webpack": "./dist/src/index.js",
@@ -36,7 +36,7 @@
     "url": "git+https://github.com/filosofianakatemia/qne.git"
   },
   "scripts": {
-    "prepublish": "npm run clean && npm run build && npm run test:createdb",
+    "prepare": "npm run clean && npm run build && npm run test:createdb",
     "clean": "rimraf dist",
     "build": "tsc",
     "build:watch": "tsc --watch",

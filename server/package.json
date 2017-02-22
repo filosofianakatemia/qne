@@ -4,7 +4,7 @@
   "description": "Questionnaire Service",
   "main": "dist/server/index.js",
   "engines": {
-    "node": ">= 6"
+    "node": ">= 7"
   },
   "dependencies": {
     "@types/chai": "^3.4.34",
@@ -36,7 +36,7 @@
     "url": "git+https://github.com/filosofianakatemia/qne.git"
   },
   "scripts": {
-    "prepublish": "npm run clean && npm run build",
+    "prepare": "npm run clean && npm run build",
     "clean": "rimraf dist",
     "build": "tsc",
     "build:watch": "tsc --watch",

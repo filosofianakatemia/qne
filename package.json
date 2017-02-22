@@ -10,7 +10,7 @@
   },
   "scripts": {
     "clean": "cd ./core && npm run clean && cd ../respondent && npm run clean && cd ../server && npm run clean && cd .. && npm-workspace clean",
-    "build": "npm install && npm-workspace install && cd ./core && npm run prepublish && cd ../respondent && npm run build && cd ../server && npm run prepublish",
+    "build": "npm install && npm-workspace install && cd ./core && npm run prepare && cd ../respondent && npm run build && cd ../server && npm run prepare",
     "build:core-watch": "cd ./core && npm run build:watch",
     "test:core": "cd ./core && npm run test",
     "test:core-watch": "cd ./core && npm run test:watch",
@@ -19,7 +19,7 @@
     "test:server-watch": "cd ./server && npm run test:watch",
     "start:server-watch": "cd ./server && npm run start:watch",
     "build:watch": "concurrently \"npm run build:core-watch\" \"npm run build:server-watch\" \" ",
-    "start": "npm install && npm-workspace install && cd ./core && npm run prepublish && cd ../respondent && npm run build && cd ../server && npm run prepublish &&  npm run start",
+    "start": "npm install && npm-workspace install && cd ./core && npm run prepare && cd ../respondent && npm run build && cd ../server && npm run prepare &&  npm run start",
     "dev": "concurrently \"npm run build:core-watch\" \"npm run test:core-watch\" \"npm run build:server-watch\" \"npm run start:server-watch\" \"npm run test:server-watch\" ",
     "test": "npm run test:core && npm run test:server"
   },
